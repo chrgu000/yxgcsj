@@ -26,6 +26,7 @@ Partial Class form_updata
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.Label_status = New System.Windows.Forms.Label()
+        Me.TextBox_up_com = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'Timer1
@@ -49,11 +50,22 @@ Partial Class form_updata
         Me.Label_status.TabIndex = 1
         Me.Label_status.Text = "..."
         '
+        'TextBox_up_com
+        '
+        Me.TextBox_up_com.Enabled = False
+        Me.TextBox_up_com.Location = New System.Drawing.Point(288, 81)
+        Me.TextBox_up_com.Name = "TextBox_up_com"
+        Me.TextBox_up_com.Size = New System.Drawing.Size(39, 21)
+        Me.TextBox_up_com.TabIndex = 2
+        Me.TextBox_up_com.Text = "@echo off" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "timeout 2" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "up_data.exe" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "异星工厂世界"
+        Me.TextBox_up_com.Visible = False
+        '
         'form_updata
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(339, 114)
+        Me.Controls.Add(Me.TextBox_up_com)
         Me.Controls.Add(Me.Label_status)
         Me.Controls.Add(Me.ProgressBar1)
         Me.Name = "form_updata"
@@ -67,4 +79,5 @@ Partial Class form_updata
     Friend WithEvents Timer1 As Timer
     Friend WithEvents ProgressBar1 As ProgressBar
     Friend WithEvents Label_status As Label
+    Friend WithEvents TextBox_up_com As TextBox
 End Class

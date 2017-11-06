@@ -33,6 +33,7 @@
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         If My.Computer.FileSystem.FileExists("up_com.bat") Then
             Try
                 My.Computer.FileSystem.DeleteFile("up_com.bat")
@@ -64,27 +65,35 @@
 
 
         '下载更新文件
-        Try
+        'Try
 
-            dFile.DownloadFile(myUri_up_com, "up_com.bat")
-            ProgressBar1.Value = 30
-        Catch ex As Exception
-            MsgBox("1下载失败请重试")
-            ProgressBar1.Value = 0
-            Exit Sub
-        End Try
+        '    dFile.DownloadFile(myUri_up_com, "up_com.bat")
+        '    ProgressBar1.Value = 30
+        'Catch ex As Exception
+        '    MsgBox("1下载失败请重试")
+        '    ProgressBar1.Value = 0
+        '    Exit Sub
+        'End Try
 
         Try
             dFile.DownloadFile(myUri_up_data, "up_data.exe")
             ProgressBar1.Value = 80
         Catch ex As Exception
-            MsgBox("2下载失败请重试")
+            MsgBox("下载失败请重试")
             ProgressBar1.Value = 0
             Exit Sub
         End Try
+        Dim up_com = TextBox_up_com.Text
+
+        Try
+            System.IO.File.WriteAllText("up_com.bat", up_com)
+        Catch ex As Exception
+            MsgBox（"升级错误，请手动执行 up_data.exe")
+        End Try
+
         ProgressBar1.Value = 100
         MsgBox（"升级完成后将自动重启。"）
         Shell("up_com.bat")
-        Me.Close()
+        Process.GetCurrentProcess.CloseMainWindow()
     End Sub
 End Class

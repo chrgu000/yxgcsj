@@ -82,7 +82,7 @@ Partial Class Form_main
         Me.Label_Ver_No.Name = "Label_Ver_No"
         Me.Label_Ver_No.Size = New System.Drawing.Size(23, 12)
         Me.Label_Ver_No.TabIndex = 5
-        Me.Label_Ver_No.Text = "0.3"
+        Me.Label_Ver_No.Text = "0.2"
         '
         'Label2
         '
