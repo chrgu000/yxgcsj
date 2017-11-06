@@ -10,3 +10,4 @@ E:\Projects\yxgcsj\异星工厂世界\obj\Release\异星工厂世界.pdb
 E:\Projects\yxgcsj\异星工厂世界\obj\Release\异星工厂世界.form_updata.resources
 E:\Projects\yxgcsj\异星工厂世界\obj\Release\异星工厂世界.Form_main.resources
 E:\Projects\yxgcsj\异星工厂世界\obj\Release\异星工厂世界.Form_chat.resources
+E:\Projects\yxgcsj\异星工厂世界\obj\Release\异星工厂世界.vbprojResolveAssemblyReference.cache

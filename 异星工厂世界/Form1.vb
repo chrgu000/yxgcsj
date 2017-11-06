@@ -1,7 +1,7 @@
 ﻿Public Class form_updata
 
-    'Public upsrc = "http://code.taobao.org/svn/yxgcsj/trunk/updatafiles/"
-    Public upsrc = "https://raw.githubusercontent.com/yjfyy/yxgcsj/master/%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F/trunk/updatafiles/"
+    Public upsrc = "http://code.taobao.org/svn/yxgcsj/trunk/updatafiles/"
+    'Public upsrc = "https://raw.githubusercontent.com/yjfyy/yxgcsj/master/%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F/trunk/updatafiles/"
     Public r_version = "0"
     Public l_version = "0.2"
 
