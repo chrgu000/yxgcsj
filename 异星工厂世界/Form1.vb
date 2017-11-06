@@ -1,9 +1,9 @@
 ﻿Public Class form_updata
 
-    Public upsrc = "http://code.taobao.org/svn/yxgcsj/trunk/updatafiles/"
-    'Public upsrc = "https://raw.githubusercontent.com/yjfyy/yxgcsj/master/%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F/trunk/updatafiles/"
+    'Public upsrc = "http://code.taobao.org/svn/yxgcsj/trunk/updatafiles/"
+    Public upsrc = "https://raw.githubusercontent.com/yjfyy/yxgcsj/master/%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F/trunk/updatafiles/"
     Public r_version = "0"
-    Public l_version = "0.2"
+    Public l_version = "0"
 
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
@@ -12,6 +12,7 @@
     End Sub
     Private Sub Check_ver()
         Dim dFile As New System.Net.WebClient
+        l_version = Form_main.Label_Ver_No.Text
         Try
             Dim myUri As New Uri(upsrc + "version.txt")
             r_version = dFile.DownloadString(myUri）
@@ -21,7 +22,7 @@
         End Try
         If l_version = r_version Then
             Label_status.Text = "已是最新版本！"
-            MsgBox("已是最新版本！")
+            'MsgBox("已是最新版本！")
             Form_main.Show()
             Me.Hide()
         Else
@@ -48,7 +49,7 @@
             End Try
         End If
         Label_status.Text = "正在检测更新......"
-        l_version = Form_main.Label_Ver_No.Text
+
     End Sub
 
     Private Sub Up_autoupdata()
