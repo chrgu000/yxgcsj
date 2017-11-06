@@ -59,7 +59,7 @@
         ProgressBar1.Value = 10
         Label_status.Text = "正在下载..."
         Dim dFile As New System.Net.WebClient
-        Dim myUri_up_com As New Uri(upsrc + "up_com.txt")
+        Dim myUri_up_com As New Uri(upsrc + "up_com.bat")
         Dim myUri_up_data As New Uri(upsrc + "up_data.exe")
 
 
