@@ -7,6 +7,12 @@
     End Sub
 
     Private Sub TextBox1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox1.KeyPress
+        If e.KeyChar = ChrW(27) Then
+            TextBox1.Text = ""
+            Me.Hide()
+
+        End If
+
         If e.KeyChar = ChrW(13) Then
             Try
                 Clipboard.SetText(TextBox1.Text)
@@ -15,16 +21,18 @@
             End Try
 
             AppActivate("Factorio 0.15.37")
+            Threading.Thread.Sleep(100)
             SendKeys.Send("`")
+            Threading.Thread.Sleep(100)
             SendKeys.Send("^v")
+            Threading.Thread.Sleep(100)
             SendKeys.Send("{ENTER}")
             'Shell("cmd.exe /c ""chat.vbs""", , True, vbHide)
             TextBox1.Text = ""
-            Try
-                Clipboard.Clear()
-            Catch ex As Exception
-
-            End Try
+            'Try
+            'Clipboard.Clear()
+            ' Catch ex As Exception
+            ' End Try
             Me.Hide()
         End If
 

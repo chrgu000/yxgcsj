@@ -12,10 +12,10 @@
     End Sub
     Private Sub Check_ver()
         Dim dFile As New System.Net.WebClient
+        Dim myUri_version As New Uri(upsrc + "version.txt")
         l_version = Form_main.Label_Ver_No.Text
         Try
-            Dim myUri As New Uri(upsrc + "version.txt")
-            r_version = dFile.DownloadString(myUri）
+            r_version = dFile.DownloadString(myUri_version）
         Catch ex As Exception
             r_version = l_version
             '"检测超时"
@@ -60,7 +60,7 @@
         ProgressBar1.Value = 10
         Label_status.Text = "正在下载..."
         Dim dFile As New System.Net.WebClient
-        Dim myUri_up_com As New Uri(upsrc + "up_com.bat")
+        'Dim myUri_up_com As New Uri(upsrc + "up_com.bat")
         Dim myUri_up_data As New Uri(upsrc + "up_data.exe")
 
 
@@ -83,10 +83,9 @@
             ProgressBar1.Value = 0
             Exit Sub
         End Try
-        Dim up_com = TextBox_up_com.Text
 
         Try
-            System.IO.File.WriteAllText("up_com.bat", up_com)
+            System.IO.File.WriteAllText("up_com.bat", TextBox_up_com.Text, encoding:=System.Text.Encoding.Default)
         Catch ex As Exception
             MsgBox（"升级错误，请手动执行 up_data.exe")
         End Try
@@ -94,6 +93,8 @@
         ProgressBar1.Value = 100
         MsgBox（"升级完成后将自动重启。"）
         Shell("up_com.bat")
-        Process.GetCurrentProcess.CloseMainWindow()
+        Form_chat.Close()
+        Form_main.Close()
+        Me.Close()
     End Sub
 End Class
