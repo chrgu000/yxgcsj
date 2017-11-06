@@ -17,25 +17,17 @@ Public Class Form_main
         "UnregisterHotKey" (ByVal hwnd As IntPtr, ByVal id As Integer) As Boolean
 
 
-    Private Sub Form1_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
 
-    End Sub
 
     Protected Overrides Sub WndProc(ByRef m As Message)
         If m.Msg = WM_HOTKEY Then
-            Form_chat.Show()
-            'Dim a
-            'a = InputBox("发送消息",,, 20, 800)
-            'Shell("cmd.exe /c ""d:\a.vbs""", vbHide)
-            Try
-                'Clipboard.SetText(a)
-
-                'Clipboard.Clear()
-            Catch ex As Exception
-
-            End Try
-            'MsgBox("在这里添加你要执行的代码", MsgBoxStyle.Information, "全局热键")
+            If CheckBox_chinese_chat.Checked = True Then
+                Form_chat.Show()
+                AppActivate("异星工厂世界中文聊天窗口")
+                'MsgBox("在这里添加你要执行的代码", MsgBoxStyle.Information, "全局热键")
+            End If
         End If
+
         MyBase.WndProc(m)
     End Sub
 
@@ -48,41 +40,36 @@ Public Class Form_main
 
         '注册聊天热键
         RegisterHotKey(Handle, 0, MOD_CONTROL, 192)
-        Dim chat_vbs
-        chat_vbs = TextBox_chat_vbs.Text
-        Try
-            System.IO.File.WriteAllText("chat.vbs", chat_vbs)
-        Catch ex As Exception
-
-        End Try
-    End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        '调用修改player-data.json子程序
-        '调用修改host文件子程序
-        '启动异星工厂
 
     End Sub
+
+
 
     Private Sub Form2_Closed(sender As Object, e As EventArgs) Handles Me.Closed
         '注销全局热键
         'UnRegisterHotKey(Handle, 1)
+        '删除旧版文件
+        If My.Computer.FileSystem.FileExists("chat.vbs") Then
+            Try
+                My.Computer.FileSystem.DeleteFile("chat.vbs")
+            Catch ex As Exception
+
+            End Try
+        End If
+
         UnRegisterHotKey(Handle, 0)
         form_updata.Close()
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button_updata.Click
-        form_updata.Show()
 
-
-    End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        ListView1.Items.Add(item(0))
-        ListView1.Items(0).SubItems.Add(item(1))
-        ListView1.Items(0).SubItems.Add(item(2))
-        ListView1.Items(0).SubItems.Add(item(3))
-        ListView1.Items（0）.ForeColor = Color.Red
+
+        'ListView1.Items.Add(item(0))
+        'ListView1.Items(0).SubItems.Add(item(1))
+        'ListView1.Items(0).SubItems.Add(item(2))
+        'ListView1.Items(0).SubItems.Add(item(3))
+        'ListView1.Items（0）.ForeColor = Color.Red
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
@@ -102,14 +89,14 @@ Public Class Form_main
         Dim dFile As New System.Net.WebClient
 
         '下载新列表
-        Try
-            Dim myUri As New Uri(upsrc + "serverlist.txt")
-            dFile.DownloadFile(myUri, "serverlist.txt")
+        'Try
+        '    Dim myUri As New Uri(upsrc + "serverlist.txt")
+        '    dFile.DownloadFile(myUri, "serverlist.txt")
 
-        Catch ex As Exception
-            MsgBox("服务器列表下载失败！")
-            Exit Sub
-        End Try
+        'Catch ex As Exception
+        '    MsgBox("服务器列表下载失败！")
+        '    Exit Sub
+        'End Try
 
         '处理列表
 
@@ -137,5 +124,18 @@ Public Class Form_main
     Private Sub Form_main_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         load_server_list()
         Button_join.Text = "进入"
+    End Sub
+
+    Private Sub Button_join_Click(sender As Object, e As EventArgs) Handles Button_join.Click
+        Try
+            Shell(".\bin\x64\factorio.exe", Style:=AppWinStyle.NormalFocus)
+        Catch ex As Exception
+            MsgBox("没找到异星工厂的可执行文件，请把本程序放进异星工厂游戏根目录，例如：D: \Factorio_0.15.37")
+        End Try
+
+    End Sub
+
+    Private Sub Button_updata_Click(sender As Object, e As EventArgs) Handles Button_updata.Click
+        form_updata.Show()
     End Sub
 End Class

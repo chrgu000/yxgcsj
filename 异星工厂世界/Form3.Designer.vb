@@ -42,7 +42,7 @@ Partial Class Form_chat
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "Form_chat"
-        Me.Text = "聊天窗口"
+        Me.Text = "异星工厂世界中文聊天窗口"
         Me.TopMost = True
         Me.ResumeLayout(False)
         Me.PerformLayout()

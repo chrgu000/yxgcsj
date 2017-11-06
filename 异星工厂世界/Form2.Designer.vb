@@ -42,6 +42,7 @@ Partial Class Form_main
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
+        Me.CheckBox_chinese_chat = New System.Windows.Forms.CheckBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -81,7 +82,7 @@ Partial Class Form_main
         Me.Label_Ver_No.Name = "Label_Ver_No"
         Me.Label_Ver_No.Size = New System.Drawing.Size(23, 12)
         Me.Label_Ver_No.TabIndex = 5
-        Me.Label_Ver_No.Text = "0.2"
+        Me.Label_Ver_No.Text = "0.3"
         '
         'Label2
         '
@@ -204,18 +205,32 @@ Partial Class Form_main
         '
         'Button4
         '
-        Me.Button4.Location = New System.Drawing.Point(51, 384)
+        Me.Button4.Location = New System.Drawing.Point(264, 386)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(75, 23)
         Me.Button4.TabIndex = 8
         Me.Button4.Text = "测试添加"
         Me.Button4.UseVisualStyleBackColor = True
+        Me.Button4.Visible = False
+        '
+        'CheckBox_chinese_chat
+        '
+        Me.CheckBox_chinese_chat.AutoSize = True
+        Me.CheckBox_chinese_chat.Checked = True
+        Me.CheckBox_chinese_chat.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBox_chinese_chat.Location = New System.Drawing.Point(12, 391)
+        Me.CheckBox_chinese_chat.Name = "CheckBox_chinese_chat"
+        Me.CheckBox_chinese_chat.Size = New System.Drawing.Size(228, 16)
+        Me.CheckBox_chinese_chat.TabIndex = 9
+        Me.CheckBox_chinese_chat.Text = "中文聊天支持（Ctrl+~激活输入窗口）"
+        Me.CheckBox_chinese_chat.UseVisualStyleBackColor = True
         '
         'Form_main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(514, 413)
+        Me.Controls.Add(Me.CheckBox_chinese_chat)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.Label_Ver_No)
@@ -252,4 +267,5 @@ Partial Class Form_main
     Friend WithEvents Button4 As Button
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents CheckBox_chinese_chat As CheckBox
 End Class
