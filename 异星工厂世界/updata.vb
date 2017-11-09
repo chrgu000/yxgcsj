@@ -1,4 +1,6 @@
-﻿Public Class form_updata
+﻿Imports System.Net
+
+Public Class form_updata
 
     'Public upsrc = "http://code.taobao.org/svn/yxgcsj/trunk/updatafiles/"
     Public upsrc = "https://raw.githubusercontent.com/yjfyy/yxgcsj/master/%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F/trunk/updatafiles/"
@@ -10,25 +12,31 @@
         Timer1.Enabled = False
         Check_ver()
     End Sub
+
+
+
     Private Sub Check_ver()
+
+
         Dim dFile As New System.Net.WebClient
         Dim myUri_version As New Uri(upsrc + "version.txt")
         l_version = Form_main.Label_Ver_No.Text
+
         Try
-            r_version = dFile.DownloadString(myUri_version）
+            r_version = dFile.DownloadString(myUri_version)
         Catch ex As Exception
             r_version = l_version
-            '"检测超时"
         End Try
+
         If l_version = r_version Then
-            Label_status.Text = "已是最新版本！"
-            'MsgBox("已是最新版本！")
+            Me.Label_status.Text = "已是最新版本！"
+            MsgBox("已是最新版本！")
             Form_main.Show()
-            Me.Hide()
+            Form_chat.Hide()
         Else
             MsgBox（“需要升级”）
-            Label_status.Text = "正在下载..."
-            Up_autoupdata()
+            Me.Label_status.Text = "正在下载..."
+            Me.Up_autoupdata()
         End If
     End Sub
 
@@ -76,7 +84,7 @@
         'End Try
 
         Try
-            dFile.DownloadFile(myUri_up_data, "up_data.exe")
+            dFile.DownloadFileAsync(myUri_up_data, "up_data.exe")
             ProgressBar1.Value = 80
         Catch ex As Exception
             MsgBox("下载失败请重试")
