@@ -23,39 +23,55 @@ Partial Class form_updata
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.Label_status = New System.Windows.Forms.Label()
+        Me.TextBox_up_com = New System.Windows.Forms.TextBox()
+        Me.BackgroundWorker_check_ver = New System.ComponentModel.BackgroundWorker()
+        Me.BackgroundWorker_download_updata = New System.ComponentModel.BackgroundWorker()
+        Me.Timer_chech_ver_time_out = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
-        '
-        'Timer1
-        '
-        Me.Timer1.Enabled = True
-        Me.Timer1.Interval = 1000
-        '
-        'ProgressBar1
-        '
-        Me.ProgressBar1.Location = New System.Drawing.Point(12, 25)
-        Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(315, 23)
-        Me.ProgressBar1.TabIndex = 0
         '
         'Label_status
         '
         Me.Label_status.AutoSize = True
-        Me.Label_status.Location = New System.Drawing.Point(113, 72)
+        Me.Label_status.Location = New System.Drawing.Point(124, 70)
         Me.Label_status.Name = "Label_status"
         Me.Label_status.Size = New System.Drawing.Size(23, 12)
         Me.Label_status.TabIndex = 1
         Me.Label_status.Text = "..."
+        Me.Label_status.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'TextBox_up_com
+        '
+        Me.TextBox_up_com.Enabled = False
+        Me.TextBox_up_com.Location = New System.Drawing.Point(12, 7)
+        Me.TextBox_up_com.Multiline = True
+        Me.TextBox_up_com.Name = "TextBox_up_com"
+        Me.TextBox_up_com.Size = New System.Drawing.Size(315, 140)
+        Me.TextBox_up_com.TabIndex = 11
+        Me.TextBox_up_com.Text = "@echo off" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "echo 正在更新..." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "timeout 2 >nul" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "up_data.exe" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "timeout 2 > nul" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "del up_dat" &
+    "a.exe" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "echo 更新完成" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "timeout 1 > nul" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "start 异星工厂世界.exe"
+        Me.TextBox_up_com.Visible = False
+        '
+        'BackgroundWorker_check_ver
+        '
+        Me.BackgroundWorker_check_ver.WorkerReportsProgress = True
+        Me.BackgroundWorker_check_ver.WorkerSupportsCancellation = True
+        '
+        'BackgroundWorker_download_updata
+        '
+        '
+        'Timer_chech_ver_time_out
+        '
+        Me.Timer_chech_ver_time_out.Enabled = True
+        Me.Timer_chech_ver_time_out.Interval = 30000
         '
         'form_updata
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(339, 114)
+        Me.ClientSize = New System.Drawing.Size(337, 159)
+        Me.Controls.Add(Me.TextBox_up_com)
         Me.Controls.Add(Me.Label_status)
-        Me.Controls.Add(Me.ProgressBar1)
         Me.Name = "form_updata"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "异星工厂世界更新工具"
@@ -63,8 +79,9 @@ Partial Class form_updata
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents Timer1 As Timer
-    Friend WithEvents ProgressBar1 As ProgressBar
     Friend WithEvents Label_status As Label
+    Friend WithEvents TextBox_up_com As TextBox
+    Friend WithEvents BackgroundWorker_check_ver As System.ComponentModel.BackgroundWorker
+    Friend WithEvents BackgroundWorker_download_updata As System.ComponentModel.BackgroundWorker
+    Friend WithEvents Timer_chech_ver_time_out As Timer
 End Class

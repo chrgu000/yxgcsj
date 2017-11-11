@@ -22,7 +22,6 @@ Partial Class Form_main
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form_main))
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox_chat_vbs = New System.Windows.Forms.TextBox()
@@ -44,8 +43,8 @@ Partial Class Form_main
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.CheckBox_chinese_chat = New System.Windows.Forms.CheckBox()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.TextBox_up_com = New System.Windows.Forms.TextBox()
+        Me.BackgroundWorker_download_serverlist = New System.ComponentModel.BackgroundWorker()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -170,6 +169,7 @@ Partial Class Form_main
         '
         'Button_join
         '
+        Me.Button_join.Enabled = False
         Me.Button_join.Location = New System.Drawing.Point(185, 313)
         Me.Button_join.Name = "Button_join"
         Me.Button_join.Size = New System.Drawing.Size(127, 23)
@@ -240,10 +240,6 @@ Partial Class Form_main
         Me.CheckBox_chinese_chat.Text = "中文聊天支持（Ctrl+~激活输入窗口），只支持0.15.37版"
         Me.CheckBox_chinese_chat.UseVisualStyleBackColor = True
         '
-        'Timer1
-        '
-        Me.Timer1.Interval = 2000
-        '
         'TextBox_up_com
         '
         Me.TextBox_up_com.Enabled = False
@@ -253,6 +249,9 @@ Partial Class Form_main
         Me.TextBox_up_com.TabIndex = 10
         Me.TextBox_up_com.Text = "@echo off" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "timeout 2" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "up_data.exe" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "timeout 2" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "异星工厂世界.exe" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "del up_data.exe"
         Me.TextBox_up_com.Visible = False
+        '
+        'BackgroundWorker_download_serverlist
+        '
         '
         'Form_main
         '
@@ -299,6 +298,6 @@ Partial Class Form_main
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents CheckBox_chinese_chat As CheckBox
     Friend WithEvents TextBox_serverlist As TextBox
-    Friend WithEvents Timer1 As Timer
     Friend WithEvents TextBox_up_com As TextBox
+    Friend WithEvents BackgroundWorker_download_serverlist As System.ComponentModel.BackgroundWorker
 End Class
