@@ -9,7 +9,7 @@ Public Class Form_main
     Public l_version = "0"
 
     'serverlist数组 x0为服务器名称，x1为介绍，x2时间,x3 ping x4 ip 不显示
-    Public serverlist(3, 0)
+    Public serverlist(4, 0)
     Public Const WM_HOTKEY = &H312
     'Public Const MOD_ALT = &H1
     Public Const MOD_CONTROL = &H2
@@ -69,9 +69,9 @@ Public Class Form_main
         RegisterHotKey(Handle, 0, MOD_CONTROL, 192)
 
         '后台开始下载serverlist文件
-        BackgroundWorker_download_serverlist.RunWorkerAsync()
+        'BackgroundWorker_download_serverlist.RunWorkerAsync()
         '直接载入serverlist，方便调试
-        'load_server_list()
+        load_server_list()
 
     End Sub
 
@@ -93,11 +93,11 @@ Public Class Form_main
 
     Sub load_server_list()
         '临时生成serverlist方便调试
-        'Try
-        '    System.IO.File.WriteAllText("serverlist.txt", TextBox_serverlist.Text, encoding:=System.Text.Encoding.Default)
-        'Catch ex As Exception
-        '    MsgBox（"升级错误，请手动执行 up_data.exe")
-        'End Try
+        Try
+            System.IO.File.WriteAllText("serverlist.txt", TextBox_serverlist.Text, encoding:=System.Text.Encoding.Default)
+        Catch ex As Exception
+            MsgBox（"升级错误，请手动执行 up_data.exe")
+        End Try
 
         '处理列表
 
@@ -112,7 +112,7 @@ Public Class Form_main
         FileClose()
         ' MsgBox(i)
 
-        ReDim serverlist(3, i)
+        ReDim serverlist(4, i)
         FileOpen(1, "serverlist.txt", OpenMode.Input)
         Dim temp2
         Do While Not EOF(1)
@@ -138,12 +138,15 @@ Public Class Form_main
             Next
         Next
 
-        ' ListView1.Items（0）.ForeColor = Color.Red
-        ListView1.Items(0).Selected = True
-        ListView1.Focus()
+        'ListView1.Items（0）.ForeColor = Color.Red
+
         Button_join.Text = "请选择进入"
+
         Button_join.Enabled = True
 
+        ListView1.Items(0).Focused = True
+        ListView1.Items(0).Selected = True
+        ' ListView1.Focus()
     End Sub
 
     Private Sub Button_updata_Click(sender As Object, e As EventArgs) Handles Button_updata.Click
@@ -170,11 +173,78 @@ Public Class Form_main
 
     Private Sub Button_join_Click(sender As Object, e As EventArgs) Handles Button_join.Click
         Dim server_select = ListView1.FocusedItem.Index
-        'serverlist（0, server_select)
-        'serverlist（1, server_select)
-        'serverlist（2, server_select)
-        'serverlist（3, server_select)
-        'serverlist（4, server_select)
+        'serverlist（0, server_select) 服务器名称
+        'serverlist（1, server_select) 服务器介绍
+        'serverlist（2, server_select) 服务器最后激活时间
+        'serverlist（3, server_select) ip 不显示
+        'serverlist（4, server_select) ping
+
+        '修改host文件
+        Dim host_file(0)
+        Dim host_file_hang = -1     '临时统计文件有几行.-1为校正数组从0开始
+        Try
+            'FileOpen(1, "C:\Windows\System32\drivers\etc\hosts", OpenMode.Input)
+            'Do While Not EOF(1)
+
+            '    host_file_hang = host_file_hang + 1
+            '    ReDim Preserve host_file(host_file_hang)
+            '    host_file(host_file_hang) = LineInput(1)
+            '    Console.WriteLine("行" & host_file_hang.ToString)
+
+            '    Console.WriteLine(host_file(host_file_hang))
+            'Loop
+            'FileClose()
+
+            Dim sr = New StreamReader("C:\Windows\System32\drivers\etc\hosts", encoding:=System.Text.Encoding.Default)
+
+            Do
+                host_file_hang = host_file_hang + 1
+                ReDim Preserve host_file(host_file_hang)
+                host_file(host_file_hang) = sr.ReadLine()
+
+            Loop Until host_file(host_file_hang） Is Nothing
+            sr.Close()
+
+
+
+
+            For i = 0 To UBound(host_file)
+                'MsgBox(InStr(host_file（i）, "工厂世界"）)
+                If InStr(host_file（i）, "工厂世界"） > 0 Then
+                    For l = i To UBound(host_file)
+                        If l = UBound(host_file) Then
+                            host_file(l) = ""
+
+                        Else
+                            host_file(l) = host_file(l + 1)
+                            ReDim Preserve host_file(UBound(host_file) - 1)
+                        End If
+                    Next
+                End If
+            Next
+
+            If host_file(UBound(host_file)) = "" Then
+                host_file(UBound(host_file)) = serverlist（3, server_select) & vbTab & "工厂世界"
+            Else
+                ReDim Preserve host_file(UBound(host_file) + 1)
+                host_file(UBound(host_file)) = serverlist（3, server_select) & vbTab & "工厂世界"
+            End If
+        Catch ex As Exception
+            If host_file(UBound(host_file)) = "" Then
+                host_file(UBound(host_file)) = serverlist（3, server_select) & vbTab & "工厂世界"
+            Else
+                ReDim Preserve host_file(UBound(host_file) + 1)
+                host_file(UBound(host_file)) = serverlist（3, server_select) & vbTab & "工厂世界"
+            End If
+        End Try
+
+        Dim hosts_file_string = ""
+        For i = 0 To UBound(host_file)
+            hosts_file_string = (hosts_file_string & host_file(i) & vbCrLf)
+        Next
+        System.IO.File.WriteAllText("C:\Windows\System32\drivers\etc\hosts", hosts_file_string, encoding:=System.Text.Encoding.Default)
+
+        '修改
 
     End Sub
 End Class
