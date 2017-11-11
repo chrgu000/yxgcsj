@@ -8,8 +8,8 @@ Public Class Form_main
     Public r_version = "0"
     Public l_version = "0"
 
-    'serverlist数组 y0为服务器名称，y1为ip，y2介绍，y3时间
-
+    'serverlist数组 x0为服务器名称，x1为介绍，x2时间,x3 ping x4 ip 不显示
+    Public serverlist(3, 0)
     Public Const WM_HOTKEY = &H312
     'Public Const MOD_ALT = &H1
     Public Const MOD_CONTROL = &H2
@@ -70,6 +70,8 @@ Public Class Form_main
 
         '后台开始下载serverlist文件
         BackgroundWorker_download_serverlist.RunWorkerAsync()
+        '直接载入serverlist，方便调试
+        'load_server_list()
 
     End Sub
 
@@ -110,16 +112,16 @@ Public Class Form_main
         FileClose()
         ' MsgBox(i)
 
-        Dim serverlist(i, 3) As String
+        ReDim serverlist(3, i)
         FileOpen(1, "serverlist.txt", OpenMode.Input)
         Dim temp2
         Do While Not EOF(1)
-            For x = 0 To i
+            For l = 0 To i
                 temp2 = LineInput(1)
                 Dim arr As String() = temp2.Split(vbTab) '放入arr数组
-                For y As Integer = 0 To 3
-                    serverlist(x, y) = arr(y)
-                    'MsgBox(serverlist(x, y))
+                For h As Integer = 0 To 3
+                    serverlist(h, l) = arr(h)
+                    'MsgBox(serverlist(h, l))
                 Next
             Next
             i = i + 1
@@ -129,12 +131,13 @@ Public Class Form_main
         '处理完毕
 
         '按照数组，添加serverlist到listview控件
-        For x = 0 To i
-            ListView1.Items.Add(serverlist(x, 0))
-            For y As Integer = 1 To 3
-                ListView1.Items(x).SubItems.Add(serverlist(x, y))
+        For l = 0 To i
+            ListView1.Items.Add(serverlist(0, l))
+            For h = 1 To 2
+                ListView1.Items(l).SubItems.Add(serverlist(h, l))
             Next
         Next
+
         ' ListView1.Items（0）.ForeColor = Color.Red
         ListView1.Items(0).Selected = True
         ListView1.Focus()
@@ -167,8 +170,11 @@ Public Class Form_main
 
     Private Sub Button_join_Click(sender As Object, e As EventArgs) Handles Button_join.Click
         Dim server_select = ListView1.FocusedItem.Index
-        MsgBox(ListView1.Items(server_select).)
-
+        'serverlist（0, server_select)
+        'serverlist（1, server_select)
+        'serverlist（2, server_select)
+        'serverlist（3, server_select)
+        'serverlist（4, server_select)
 
     End Sub
 End Class
