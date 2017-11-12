@@ -23,6 +23,7 @@ Partial Class form_updata
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(form_updata))
         Me.Label_status = New System.Windows.Forms.Label()
         Me.TextBox_up_com = New System.Windows.Forms.TextBox()
         Me.BackgroundWorker_check_ver = New System.ComponentModel.BackgroundWorker()
@@ -49,7 +50,7 @@ Partial Class form_updata
         Me.TextBox_up_com.Size = New System.Drawing.Size(315, 140)
         Me.TextBox_up_com.TabIndex = 11
         Me.TextBox_up_com.Text = "@echo off" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "echo 正在更新..." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "timeout 2 >nul" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "up_data.exe" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "timeout 2 > nul" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "del up_dat" &
-    "a.exe" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "echo 更新完成" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "timeout 1 > nul" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "start 异星工厂世界.exe"
+    "a.exe" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "echo 更新完成" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "timeout 1 > nul" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "start 工厂世界.exe"
         Me.TextBox_up_com.Visible = False
         '
         'BackgroundWorker_check_ver
@@ -72,9 +73,10 @@ Partial Class form_updata
         Me.ClientSize = New System.Drawing.Size(337, 159)
         Me.Controls.Add(Me.TextBox_up_com)
         Me.Controls.Add(Me.Label_status)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "form_updata"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "异星工厂世界更新工具"
+        Me.Text = "工厂世界更新工具"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

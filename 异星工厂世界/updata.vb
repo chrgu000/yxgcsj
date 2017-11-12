@@ -9,8 +9,9 @@ Public Class form_updata
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Label_status.Text = "正在检测更新......"
-        l_version = Form_main.Label_Ver_No.Text
+        l_version = Form_main.LinkLabel_ver.Text
         BackgroundWorker_check_ver.RunWorkerAsync()
+        'MsgBox("load")
     End Sub
 
     Private Sub Up_autoupdata()
@@ -83,13 +84,17 @@ Public Class form_updata
     End Sub
 
     Private Sub BackgroundWorker_check_ver_Disposed(sender As Object, e As EventArgs) Handles BackgroundWorker_check_ver.Disposed
-        MsgBox("disposed")
+        'MsgBox("disposed")
     End Sub
 
     Private Sub Timer_chech_ver_time_out_Tick(sender As Object, e As EventArgs) Handles Timer_chech_ver_time_out.Tick
         Timer_chech_ver_time_out.Enabled = False
-        MsgBox（BackgroundWorker_check_ver.IsBusy.ToString()）
+        'MsgBox（BackgroundWorker_check_ver.IsBusy.ToString()）
         Label_status.Text = "检测失败"
+    End Sub
+
+    Private Sub form_updata_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        'MsgBox("shown")
     End Sub
 
 End Class

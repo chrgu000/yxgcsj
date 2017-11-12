@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Form_main
     Inherits System.Windows.Forms.Form
 
     'Form 重写 Dispose，以清理组件列表。
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,12 +20,10 @@ Partial Class Form_main
     '注意: 以下过程是 Windows 窗体设计器所必需的
     '可以使用 Windows 窗体设计器修改它。  
     '不要使用代码编辑器修改它。
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form_main))
-        Me.TextBox_chat_vbs = New System.Windows.Forms.TextBox()
         Me.Button_updata = New System.Windows.Forms.Button()
-        Me.Label_Ver_No = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.ListView1 = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -40,23 +38,13 @@ Partial Class Form_main
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
         Me.CheckBox_chinese_chat = New System.Windows.Forms.CheckBox()
-        Me.TextBox_up_com = New System.Windows.Forms.TextBox()
         Me.BackgroundWorker_download_serverlist = New System.ComponentModel.BackgroundWorker()
+        Me.LinkLabel_ver = New System.Windows.Forms.LinkLabel()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'TextBox_chat_vbs
-        '
-        Me.TextBox_chat_vbs.Location = New System.Drawing.Point(249, 387)
-        Me.TextBox_chat_vbs.Name = "TextBox_chat_vbs"
-        Me.TextBox_chat_vbs.Size = New System.Drawing.Size(116, 21)
-        Me.TextBox_chat_vbs.TabIndex = 2
-        Me.TextBox_chat_vbs.Text = resources.GetString("TextBox_chat_vbs.Text")
-        Me.TextBox_chat_vbs.Visible = False
         '
         'Button_updata
         '
@@ -66,15 +54,6 @@ Partial Class Form_main
         Me.Button_updata.TabIndex = 3
         Me.Button_updata.Text = "检测更新"
         Me.Button_updata.UseVisualStyleBackColor = True
-        '
-        'Label_Ver_No
-        '
-        Me.Label_Ver_No.AutoSize = True
-        Me.Label_Ver_No.Location = New System.Drawing.Point(487, 391)
-        Me.Label_Ver_No.Name = "Label_Ver_No"
-        Me.Label_Ver_No.Size = New System.Drawing.Size(23, 12)
-        Me.Label_Ver_No.TabIndex = 5
-        Me.Label_Ver_No.Text = "0.4"
         '
         'Label2
         '
@@ -154,13 +133,14 @@ Partial Class Form_main
         Me.TextBox_serverlist.Name = "TextBox_serverlist"
         Me.TextBox_serverlist.Size = New System.Drawing.Size(100, 21)
         Me.TextBox_serverlist.TabIndex = 10
-        Me.TextBox_serverlist.Text = "服1" & Global.Microsoft.VisualBasic.ChrW(9) & "介绍1" & Global.Microsoft.VisualBasic.ChrW(9) & "时间1" & Global.Microsoft.VisualBasic.ChrW(9) & "ip1" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "服2" & Global.Microsoft.VisualBasic.ChrW(9) & "介绍2" & Global.Microsoft.VisualBasic.ChrW(9) & "时间2" & Global.Microsoft.VisualBasic.ChrW(9) & "ip2" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "服3" & Global.Microsoft.VisualBasic.ChrW(9) & "介绍3" & Global.Microsoft.VisualBasic.ChrW(9) & "时间3" & Global.Microsoft.VisualBasic.ChrW(9) & "ip3" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "服4" & Global.Microsoft.VisualBasic.ChrW(9) & "介绍4" & Global.Microsoft.VisualBasic.ChrW(9) & "时间4" & Global.Microsoft.VisualBasic.ChrW(9) & "ip4"
+        Me.TextBox_serverlist.Text = "服1" & Global.Microsoft.VisualBasic.ChrW(9) & "介绍1" & Global.Microsoft.VisualBasic.ChrW(9) & "时间1" & Global.Microsoft.VisualBasic.ChrW(9) & "183.185.183.37" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "服2" & Global.Microsoft.VisualBasic.ChrW(9) & "介绍2" & Global.Microsoft.VisualBasic.ChrW(9) & "时间2" & Global.Microsoft.VisualBasic.ChrW(9) & "192.168.2.10" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "服3" & Global.Microsoft.VisualBasic.ChrW(9) & "介绍3" & Global.Microsoft.VisualBasic.ChrW(9) & "时间3" & Global.Microsoft.VisualBasic.ChrW(9) & "ip3" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "服4" & Global.Microsoft.VisualBasic.ChrW(9) & "介绍4" & Global.Microsoft.VisualBasic.ChrW(9) & "时间4" & Global.Microsoft.VisualBasic.ChrW(9) & "ip" &
+    "4"
         Me.TextBox_serverlist.Visible = False
         '
         'Button_join
         '
         Me.Button_join.Enabled = False
-        Me.Button_join.Location = New System.Drawing.Point(185, 313)
+        Me.Button_join.Location = New System.Drawing.Point(176, 313)
         Me.Button_join.Name = "Button_join"
         Me.Button_join.Size = New System.Drawing.Size(127, 23)
         Me.Button_join.TabIndex = 7
@@ -208,57 +188,45 @@ Partial Class Form_main
         Me.Button3.Text = "创建"
         Me.Button3.UseVisualStyleBackColor = True
         '
-        'Button4
-        '
-        Me.Button4.Location = New System.Drawing.Point(264, 386)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(75, 23)
-        Me.Button4.TabIndex = 8
-        Me.Button4.Text = "测试添加"
-        Me.Button4.UseVisualStyleBackColor = True
-        Me.Button4.Visible = False
-        '
         'CheckBox_chinese_chat
         '
         Me.CheckBox_chinese_chat.AutoSize = True
         Me.CheckBox_chinese_chat.Checked = True
         Me.CheckBox_chinese_chat.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox_chinese_chat.Location = New System.Drawing.Point(12, 391)
+        Me.CheckBox_chinese_chat.Location = New System.Drawing.Point(12, 390)
         Me.CheckBox_chinese_chat.Name = "CheckBox_chinese_chat"
-        Me.CheckBox_chinese_chat.Size = New System.Drawing.Size(330, 16)
+        Me.CheckBox_chinese_chat.Size = New System.Drawing.Size(354, 16)
         Me.CheckBox_chinese_chat.TabIndex = 9
-        Me.CheckBox_chinese_chat.Text = "中文聊天支持（Ctrl+~激活输入窗口），只支持0.15.37版"
+        Me.CheckBox_chinese_chat.Text = "中文聊天支持（Ctrl+~激活输入窗口），目前只支持0.15.37版"
         Me.CheckBox_chinese_chat.UseVisualStyleBackColor = True
-        '
-        'TextBox_up_com
-        '
-        Me.TextBox_up_com.Enabled = False
-        Me.TextBox_up_com.Location = New System.Drawing.Point(300, 386)
-        Me.TextBox_up_com.Name = "TextBox_up_com"
-        Me.TextBox_up_com.Size = New System.Drawing.Size(39, 21)
-        Me.TextBox_up_com.TabIndex = 10
-        Me.TextBox_up_com.Text = "@echo off" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "timeout 2" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "up_data.exe" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "timeout 2" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "异星工厂世界.exe" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "del up_data.exe"
-        Me.TextBox_up_com.Visible = False
         '
         'BackgroundWorker_download_serverlist
         '
+        '
+        'LinkLabel_ver
+        '
+        Me.LinkLabel_ver.AutoSize = True
+        Me.LinkLabel_ver.Location = New System.Drawing.Point(480, 391)
+        Me.LinkLabel_ver.Name = "LinkLabel_ver"
+        Me.LinkLabel_ver.Size = New System.Drawing.Size(23, 12)
+        Me.LinkLabel_ver.TabIndex = 10
+        Me.LinkLabel_ver.TabStop = True
+        Me.LinkLabel_ver.Text = "0.4"
         '
         'Form_main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(514, 413)
-        Me.Controls.Add(Me.TextBox_up_com)
+        Me.Controls.Add(Me.LinkLabel_ver)
         Me.Controls.Add(Me.CheckBox_chinese_chat)
-        Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.TabControl1)
-        Me.Controls.Add(Me.Label_Ver_No)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Button_updata)
-        Me.Controls.Add(Me.TextBox_chat_vbs)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form_main"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "异星工厂世界"
+        Me.Text = "工厂世界"
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
@@ -267,9 +235,7 @@ Partial Class Form_main
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents TextBox_chat_vbs As TextBox
     Friend WithEvents Button_updata As Button
-    Friend WithEvents Label_Ver_No As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents ListView1 As ListView
     Friend WithEvents ColumnHeader1 As ColumnHeader
@@ -281,11 +247,10 @@ Partial Class Form_main
     Friend WithEvents TabPage2 As TabPage
     Friend WithEvents Button_join As Button
     Friend WithEvents Button3 As Button
-    Friend WithEvents Button4 As Button
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents CheckBox_chinese_chat As CheckBox
     Friend WithEvents TextBox_serverlist As TextBox
-    Friend WithEvents TextBox_up_com As TextBox
     Friend WithEvents BackgroundWorker_download_serverlist As System.ComponentModel.BackgroundWorker
+    Friend WithEvents LinkLabel_ver As LinkLabel
 End Class
