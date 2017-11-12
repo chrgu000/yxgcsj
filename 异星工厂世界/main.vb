@@ -312,4 +312,7 @@ Public Class Form_main
         End If
     End Sub
 
+    Private Sub LinkLabel_ver_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel_ver.LinkClicked
+        Process.Start("https://raw.githubusercontent.com/yjfyy/yxgcsj/master/%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F/trunk/updatafiles/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97.txt")
+    End Sub
 End Class
