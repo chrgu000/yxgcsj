@@ -31,19 +31,38 @@ Partial Class Form_main
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.TabControl1 = New System.Windows.Forms.TabControl()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.TabPage_client = New System.Windows.Forms.TabPage()
         Me.TextBox_serverlist = New System.Windows.Forms.TextBox()
         Me.Button_join = New System.Windows.Forms.Button()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Button3 = New System.Windows.Forms.Button()
+        Me.TabPage_server = New System.Windows.Forms.TabPage()
+        Me.Button_check_ip = New System.Windows.Forms.Button()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.TextBox_IP = New System.Windows.Forms.TextBox()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.ComboBox_auto_pause = New System.Windows.Forms.ComboBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.TextBox_afk_autokick_interval = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.TextBox_autosave_slots = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.TextBox_autosave_interval = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.TextBox_max_players = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.TextBox_saves = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Button_create_server = New System.Windows.Forms.Button()
         Me.CheckBox_chinese_chat = New System.Windows.Forms.CheckBox()
         Me.BackgroundWorker_download_serverlist = New System.ComponentModel.BackgroundWorker()
         Me.LinkLabel_ver = New System.Windows.Forms.LinkLabel()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
-        Me.TabPage1.SuspendLayout()
-        Me.TabPage2.SuspendLayout()
+        Me.TabPage_client.SuspendLayout()
+        Me.TabPage_server.SuspendLayout()
         Me.SuspendLayout()
         '
         'Button_updata
@@ -100,8 +119,8 @@ Partial Class Form_main
         '
         'TabControl1
         '
-        Me.TabControl1.Controls.Add(Me.TabPage1)
-        Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Controls.Add(Me.TabPage_client)
+        Me.TabControl1.Controls.Add(Me.TabPage_server)
         Me.TabControl1.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.TabControl1.ItemSize = New System.Drawing.Size(240, 18)
         Me.TabControl1.Location = New System.Drawing.Point(12, 12)
@@ -112,18 +131,18 @@ Partial Class Form_main
         Me.TabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed
         Me.TabControl1.TabIndex = 1
         '
-        'TabPage1
+        'TabPage_client
         '
-        Me.TabPage1.Controls.Add(Me.TextBox_serverlist)
-        Me.TabPage1.Controls.Add(Me.Button_join)
-        Me.TabPage1.Controls.Add(Me.ListView1)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(479, 342)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "连如服务器"
-        Me.TabPage1.UseVisualStyleBackColor = True
+        Me.TabPage_client.Controls.Add(Me.TextBox_serverlist)
+        Me.TabPage_client.Controls.Add(Me.Button_join)
+        Me.TabPage_client.Controls.Add(Me.ListView1)
+        Me.TabPage_client.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage_client.Name = "TabPage_client"
+        Me.TabPage_client.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage_client.Size = New System.Drawing.Size(479, 342)
+        Me.TabPage_client.TabIndex = 0
+        Me.TabPage_client.Text = "连如服务器"
+        Me.TabPage_client.UseVisualStyleBackColor = True
         '
         'TextBox_serverlist
         '
@@ -147,46 +166,222 @@ Partial Class Form_main
         Me.Button_join.Text = "正在载入服务器列表"
         Me.Button_join.UseVisualStyleBackColor = True
         '
-        'TabPage2
+        'TabPage_server
         '
-        Me.TabPage2.Controls.Add(Me.GroupBox2)
-        Me.TabPage2.Controls.Add(Me.GroupBox1)
-        Me.TabPage2.Controls.Add(Me.Button3)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(479, 342)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "创建服务器"
-        Me.TabPage2.UseVisualStyleBackColor = True
+        Me.TabPage_server.Controls.Add(Me.Button1)
+        Me.TabPage_server.Controls.Add(Me.Button_check_ip)
+        Me.TabPage_server.Controls.Add(Me.Label13)
+        Me.TabPage_server.Controls.Add(Me.TextBox_IP)
+        Me.TabPage_server.Controls.Add(Me.Label12)
+        Me.TabPage_server.Controls.Add(Me.Label11)
+        Me.TabPage_server.Controls.Add(Me.Label10)
+        Me.TabPage_server.Controls.Add(Me.Label9)
+        Me.TabPage_server.Controls.Add(Me.Label8)
+        Me.TabPage_server.Controls.Add(Me.ComboBox_auto_pause)
+        Me.TabPage_server.Controls.Add(Me.Label7)
+        Me.TabPage_server.Controls.Add(Me.TextBox_afk_autokick_interval)
+        Me.TabPage_server.Controls.Add(Me.Label6)
+        Me.TabPage_server.Controls.Add(Me.TextBox_autosave_slots)
+        Me.TabPage_server.Controls.Add(Me.Label5)
+        Me.TabPage_server.Controls.Add(Me.TextBox_autosave_interval)
+        Me.TabPage_server.Controls.Add(Me.Label4)
+        Me.TabPage_server.Controls.Add(Me.TextBox_max_players)
+        Me.TabPage_server.Controls.Add(Me.Label3)
+        Me.TabPage_server.Controls.Add(Me.TextBox_saves)
+        Me.TabPage_server.Controls.Add(Me.Label1)
+        Me.TabPage_server.Controls.Add(Me.Button_create_server)
+        Me.TabPage_server.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage_server.Name = "TabPage_server"
+        Me.TabPage_server.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage_server.Size = New System.Drawing.Size(479, 342)
+        Me.TabPage_server.TabIndex = 1
+        Me.TabPage_server.Text = "创建服务器"
+        Me.TabPage_server.UseVisualStyleBackColor = True
         '
-        'GroupBox2
+        'Button_check_ip
         '
-        Me.GroupBox2.Location = New System.Drawing.Point(7, 165)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(466, 142)
-        Me.GroupBox2.TabIndex = 2
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "服务器选项"
+        Me.Button_check_ip.Location = New System.Drawing.Point(179, 9)
+        Me.Button_check_ip.Name = "Button_check_ip"
+        Me.Button_check_ip.Size = New System.Drawing.Size(75, 23)
+        Me.Button_check_ip.TabIndex = 35
+        Me.Button_check_ip.Text = "自动检测"
+        Me.Button_check_ip.UseVisualStyleBackColor = True
         '
-        'GroupBox1
+        'Label13
         '
-        Me.GroupBox1.Location = New System.Drawing.Point(6, 6)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(467, 152)
-        Me.GroupBox1.TabIndex = 1
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "地图选项"
+        Me.Label13.AutoSize = True
+        Me.Label13.ForeColor = System.Drawing.Color.Red
+        Me.Label13.Location = New System.Drawing.Point(8, 37)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(269, 12)
+        Me.Label13.TabIndex = 34
+        Me.Label13.Text = "如自动检测不正确请输入正确IP，否则别人连不上"
         '
-        'Button3
+        'TextBox_IP
         '
-        Me.Button3.Enabled = False
-        Me.Button3.Location = New System.Drawing.Point(202, 313)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 23)
-        Me.Button3.TabIndex = 0
-        Me.Button3.Text = "创建"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.TextBox_IP.Location = New System.Drawing.Point(61, 11)
+        Me.TextBox_IP.Name = "TextBox_IP"
+        Me.TextBox_IP.Size = New System.Drawing.Size(112, 21)
+        Me.TextBox_IP.TabIndex = 33
+        Me.TextBox_IP.Text = "255.255.255.255"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(8, 14)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(47, 12)
+        Me.Label12.TabIndex = 32
+        Me.Label12.Text = "外网IP:"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(200, 171)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(59, 12)
+        Me.Label11.TabIndex = 27
+        Me.Label11.Text = "0为不限制"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(191, 209)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(29, 12)
+        Me.Label10.TabIndex = 26
+        Me.Label10.Text = "分钟"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.ForeColor = System.Drawing.Color.Red
+        Me.Label9.Location = New System.Drawing.Point(8, 93)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(221, 12)
+        Me.Label9.TabIndex = 25
+        Me.Label9.Text = "先在游中创建存档，再此输入，注意路径"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(179, 133)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(89, 12)
+        Me.Label8.TabIndex = 24
+        Me.Label8.Text = "分钟   0为不踢"
+        '
+        'ComboBox_auto_pause
+        '
+        Me.ComboBox_auto_pause.FormattingEnabled = True
+        Me.ComboBox_auto_pause.Items.AddRange(New Object() {"是", "否"})
+        Me.ComboBox_auto_pause.Location = New System.Drawing.Point(133, 244)
+        Me.ComboBox_auto_pause.Name = "ComboBox_auto_pause"
+        Me.ComboBox_auto_pause.Size = New System.Drawing.Size(60, 20)
+        Me.ComboBox_auto_pause.TabIndex = 23
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(8, 247)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(119, 12)
+        Me.Label7.TabIndex = 22
+        Me.Label7.Text = "服务器无人自动暂停:"
+        '
+        'TextBox_afk_autokick_interval
+        '
+        Me.TextBox_afk_autokick_interval.Location = New System.Drawing.Point(73, 130)
+        Me.TextBox_afk_autokick_interval.Name = "TextBox_afk_autokick_interval"
+        Me.TextBox_afk_autokick_interval.Size = New System.Drawing.Size(100, 21)
+        Me.TextBox_afk_autokick_interval.TabIndex = 21
+        Me.TextBox_afk_autokick_interval.Text = "0"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(8, 133)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(59, 12)
+        Me.Label6.TabIndex = 20
+        Me.Label6.Text = "挂机踢出:"
+        '
+        'TextBox_autosave_slots
+        '
+        Me.TextBox_autosave_slots.Location = New System.Drawing.Point(326, 206)
+        Me.TextBox_autosave_slots.Name = "TextBox_autosave_slots"
+        Me.TextBox_autosave_slots.Size = New System.Drawing.Size(95, 21)
+        Me.TextBox_autosave_slots.TabIndex = 19
+        Me.TextBox_autosave_slots.Text = "5"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(237, 209)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(83, 12)
+        Me.Label5.TabIndex = 18
+        Me.Label5.Text = "自动存盘数量:"
+        '
+        'TextBox_autosave_interval
+        '
+        Me.TextBox_autosave_interval.Location = New System.Drawing.Point(121, 206)
+        Me.TextBox_autosave_interval.Name = "TextBox_autosave_interval"
+        Me.TextBox_autosave_interval.Size = New System.Drawing.Size(64, 21)
+        Me.TextBox_autosave_interval.TabIndex = 17
+        Me.TextBox_autosave_interval.Text = "30"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(8, 209)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(107, 12)
+        Me.Label4.TabIndex = 16
+        Me.Label4.Text = "自动存盘间隔时间:"
+        '
+        'TextBox_max_players
+        '
+        Me.TextBox_max_players.Location = New System.Drawing.Point(85, 168)
+        Me.TextBox_max_players.Name = "TextBox_max_players"
+        Me.TextBox_max_players.Size = New System.Drawing.Size(100, 21)
+        Me.TextBox_max_players.TabIndex = 15
+        Me.TextBox_max_players.Text = "0"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(8, 171)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(71, 12)
+        Me.Label3.TabIndex = 14
+        Me.Label3.Text = "最大玩家数:"
+        '
+        'TextBox_saves
+        '
+        Me.TextBox_saves.Location = New System.Drawing.Point(73, 65)
+        Me.TextBox_saves.Name = "TextBox_saves"
+        Me.TextBox_saves.Size = New System.Drawing.Size(195, 21)
+        Me.TextBox_saves.TabIndex = 13
+        Me.TextBox_saves.Text = "saves/_autosave1.zip"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(8, 68)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(59, 12)
+        Me.Label1.TabIndex = 12
+        Me.Label1.Text = "存档文件:"
+        '
+        'Button_create_server
+        '
+        Me.Button_create_server.Location = New System.Drawing.Point(85, 313)
+        Me.Button_create_server.Name = "Button_create_server"
+        Me.Button_create_server.Size = New System.Drawing.Size(75, 23)
+        Me.Button_create_server.TabIndex = 0
+        Me.Button_create_server.Text = "创建"
+        Me.Button_create_server.UseVisualStyleBackColor = True
         '
         'CheckBox_chinese_chat
         '
@@ -213,6 +408,15 @@ Partial Class Form_main
         Me.LinkLabel_ver.TabStop = True
         Me.LinkLabel_ver.Text = "0.4"
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(269, 313)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(104, 23)
+        Me.Button1.TabIndex = 36
+        Me.Button1.Text = "保存并停止服务"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'Form_main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -228,9 +432,10 @@ Partial Class Form_main
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "工厂世界"
         Me.TabControl1.ResumeLayout(False)
-        Me.TabPage1.ResumeLayout(False)
-        Me.TabPage1.PerformLayout()
-        Me.TabPage2.ResumeLayout(False)
+        Me.TabPage_client.ResumeLayout(False)
+        Me.TabPage_client.PerformLayout()
+        Me.TabPage_server.ResumeLayout(False)
+        Me.TabPage_server.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -243,14 +448,33 @@ Partial Class Form_main
     Friend WithEvents ColumnHeader3 As ColumnHeader
     Friend WithEvents ColumnHeader4 As ColumnHeader
     Friend WithEvents TabControl1 As TabControl
-    Friend WithEvents TabPage1 As TabPage
-    Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents TabPage_client As TabPage
+    Friend WithEvents TabPage_server As TabPage
     Friend WithEvents Button_join As Button
-    Friend WithEvents Button3 As Button
-    Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents Button_create_server As Button
     Friend WithEvents CheckBox_chinese_chat As CheckBox
     Friend WithEvents TextBox_serverlist As TextBox
     Friend WithEvents BackgroundWorker_download_serverlist As System.ComponentModel.BackgroundWorker
     Friend WithEvents LinkLabel_ver As LinkLabel
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents ComboBox_auto_pause As ComboBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents TextBox_afk_autokick_interval As TextBox
+    Friend WithEvents Label6 As Label
+    Friend WithEvents TextBox_autosave_slots As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents TextBox_autosave_interval As TextBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents TextBox_max_players As TextBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents TextBox_saves As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Button_check_ip As Button
+    Friend WithEvents Label13 As Label
+    Friend WithEvents TextBox_IP As TextBox
+    Friend WithEvents Label12 As Label
+    Friend WithEvents Button1 As Button
 End Class

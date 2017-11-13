@@ -3,11 +3,31 @@ Imports System.IO
 Imports System.Net
 
 Public Class Form_main
+    '------------------------
+    '后台按键测试
+    Private Declare Function PostMessage Lib "user32" Alias "PostMessageA" (ByVal hwnd As Long, ByVal wMsg As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
+    Private Declare Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpClassName As String, ByVal lpWindowName As String) As Long
+    Private Declare Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As Long)
+    '常量声明 　　
+    Private Const WM_LBUTTONDBLCLK = &H203
+    Private Const WM_LBUTTONDOWN = &H201
+    Private Const WM_LBUTTONUP = &H202
+    Private Const WM_MBUTTONDBLCLK = &H209
+    Private Const WM_MBUTTONDOWN = &H207
+    Private Const WM_MBUTTONUP = &H208
+    Private Const WM_RBUTTONDBLCLK = &H206
+    Private Const WM_RBUTTONDOWN = &H204
+    Private Const WM_RBUTTONUP = &H205
+    '后台按键测试结束
+    '--------------------
+
+
     'Public upsrc = "http://code.taobao.org/svn/yxgcsj/trunk/updatafiles/"
     Public up_root = "https://raw.githubusercontent.com/yjfyy/yxgcsj/master/%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F/trunk/serverlist/"
     Public r_version = "0"
     Public l_version = "0"
     Dim server_select = 0
+    Dim server_id
 
     'serverlist数组 x0为服务器名称，x1为介绍，x2时间,x3 ping x4 ip 不显示
     Public serverlist(4, 0)
@@ -314,5 +334,140 @@ Public Class Form_main
 
     Private Sub LinkLabel_ver_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel_ver.LinkClicked
         Process.Start("https://raw.githubusercontent.com/yjfyy/yxgcsj/master/%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F/trunk/updatafiles/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97.txt")
+    End Sub
+
+
+    Private Sub Button_check_ip_Click(sender As Object, e As EventArgs) Handles Button_check_ip.Click
+        Button_check_ip.Text = "正在检测"
+        Button_check_ip.Enabled = False
+        Dim ip As String
+        Dim dFile As New System.Net.WebClient
+        Dim upUri_version As New Uri("http://www.3322.org/dyndns/getip")
+        Try
+
+            ip = dFile.DownloadString(upUri_version)
+        Catch ex As Exception
+            ip = "检测失败"
+        End Try
+        ip = Replace(ip, vbLf, "")
+        TextBox_IP.Text = ip
+        Button_check_ip.Text = "自动检测"
+        Button_check_ip.Enabled = True
+    End Sub
+
+    Private Sub Button_create_server_Click(sender As Object, e As EventArgs) Handles Button_create_server.Click
+        Button_create_server.Text = "正在创建"
+        Button_create_server.Enabled = False
+
+        '创建server-settings.example.json。
+        create_server_settings()
+
+        '执行服务器启动命令。
+        run_server()
+
+        Button_create_server.Text = "正在运行"
+
+        '发送本机serverlist到服务器。
+    End Sub
+
+    Private Sub create_server_settings()
+        Dim server_settings(59)
+        server_settings(0) = "{"
+        server_settings(1) = "  ""name"": ""Name of the game as it will appear in the game listing"","
+        server_settings(2) = "  ""description"": ""Description of the game that will appear in the listing"","
+        server_settings(3) = "  ""tags"": [""game"", ""tags""],"
+        server_settings(4) = ""
+        server_settings(5) = "  ""_comment_max_players"": ""Maximum number of players allowed, admins can join even a full server. 0 means unlimited."","
+        server_settings(6) = "  ""max_players"": " & TextBox_max_players.Text & ","
+        server_settings(7) = ""
+        server_settings(8) = "  ""_comment_visibility"": [""public: Game will be published on the official Factorio matching server"","
+        server_settings(9) = "                          ""lan: Game will be broadcast on LAN""],"
+        server_settings(10) = "  ""visibility"":"
+        server_settings(11) = "  {"
+        server_settings(12) = "    ""public"": true,"
+        server_settings(13) = "    ""lan"": true"
+        server_settings(14) = "  },"
+        server_settings(15) = ""
+        server_settings(16) = "  ""_comment_credentials"": ""Your factorio.com login credentials. Required for games with visibility public"","
+        server_settings(17) = "  ""username"": """","
+        server_settings(18) = "  ""password"": """","
+        server_settings(19) = ""
+        server_settings(20) = "  ""_comment_token"": ""Authentication token. May be used instead of 'password' above."","
+        server_settings(21) = "  ""token"": """","
+        server_settings(22) = ""
+        server_settings(23) = "  ""game_password"": """","
+        server_settings(24) = ""
+        server_settings(25) = "  ""_comment_require_user_verification"": ""When set to true, the server will only allow clients that have a valid Factorio.com account"","
+        server_settings(26) = "  ""require_user_verification"": false,"
+        server_settings(27) = ""
+        server_settings(28) = "  ""_comment_max_upload_in_kilobytes_per_second"" : ""optional, default value is 0. 0 means unlimited."","
+        server_settings(29) = "  ""max_upload_in_kilobytes_per_second"": 0,"
+        server_settings(30) = ""
+        server_settings(31) = "  ""_comment_minimum_latency_in_ticks"": ""optional one tick is 16ms in default speed, default value is 0. 0 means no minimum."","
+        server_settings(32) = "  ""minimum_latency_in_ticks"": 0,"
+        server_settings(33) = ""
+        server_settings(34) = "  ""_comment_ignore_player_limit_for_returning_players"": ""Players that played on this map already can join even when the max player limit was reached."","
+        server_settings(35) = "  ""ignore_player_limit_for_returning_players"": false,"
+        server_settings(36) = ""
+        server_settings(37) = "  ""_comment_allow_commands"": ""possible values are, true, false and admins-only"","
+        server_settings(38) = "  ""allow_commands"": ""admins-only"","
+        server_settings(39) = ""
+        server_settings(40) = "  ""_comment_autosave_interval"": ""Autosave interval in minutes"","
+        server_settings(41) = "  ""autosave_interval"": " & TextBox_autosave_interval.Text & ","
+        server_settings(42) = ""
+        server_settings(43) = "  ""_comment_autosave_slots"": ""server autosave slots, it is cycled through when the server autosaves."","
+        server_settings(44) = "  ""autosave_slots"": " & TextBox_autosave_slots.Text & ","
+        server_settings(45) = ""
+        server_settings(46) = " ""_comment_afk_autokick_interval"": ""How many minutes until someone is kicked when doing nothing, 0 for never."","
+        server_settings(47) = " ""afk_autokick_interval"": " & TextBox_afk_autokick_interval.Text & ","
+        server_settings(48) = ""
+        server_settings(49) = " ""_comment_auto_pause"": ""Whether should the server be paused when no players are present."","
+        If ComboBox_auto_pause.Text = "否" Then
+            server_settings(50) = " ""auto_pause"": false,"
+        Else
+            server_settings(50) = " ""auto_pause"": true,"
+        End If
+        server_settings(51) = ""
+        server_settings(52) = "  ""only_admins_can_pause_the_game"": true,"
+        server_settings(53) = ""
+        server_settings(54) = "  ""_comment_autosave_only_on_server"": ""Whether autosaves should be saved only on server or also on all connected clients. Default is true."","
+        server_settings(55) = "  ""autosave_only_on_server"": true,"
+        server_settings(56) = ""
+        server_settings(57) = "  ""_comment_admins"": ""List of case insensitive usernames, that will be promoted immediately"","
+        server_settings(58) = "  ""admins"": []"
+        server_settings(59) = "}"
+
+        Dim server_settings_file_string = ""
+        For i = 0 To UBound(server_settings)
+            server_settings_file_string = (server_settings_file_string & server_settings(i) & vbCrLf)
+        Next
+        Directory.CreateDirectory("data/fs")
+        System.IO.File.WriteAllText("data/fs/fs.json", server_settings_file_string, encoding:=System.Text.Encoding.Default)
+    End Sub
+    Private Sub run_server()
+
+        'server_id = Shell("cmd /c .\bin\x64\factorio.exe --start-server " & TextBox_saves.Text & " --server-settings data/fs/fs.json", Style:=AppWinStyle.NormalFocus)
+        server_id = Shell("cmd /c.\bin\x64\factorio.exe --start-server " & TextBox_saves.Text & " --server-settings data/fs/fs.json", AppWinStyle.MinimizedNoFocus)
+
+    End Sub
+
+    Private Sub TabControl1_Click(sender As Object, e As EventArgs) Handles TabControl1.Click
+        ComboBox_auto_pause.SelectedIndex = 0
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Try
+            AppActivate(server_id)
+            Threading.Thread.Sleep(200)
+            SendKeys.Send("^C")
+            'Threading.Thread.Sleep(100)
+            'SendKeys.Send("/save")
+            'Threading.Thread.Sleep(100)
+            'SendKeys.Send("{ENTER}")
+            Button_create_server.Text = "创建"
+            Button_create_server.Enabled = True
+        Catch ex As Exception
+            MsgBox（"服务已停止！")
+        End Try
     End Sub
 End Class
