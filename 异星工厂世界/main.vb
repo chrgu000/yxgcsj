@@ -29,7 +29,7 @@ Public Class Form_main
     Dim server_select = 0
     Dim server_id
 
-    'serverlist数组 x0为服务器名称，x1为介绍，x2时间,x3 ping x4 ip 不显示
+    'serverlist数组 x0为服务器名称，x1为介绍，x2时间（暂时无用）,x3 ip x4 ping 暂时无用
     Public serverlist(4, 0)
     Public Const WM_HOTKEY = &H312
     'Public Const MOD_ALT = &H1
@@ -57,13 +57,11 @@ Public Class Form_main
         '清理文件
         delete_files()
 
-        '载入服务器列表
-        '后台开始下载serverlist文件
-        BackgroundWorker_download_serverlist.RunWorkerAsync()
-
         '注册聊天热键
         RegisterHotKey(Handle, 0, MOD_CONTROL, 192)
 
+        '0.5秒后开始载入sl.txt
+        Timer_load_sl.Enabled = True
 
         '直接载入serverlist，方便调试
         'load_server_list()
@@ -80,7 +78,7 @@ Public Class Form_main
         form_updata.Close()
     End Sub
 
-    Sub load_server_list()
+    Private Sub load_server_list()
         '临时生成serverlist方便调试
         'Try
         '    System.IO.File.WriteAllText("serverlist.txt", TextBox_serverlist.Text, encoding:=System.Text.Encoding.Default)
@@ -90,60 +88,68 @@ Public Class Form_main
 
 
         '处理列表
-        Dim i = -1 '临时统计文件有几行.-1为校正数组从0开始
-        FileOpen(1, "serverlist.txt", OpenMode.Input)
-        Do While Not EOF(1)
+        '判断是否有serverlist
+        If My.Computer.FileSystem.FileExists("./data/facw/sl/sl.txt") Then
+            Dim i = -1 '临时统计文件有几行.-1为校正数组从0开始
+            FileOpen(1, "./data/facw/sl/sl.txt", OpenMode.Input)
+            Do While Not EOF(1)
 
-            Dim temp
-            temp = LineInput(1)
-            i = i + 1
-        Loop
-        FileClose()
-        ' MsgBox(i)
+                Dim temp
+                temp = LineInput(1)
+                i = i + 1
+            Loop
+            FileClose()
+            ' MsgBox(i)
 
-        ReDim serverlist(4, i)
-        FileOpen(1, "serverlist.txt", OpenMode.Input)
-        Dim temp2
-        Do While Not EOF(1)
+            ReDim serverlist(4, i)
+            FileOpen(1, "./data/facw/sl/sl.txt", OpenMode.Input)
+            Dim temp2
+            Do While Not EOF(1)
+                For l = 0 To i
+                    temp2 = LineInput(1)
+                    Dim arr As String() = temp2.Split(vbTab) '放入arr数组
+                    For h As Integer = 0 To 3
+                        serverlist(h, l) = arr(h)
+                        'MsgBox(serverlist(h, l))
+                    Next
+                Next
+                i = i + 1
+            Loop
+            FileClose()
+            i = i - 1 '校正最后一次循环
+            '处理完毕
+            '删除serverlist.txt文件
+            If My.Computer.FileSystem.FileExists("./data/facw/sl/sl.txt") Then
+                Try
+                    My.Computer.FileSystem.DeleteFile("./data/facw/sl/sl.txt")
+                Catch ex As Exception
+                End Try
+            End If
+
+            '按照数组，添加serverlist到listview控件
             For l = 0 To i
-                temp2 = LineInput(1)
-                Dim arr As String() = temp2.Split(vbTab) '放入arr数组
-                For h As Integer = 0 To 3
-                    serverlist(h, l) = arr(h)
-                    'MsgBox(serverlist(h, l))
+                ListView1.Items.Add(serverlist(0, l))
+                For h = 1 To 2
+                    ListView1.Items(l).SubItems.Add(serverlist(h, l))
                 Next
             Next
-            i = i + 1
-        Loop
-        FileClose()
-        i = i - 1 '校正最后一次循环
-        '处理完毕
-        '删除serverlist.txt文件
-        If My.Computer.FileSystem.FileExists("serverlist.txt") Then
-            Try
-                My.Computer.FileSystem.DeleteFile("serverlist.txt")
-            Catch ex As Exception
-            End Try
+
+            'ListView1.Items（0）.ForeColor = Color.Red
+
+            Button_join.Text = "请选择进入"
+
+            Button_join.Enabled = True
+
+            ListView1.Items(0).Focused = True
+            ListView1.Items(0).Selected = True
+            ' ListView1.Focus()
+
+
+        Else
+            MsgBox(“请重新刷新服务器列表”)
+
         End If
 
-
-        '按照数组，添加serverlist到listview控件
-        For l = 0 To i
-            ListView1.Items.Add(serverlist(0, l))
-            For h = 1 To 2
-                ListView1.Items(l).SubItems.Add(serverlist(h, l))
-            Next
-        Next
-
-        'ListView1.Items（0）.ForeColor = Color.Red
-
-        Button_join.Text = "请选择进入"
-
-        Button_join.Enabled = True
-
-        ListView1.Items(0).Focused = True
-        ListView1.Items(0).Selected = True
-        ' ListView1.Focus()
     End Sub
 
     Private Sub Button_updata_Click(sender As Object, e As EventArgs) Handles Button_updata.Click
@@ -151,13 +157,22 @@ Public Class Form_main
     End Sub
 
     Private Sub BackgroundWorker_download_serverlist_DoWork(sender As Object, e As DoWorkEventArgs) Handles BackgroundWorker_download_serverlist.DoWork
-        Dim dFile As New System.Net.WebClient
-        Dim upUri_serverlist As New Uri(up_root & "serverlist.txt")
-        Try
-            dFile.DownloadFile(upUri_serverlist, "serverlist.txt")
-        Catch ex As Exception
+        Shell("""./data/facw/svn.exe""  cleanup  ./data/facw/sl", AppWinStyle.NormalFocus, True)
+        Shell("""./data/facw/svn.exe""  co  http://code.taobao.org/svn/yxgcipup/trunk  ./data/facw/sl", AppWinStyle.NormalFocus, True)
+        Threading.Thread.Sleep(200)
+        If My.Computer.FileSystem.FileExists("data/facw/sl/sl.txt") Then
+        Else
             Button_join.Text = "下载失败!"
-        End Try
+        End If
+        '--------------原来，直接下载方式
+        'Dim dFile As New System.Net.WebClient
+        'Dim upUri_serverlist As New Uri(up_root & "serverlist.txt")
+        'Try
+        '    dFile.DownloadFile(upUri_serverlist, "serverlist.txt")
+        'Catch ex As Exception
+        '    Button_join.Text = "下载失败!"
+        'End Try
+        '----------原来，直接下载方式结束。
     End Sub
 
     Private Sub BackgroundWorker_download_serverlist_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BackgroundWorker_download_serverlist.RunWorkerCompleted
@@ -330,6 +345,13 @@ Public Class Form_main
 
             End Try
         End If
+        If My.Computer.FileSystem.FileExists("./data/facw/sl/sl.txt") Then
+            Try
+                My.Computer.FileSystem.DeleteFile("./data/facw/sl/sl.txt")
+            Catch ex As Exception
+
+            End Try
+        End If
     End Sub
 
     Private Sub LinkLabel_ver_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel_ver.LinkClicked
@@ -356,6 +378,11 @@ Public Class Form_main
     End Sub
 
     Private Sub Button_create_server_Click(sender As Object, e As EventArgs) Handles Button_create_server.Click
+        If TextBox_server_intro.Text = "" Or TextBox_server_name.Text = "" Then
+            MsgBox("请输入服务器名称和介绍")
+            Exit Sub
+        End If
+
         Button_create_server.Text = "正在创建"
         Button_create_server.Enabled = False
 
@@ -367,7 +394,13 @@ Public Class Form_main
 
         Button_create_server.Text = "正在运行"
 
-        '发送本机serverlist到服务器。
+        '开始同步serverlist。
+        Timer_sync_server_Tick(sender, e)
+        Timer_sync_server.Enabled = True
+
+        '方便调试
+        'edit_server_list()
+
     End Sub
 
     Private Sub create_server_settings()
@@ -441,13 +474,13 @@ Public Class Form_main
         For i = 0 To UBound(server_settings)
             server_settings_file_string = (server_settings_file_string & server_settings(i) & vbCrLf)
         Next
-        Directory.CreateDirectory("data/fs")
-        System.IO.File.WriteAllText("data/fs/fs.json", server_settings_file_string, encoding:=System.Text.Encoding.Default)
+        Directory.CreateDirectory("data/facw")
+        System.IO.File.WriteAllText("data/facw/fs.json", server_settings_file_string, encoding:=System.Text.Encoding.Default)
     End Sub
     Private Sub run_server()
 
         'server_id = Shell("cmd /c .\bin\x64\factorio.exe --start-server " & TextBox_saves.Text & " --server-settings data/fs/fs.json", Style:=AppWinStyle.NormalFocus)
-        server_id = Shell("cmd /c.\bin\x64\factorio.exe --start-server " & TextBox_saves.Text & " --server-settings data/fs/fs.json", AppWinStyle.MinimizedNoFocus)
+        server_id = Shell("cmd /c.\bin\x64\factorio.exe --start-server " & TextBox_saves.Text & " --server-settings data/facw/fs.json", AppWinStyle.MinimizedNoFocus)
 
     End Sub
 
@@ -464,10 +497,129 @@ Public Class Form_main
             'SendKeys.Send("/save")
             'Threading.Thread.Sleep(100)
             'SendKeys.Send("{ENTER}")
-            Button_create_server.Text = "创建"
-            Button_create_server.Enabled = True
+
         Catch ex As Exception
             MsgBox（"服务已停止！")
         End Try
+        Button_create_server.Text = "创建"
+        Button_create_server.Enabled = True
+    End Sub
+
+
+    Private Sub Timer_sync_server_Tick(sender As Object, e As EventArgs) Handles Timer_sync_server.Tick
+
+        '生成serverlist
+        'serverlist（0, server_select) 服务器名称
+        'serverlist（1, server_select) 服务器介绍
+        'serverlist（2, server_select) 服务器最后激活时间
+        'serverlist（3, server_select) ip 不显示
+        'serverlist（4, server_select) ping
+        '确定最新1维下标
+        Dim this_server = UBound(serverlist， 2) + 1
+        ReDim Preserve serverlist(4, this_server)
+        serverlist(0, this_server) = TextBox_server_name.Text
+        serverlist(1, this_server) = TextBox_server_intro.Text
+        'serverlist(2, this_server) = Format(Now, "MMddHHmm")2017/11/15 19:22:31
+        serverlist(2, this_server) = Format(Now, "yyyy/MM/dd HH:mm:ss")
+        serverlist(3, this_server) = TextBox_IP.Text
+
+        '
+        '处理sl'txt，按时间排序
+        edit_server_list()
+
+        '上传sl
+        Threading.Thread.Sleep(200)
+        Shell("""data/facw/svn.exe"" ci ./data/facw/sl -m ""new"" --username ipuppublic --password 1234abcD", AppWinStyle.NormalFocus, True, 30000)
+    End Sub
+
+    Private Sub Timer_load_sl_Tick(sender As Object, e As EventArgs) Handles Timer_load_sl.Tick
+        Timer_load_sl.Enabled = False
+        '载入服务器列表
+        '后台开始下载serverlist文件
+        'Shell("./data/facw/svn co http://code.taobao.org/svn/yxgcipup/trunk ./data/facw", AppWinStyle.Hide, True, 30000)
+        'load_server_list()
+        BackgroundWorker_download_serverlist.RunWorkerAsync()
+    End Sub
+
+    Private Sub edit_server_list()
+        Dim temp_serverlist(4, 0)
+
+
+        'IP重复的去时间靠前的
+        For i = 1 To UBound(serverlist, 2)
+            For y = i + 1 To UBound(serverlist, 2)
+                If serverlist(3, i) = serverlist(3, y) Then
+                    If DateDiff("n", CDate(serverlist(2, i)), CDate(serverlist(2, y)）） > 0 Then
+                        serverlist(2, i) = "2017/01/01 00:00:00"
+                    Else
+                        serverlist(2, y) = "2017/01/01 00:00:00"
+                    End If
+                End If
+
+            Next
+        Next
+
+        '删除两小时没有报告的服务器
+        For i = 1 To UBound(serverlist, 2)
+            If DateDiff("n", CDate(serverlist(2, i)）， Now) > 120 Then
+                serverlist(2, i) = "2017/01/01 00:00:00"
+
+            End If
+
+        Next
+
+delete:'删除时间为"2017/01/01 00:00:00"的
+        For i = 1 To UBound(serverlist, 2)
+            If serverlist（2， i） = "2017/01/01 00:00:00" Then
+                If i < UBound(serverlist, 2) Then
+                    For y = i To UBound(serverlist, 2） - 1
+                        serverlist（0， y） = serverlist（0， y + 1）
+                        serverlist（1， y） = serverlist（1， y + 1）
+                        serverlist（2， y） = serverlist（2， y + 1）
+                        serverlist（3， y） = serverlist（3， y + 1）
+                        serverlist（4， y） = serverlist（4， y + 1）
+                    Next
+                End If
+                i = i - 1
+                ReDim Preserve serverlist(4, UBound(serverlist, 2) - 1)
+                GoTo delete '删除时间为"2017/01/01 00:00:00"的
+            End If
+        Next
+
+
+        '按时间排序
+        For y = 2 To UBound(serverlist, 2)
+            For i = 2 To UBound(serverlist, 2)
+                If serverlist(2, i - 1) > serverlist(2, i) Then
+                Else
+                    For l = 0 To 4
+                        temp_serverlist(l, 0) = serverlist(l, i)
+                        serverlist(l, i) = serverlist(l, i - 1)
+                        serverlist(l, i - 1) = temp_serverlist(l, 0)
+                    Next
+
+
+                End If
+            Next
+        Next
+
+        '如果超过20个，删除后面的
+
+        If UBound(serverlist, 2) > 20 Then
+            ReDim Preserve serverlist(4, 20)
+        End If
+
+        Dim serverlist_file_string = ""
+        For i = 0 To UBound(serverlist, 2)
+            serverlist_file_string = (serverlist_file_string & serverlist(0, i) & vbTab & serverlist(1, i) & vbTab & serverlist(2, i) & vbTab & serverlist(3, i) & vbTab & serverlist(4, i) & vbCrLf)
+        Next
+        System.IO.File.WriteAllText("./data/facw/sl/sl.txt", serverlist_file_string, encoding:=System.Text.Encoding.Default)
+
+        'For i = 0 To 4
+        '    
+        '    MsgBox(temp_serverlist(i, 0))
+        'Next
+
+
     End Sub
 End Class

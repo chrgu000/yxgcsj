@@ -22,6 +22,7 @@ Partial Class Form_main
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form_main))
         Me.Button_updata = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -35,6 +36,11 @@ Partial Class Form_main
         Me.TextBox_serverlist = New System.Windows.Forms.TextBox()
         Me.Button_join = New System.Windows.Forms.Button()
         Me.TabPage_server = New System.Windows.Forms.TabPage()
+        Me.TextBox_server_intro = New System.Windows.Forms.TextBox()
+        Me.TextBox_server_name = New System.Windows.Forms.TextBox()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.Button_check_ip = New System.Windows.Forms.Button()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.TextBox_IP = New System.Windows.Forms.TextBox()
@@ -59,7 +65,8 @@ Partial Class Form_main
         Me.CheckBox_chinese_chat = New System.Windows.Forms.CheckBox()
         Me.BackgroundWorker_download_serverlist = New System.ComponentModel.BackgroundWorker()
         Me.LinkLabel_ver = New System.Windows.Forms.LinkLabel()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Timer_sync_server = New System.Windows.Forms.Timer(Me.components)
+        Me.Timer_load_sl = New System.Windows.Forms.Timer(Me.components)
         Me.TabControl1.SuspendLayout()
         Me.TabPage_client.SuspendLayout()
         Me.TabPage_server.SuspendLayout()
@@ -100,17 +107,17 @@ Partial Class Form_main
         'ColumnHeader1
         '
         Me.ColumnHeader1.Text = "服务器名称"
-        Me.ColumnHeader1.Width = 130
+        Me.ColumnHeader1.Width = 104
         '
         'ColumnHeader2
         '
         Me.ColumnHeader2.Text = "介绍"
-        Me.ColumnHeader2.Width = 218
+        Me.ColumnHeader2.Width = 191
         '
         'ColumnHeader3
         '
-        Me.ColumnHeader3.Text = "状态"
-        Me.ColumnHeader3.Width = 59
+        Me.ColumnHeader3.Text = "最后报告正常时间"
+        Me.ColumnHeader3.Width = 172
         '
         'ColumnHeader4
         '
@@ -168,6 +175,10 @@ Partial Class Form_main
         '
         'TabPage_server
         '
+        Me.TabPage_server.Controls.Add(Me.TextBox_server_intro)
+        Me.TabPage_server.Controls.Add(Me.TextBox_server_name)
+        Me.TabPage_server.Controls.Add(Me.Label15)
+        Me.TabPage_server.Controls.Add(Me.Label14)
         Me.TabPage_server.Controls.Add(Me.Button1)
         Me.TabPage_server.Controls.Add(Me.Button_check_ip)
         Me.TabPage_server.Controls.Add(Me.Label13)
@@ -197,6 +208,47 @@ Partial Class Form_main
         Me.TabPage_server.TabIndex = 1
         Me.TabPage_server.Text = "创建服务器"
         Me.TabPage_server.UseVisualStyleBackColor = True
+        '
+        'TextBox_server_intro
+        '
+        Me.TextBox_server_intro.Location = New System.Drawing.Point(49, 146)
+        Me.TextBox_server_intro.Name = "TextBox_server_intro"
+        Me.TextBox_server_intro.Size = New System.Drawing.Size(238, 21)
+        Me.TextBox_server_intro.TabIndex = 40
+        '
+        'TextBox_server_name
+        '
+        Me.TextBox_server_name.Location = New System.Drawing.Point(85, 115)
+        Me.TextBox_server_name.Name = "TextBox_server_name"
+        Me.TextBox_server_name.Size = New System.Drawing.Size(135, 21)
+        Me.TextBox_server_name.TabIndex = 39
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(8, 149)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(35, 12)
+        Me.Label15.TabIndex = 38
+        Me.Label15.Text = "简介:"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(8, 118)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(71, 12)
+        Me.Label14.TabIndex = 37
+        Me.Label14.Text = "服务器名称:"
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(269, 313)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(104, 23)
+        Me.Button1.TabIndex = 36
+        Me.Button1.Text = "保存并停止服务"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'Button_check_ip
         '
@@ -237,7 +289,7 @@ Partial Class Form_main
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(200, 171)
+        Me.Label11.Location = New System.Drawing.Point(195, 211)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(59, 12)
         Me.Label11.TabIndex = 27
@@ -246,7 +298,7 @@ Partial Class Form_main
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(191, 209)
+        Me.Label10.Location = New System.Drawing.Point(191, 242)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(29, 12)
         Me.Label10.TabIndex = 26
@@ -265,7 +317,7 @@ Partial Class Form_main
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(179, 133)
+        Me.Label8.Location = New System.Drawing.Point(179, 180)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(89, 12)
         Me.Label8.TabIndex = 24
@@ -275,7 +327,7 @@ Partial Class Form_main
         '
         Me.ComboBox_auto_pause.FormattingEnabled = True
         Me.ComboBox_auto_pause.Items.AddRange(New Object() {"是", "否"})
-        Me.ComboBox_auto_pause.Location = New System.Drawing.Point(133, 244)
+        Me.ComboBox_auto_pause.Location = New System.Drawing.Point(133, 270)
         Me.ComboBox_auto_pause.Name = "ComboBox_auto_pause"
         Me.ComboBox_auto_pause.Size = New System.Drawing.Size(60, 20)
         Me.ComboBox_auto_pause.TabIndex = 23
@@ -283,7 +335,7 @@ Partial Class Form_main
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(8, 247)
+        Me.Label7.Location = New System.Drawing.Point(8, 273)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(119, 12)
         Me.Label7.TabIndex = 22
@@ -291,7 +343,7 @@ Partial Class Form_main
         '
         'TextBox_afk_autokick_interval
         '
-        Me.TextBox_afk_autokick_interval.Location = New System.Drawing.Point(73, 130)
+        Me.TextBox_afk_autokick_interval.Location = New System.Drawing.Point(73, 177)
         Me.TextBox_afk_autokick_interval.Name = "TextBox_afk_autokick_interval"
         Me.TextBox_afk_autokick_interval.Size = New System.Drawing.Size(100, 21)
         Me.TextBox_afk_autokick_interval.TabIndex = 21
@@ -300,7 +352,7 @@ Partial Class Form_main
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(8, 133)
+        Me.Label6.Location = New System.Drawing.Point(8, 180)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(59, 12)
         Me.Label6.TabIndex = 20
@@ -308,7 +360,7 @@ Partial Class Form_main
         '
         'TextBox_autosave_slots
         '
-        Me.TextBox_autosave_slots.Location = New System.Drawing.Point(326, 206)
+        Me.TextBox_autosave_slots.Location = New System.Drawing.Point(315, 239)
         Me.TextBox_autosave_slots.Name = "TextBox_autosave_slots"
         Me.TextBox_autosave_slots.Size = New System.Drawing.Size(95, 21)
         Me.TextBox_autosave_slots.TabIndex = 19
@@ -317,7 +369,7 @@ Partial Class Form_main
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(237, 209)
+        Me.Label5.Location = New System.Drawing.Point(226, 242)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(83, 12)
         Me.Label5.TabIndex = 18
@@ -325,7 +377,7 @@ Partial Class Form_main
         '
         'TextBox_autosave_interval
         '
-        Me.TextBox_autosave_interval.Location = New System.Drawing.Point(121, 206)
+        Me.TextBox_autosave_interval.Location = New System.Drawing.Point(121, 239)
         Me.TextBox_autosave_interval.Name = "TextBox_autosave_interval"
         Me.TextBox_autosave_interval.Size = New System.Drawing.Size(64, 21)
         Me.TextBox_autosave_interval.TabIndex = 17
@@ -334,7 +386,7 @@ Partial Class Form_main
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(8, 209)
+        Me.Label4.Location = New System.Drawing.Point(8, 242)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(107, 12)
         Me.Label4.TabIndex = 16
@@ -342,7 +394,7 @@ Partial Class Form_main
         '
         'TextBox_max_players
         '
-        Me.TextBox_max_players.Location = New System.Drawing.Point(85, 168)
+        Me.TextBox_max_players.Location = New System.Drawing.Point(85, 208)
         Me.TextBox_max_players.Name = "TextBox_max_players"
         Me.TextBox_max_players.Size = New System.Drawing.Size(100, 21)
         Me.TextBox_max_players.TabIndex = 15
@@ -351,7 +403,7 @@ Partial Class Form_main
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(8, 171)
+        Me.Label3.Location = New System.Drawing.Point(8, 211)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(71, 12)
         Me.Label3.TabIndex = 14
@@ -408,14 +460,13 @@ Partial Class Form_main
         Me.LinkLabel_ver.TabStop = True
         Me.LinkLabel_ver.Text = "0.4"
         '
-        'Button1
+        'Timer_sync_server
         '
-        Me.Button1.Location = New System.Drawing.Point(269, 313)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(104, 23)
-        Me.Button1.TabIndex = 36
-        Me.Button1.Text = "保存并停止服务"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Timer_sync_server.Interval = 120000
+        '
+        'Timer_load_sl
+        '
+        Me.Timer_load_sl.Interval = 500
         '
         'Form_main
         '
@@ -477,4 +528,10 @@ Partial Class Form_main
     Friend WithEvents TextBox_IP As TextBox
     Friend WithEvents Label12 As Label
     Friend WithEvents Button1 As Button
+    Friend WithEvents TextBox_server_intro As TextBox
+    Friend WithEvents TextBox_server_name As TextBox
+    Friend WithEvents Label15 As Label
+    Friend WithEvents Label14 As Label
+    Friend WithEvents Timer_sync_server As Timer
+    Friend WithEvents Timer_load_sl As Timer
 End Class

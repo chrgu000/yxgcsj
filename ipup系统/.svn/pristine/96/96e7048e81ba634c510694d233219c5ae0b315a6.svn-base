@@ -1,0 +1,2 @@
+svn ci ..\ipupϵͳ --username ipuppublic --password 1234abcD -m "newip"
+pause

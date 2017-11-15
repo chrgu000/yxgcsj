@@ -10,3 +10,17 @@ E:\Projects\yxgcsj\异星工厂世界\obj\Release\工厂世界.Resources.resourc
 E:\Projects\yxgcsj\异星工厂世界\obj\Release\工厂世界.exe
 E:\Projects\yxgcsj\异星工厂世界\obj\Release\工厂世界.xml
 E:\Projects\yxgcsj\异星工厂世界\obj\Release\工厂世界.pdb
+E:\Projects\yxgcsj\异星工厂世界\bin\Release\data\facw\libapr-1.dll
+E:\Projects\yxgcsj\异星工厂世界\bin\Release\data\facw\libaprutil-1.dll
+E:\Projects\yxgcsj\异星工厂世界\bin\Release\data\facw\libsvn_client-1.dll
+E:\Projects\yxgcsj\异星工厂世界\bin\Release\data\facw\libsvn_delta-1.dll
+E:\Projects\yxgcsj\异星工厂世界\bin\Release\data\facw\libsvn_diff-1.dll
+E:\Projects\yxgcsj\异星工厂世界\bin\Release\data\facw\libsvn_fs-1.dll
+E:\Projects\yxgcsj\异星工厂世界\bin\Release\data\facw\libsvn_ra-1.dll
+E:\Projects\yxgcsj\异星工厂世界\bin\Release\data\facw\libsvn_repos-1.dll
+E:\Projects\yxgcsj\异星工厂世界\bin\Release\data\facw\libsvn_subr-1.dll
+E:\Projects\yxgcsj\异星工厂世界\bin\Release\data\facw\libsvn_wc-1.dll
+E:\Projects\yxgcsj\异星工厂世界\bin\Release\data\facw\msvcp100.dll
+E:\Projects\yxgcsj\异星工厂世界\bin\Release\data\facw\msvcr100.dll
+E:\Projects\yxgcsj\异星工厂世界\bin\Release\data\facw\sl\l.txt
+E:\Projects\yxgcsj\异星工厂世界\bin\Release\data\facw\svn.exe

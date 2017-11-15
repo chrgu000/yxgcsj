@@ -1,0 +1,7 @@
+svn 服务
+公共上传
+code.taobao.org
+用户名：ipuppublic
+密码：1234abcD
+邮箱：ipuppublic@163.com
+
