@@ -71,6 +71,7 @@ Partial Class Form_main
         Me.Timer_enable_reload_serverlist = New System.Windows.Forms.Timer(Me.components)
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.Label_ver = New System.Windows.Forms.Label()
+        Me.BackgroundWorker_creact_dsl = New System.ComponentModel.BackgroundWorker()
         Me.TabControl1.SuspendLayout()
         Me.TabPage_client.SuspendLayout()
         Me.TabPage_server.SuspendLayout()
@@ -504,6 +505,9 @@ Partial Class Form_main
         Me.Label_ver.TabIndex = 13
         Me.Label_ver.Text = "0.5"
         '
+        'BackgroundWorker_creact_dsl
+        '
+        '
         'Form_main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -576,4 +580,5 @@ Partial Class Form_main
     Friend WithEvents Timer_enable_reload_serverlist As Timer
     Friend WithEvents LinkLabel1 As LinkLabel
     Friend WithEvents Label_ver As Label
+    Friend WithEvents BackgroundWorker_creact_dsl As System.ComponentModel.BackgroundWorker
 End Class

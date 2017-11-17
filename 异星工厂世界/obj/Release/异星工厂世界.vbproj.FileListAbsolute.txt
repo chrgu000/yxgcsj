@@ -10,7 +10,6 @@ E:\Projects\yxgcsj\异星工厂世界\bin\Release\data\facw\libsvn_subr-1.dll
 E:\Projects\yxgcsj\异星工厂世界\bin\Release\data\facw\libsvn_wc-1.dll
 E:\Projects\yxgcsj\异星工厂世界\bin\Release\data\facw\msvcp100.dll
 E:\Projects\yxgcsj\异星工厂世界\bin\Release\data\facw\msvcr100.dll
-E:\Projects\yxgcsj\异星工厂世界\bin\Release\data\facw\sl\l.txt
 E:\Projects\yxgcsj\异星工厂世界\bin\Release\data\facw\svn.exe
 E:\Projects\yxgcsj\异星工厂世界\bin\Release\使用说明.txt
 E:\Projects\yxgcsj\异星工厂世界\bin\Release\工厂世界.exe
