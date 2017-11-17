@@ -33,6 +33,7 @@ Partial Class Form_main
         Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage_client = New System.Windows.Forms.TabPage()
+        Me.Button_reload_serverlist = New System.Windows.Forms.Button()
         Me.TextBox_serverlist = New System.Windows.Forms.TextBox()
         Me.Button_join = New System.Windows.Forms.Button()
         Me.TabPage_server = New System.Windows.Forms.TabPage()
@@ -64,9 +65,12 @@ Partial Class Form_main
         Me.Button_create_server = New System.Windows.Forms.Button()
         Me.CheckBox_chinese_chat = New System.Windows.Forms.CheckBox()
         Me.BackgroundWorker_download_serverlist = New System.ComponentModel.BackgroundWorker()
-        Me.LinkLabel_ver = New System.Windows.Forms.LinkLabel()
         Me.Timer_sync_server = New System.Windows.Forms.Timer(Me.components)
         Me.Timer_load_sl = New System.Windows.Forms.Timer(Me.components)
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Timer_enable_reload_serverlist = New System.Windows.Forms.Timer(Me.components)
+        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
+        Me.Label_ver = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage_client.SuspendLayout()
         Me.TabPage_server.SuspendLayout()
@@ -74,7 +78,7 @@ Partial Class Form_main
         '
         'Button_updata
         '
-        Me.Button_updata.Location = New System.Drawing.Point(371, 386)
+        Me.Button_updata.Location = New System.Drawing.Point(312, 412)
         Me.Button_updata.Name = "Button_updata"
         Me.Button_updata.Size = New System.Drawing.Size(75, 23)
         Me.Button_updata.TabIndex = 3
@@ -84,7 +88,7 @@ Partial Class Form_main
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(452, 391)
+        Me.Label2.Location = New System.Drawing.Point(393, 418)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(29, 12)
         Me.Label2.TabIndex = 4
@@ -140,6 +144,7 @@ Partial Class Form_main
         '
         'TabPage_client
         '
+        Me.TabPage_client.Controls.Add(Me.Button_reload_serverlist)
         Me.TabPage_client.Controls.Add(Me.TextBox_serverlist)
         Me.TabPage_client.Controls.Add(Me.Button_join)
         Me.TabPage_client.Controls.Add(Me.ListView1)
@@ -150,6 +155,15 @@ Partial Class Form_main
         Me.TabPage_client.TabIndex = 0
         Me.TabPage_client.Text = "连如服务器"
         Me.TabPage_client.UseVisualStyleBackColor = True
+        '
+        'Button_reload_serverlist
+        '
+        Me.Button_reload_serverlist.Location = New System.Drawing.Point(252, 311)
+        Me.Button_reload_serverlist.Name = "Button_reload_serverlist"
+        Me.Button_reload_serverlist.Size = New System.Drawing.Size(178, 23)
+        Me.Button_reload_serverlist.TabIndex = 11
+        Me.Button_reload_serverlist.Text = "刷新服务器列表 0"
+        Me.Button_reload_serverlist.UseVisualStyleBackColor = True
         '
         'TextBox_serverlist
         '
@@ -166,7 +180,7 @@ Partial Class Form_main
         'Button_join
         '
         Me.Button_join.Enabled = False
-        Me.Button_join.Location = New System.Drawing.Point(176, 313)
+        Me.Button_join.Location = New System.Drawing.Point(75, 311)
         Me.Button_join.Name = "Button_join"
         Me.Button_join.Size = New System.Drawing.Size(127, 23)
         Me.Button_join.TabIndex = 7
@@ -450,16 +464,6 @@ Partial Class Form_main
         'BackgroundWorker_download_serverlist
         '
         '
-        'LinkLabel_ver
-        '
-        Me.LinkLabel_ver.AutoSize = True
-        Me.LinkLabel_ver.Location = New System.Drawing.Point(480, 391)
-        Me.LinkLabel_ver.Name = "LinkLabel_ver"
-        Me.LinkLabel_ver.Size = New System.Drawing.Size(23, 12)
-        Me.LinkLabel_ver.TabIndex = 10
-        Me.LinkLabel_ver.TabStop = True
-        Me.LinkLabel_ver.Text = "0.4"
-        '
         'Timer_sync_server
         '
         Me.Timer_sync_server.Interval = 120000
@@ -468,12 +472,46 @@ Partial Class Form_main
         '
         Me.Timer_load_sl.Interval = 500
         '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(123, 412)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 11
+        Me.Button2.Text = "使用说明"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Timer_enable_reload_serverlist
+        '
+        Me.Timer_enable_reload_serverlist.Interval = 1000
+        '
+        'LinkLabel1
+        '
+        Me.LinkLabel1.AutoSize = True
+        Me.LinkLabel1.Location = New System.Drawing.Point(266, 442)
+        Me.LinkLabel1.Name = "LinkLabel1"
+        Me.LinkLabel1.Size = New System.Drawing.Size(245, 12)
+        Me.LinkLabel1.TabIndex = 12
+        Me.LinkLabel1.TabStop = True
+        Me.LinkLabel1.Text = "意见、建议、问题欢迎发信 57832091@qq.com"
+        '
+        'Label_ver
+        '
+        Me.Label_ver.AutoSize = True
+        Me.Label_ver.Location = New System.Drawing.Point(424, 418)
+        Me.Label_ver.Name = "Label_ver"
+        Me.Label_ver.Size = New System.Drawing.Size(23, 12)
+        Me.Label_ver.TabIndex = 13
+        Me.Label_ver.Text = "0.5"
+        '
         'Form_main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(514, 413)
-        Me.Controls.Add(Me.LinkLabel_ver)
+        Me.ClientSize = New System.Drawing.Size(514, 463)
+        Me.Controls.Add(Me.Label_ver)
+        Me.Controls.Add(Me.LinkLabel1)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.CheckBox_chinese_chat)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.Label2)
@@ -506,7 +544,6 @@ Partial Class Form_main
     Friend WithEvents CheckBox_chinese_chat As CheckBox
     Friend WithEvents TextBox_serverlist As TextBox
     Friend WithEvents BackgroundWorker_download_serverlist As System.ComponentModel.BackgroundWorker
-    Friend WithEvents LinkLabel_ver As LinkLabel
     Friend WithEvents Label9 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents ComboBox_auto_pause As ComboBox
@@ -534,4 +571,9 @@ Partial Class Form_main
     Friend WithEvents Label14 As Label
     Friend WithEvents Timer_sync_server As Timer
     Friend WithEvents Timer_load_sl As Timer
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button_reload_serverlist As Button
+    Friend WithEvents Timer_enable_reload_serverlist As Timer
+    Friend WithEvents LinkLabel1 As LinkLabel
+    Friend WithEvents Label_ver As Label
 End Class

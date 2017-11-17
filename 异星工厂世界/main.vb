@@ -28,6 +28,8 @@ Public Class Form_main
     Public l_version = "0"
     Dim server_select = 0
     Dim server_id
+    Dim miao = 10
+    Dim err = 0
 
     'serverlist数组 x0为服务器名称，x1为介绍，x2时间（暂时无用）,x3 ip x4 ping 暂时无用
     Public serverlist(4, 0)
@@ -89,6 +91,7 @@ Public Class Form_main
 
         '处理列表
         '判断是否有serverlist
+        ReDim serverlist(4, 0)
         If My.Computer.FileSystem.FileExists("./data/facw/sl/sl.txt") Then
             Dim i = -1 '临时统计文件有几行.-1为校正数组从0开始
             FileOpen(1, "./data/facw/sl/sl.txt", OpenMode.Input)
@@ -127,6 +130,7 @@ Public Class Form_main
             End If
 
             '按照数组，添加serverlist到listview控件
+
             For l = 0 To i
                 ListView1.Items.Add(serverlist(0, l))
                 For h = 1 To 2
@@ -157,8 +161,9 @@ Public Class Form_main
     End Sub
 
     Private Sub BackgroundWorker_download_serverlist_DoWork(sender As Object, e As DoWorkEventArgs) Handles BackgroundWorker_download_serverlist.DoWork
-        Shell("""./data/facw/svn.exe""  cleanup  ./data/facw/sl", AppWinStyle.NormalFocus, True)
-        Shell("""./data/facw/svn.exe""  co  http://code.taobao.org/svn/yxgcipup/trunk  ./data/facw/sl", AppWinStyle.NormalFocus, True)
+        Shell("""./data/facw/svn.exe""  cleanup  ./data/facw/sl", AppWinStyle.Hide, True)
+        Threading.Thread.Sleep(200)
+        Shell("""./data/facw/svn.exe""  co  http://code.taobao.org/svn/yxgcipup/trunk  ./data/facw/sl", AppWinStyle.Hide, True)
         Threading.Thread.Sleep(200)
         If My.Computer.FileSystem.FileExists("data/facw/sl/sl.txt") Then
         Else
@@ -181,10 +186,10 @@ Public Class Form_main
         Else
             load_server_list()
         End If
+        Timer_enable_reload_serverlist.Enabled = True
     End Sub
 
     Private Sub Button_join_Click(sender As Object, e As EventArgs) Handles Button_join.Click
-
         server_select = ListView1.FocusedItem.Index
         'serverlist（0, server_select) 服务器名称
         'serverlist（1, server_select) 服务器介绍
@@ -198,8 +203,12 @@ Public Class Form_main
         '修改player-data.json文件
         edit_player_data_json()
 
+
         '启动游戏
-        Shell(".\bin\x64\factorio.exe", Style:=AppWinStyle.NormalFocus)
+        If err = 0 Then
+            Shell(".\bin\x64\factorio.exe", Style:=AppWinStyle.NormalFocus)
+        End If
+
 
 
     End Sub
@@ -272,6 +281,7 @@ Public Class Form_main
             hosts_file_string = (hosts_file_string & host_file(i) & vbCrLf)
         Next
         System.IO.File.WriteAllText("C:\Windows\System32\drivers\etc\hosts", hosts_file_string, encoding:=System.Text.Encoding.Default)
+        Threading.Thread.Sleep(200)
     End Sub
     Private Sub edit_player_data_json()
         Dim player_data_file(0)
@@ -288,16 +298,67 @@ Public Class Form_main
             sr.Close()
 
 
-            Dim address_hang = 15
+
+            'For i = 0 To UBound(player_data_file)
+            '    If InStr(player_data_file（i）, "service-username"） > 0 Then
+            '        su = i
+            '    End If
+            'Next
+            'If su > 0 Then
+            '    Dim temp
+            '    temp = Split(player_data_file(su), """")
+            '    temp(3) = 'temp(3)=原来的用户名
+
+
+            'Else
+            '    err = 1
+            '    MsgBox（“错误编号 1”）
+            '    Exit Sub
+            'End If
+
+
+            Dim lmc = 0 'latest-multiplayer-connections所在行数
             For i = 0 To UBound(player_data_file)
                 If InStr(player_data_file（i）, "latest-multiplayer-connections"） > 0 Then
-                    address_hang = i + 2
+                    lmc = i
                 End If
             Next
-            player_data_file(address_hang) = "      ""address"": ""工厂世界"""
+            If lmc > 0 Then
+                player_data_file(lmc + 2) = "      ""address"": ""工厂世界"""
+            Else
+                '如果没有，找 service-username所在行，顺延5
+                '
+                Dim su 'service-usernames所在行
+                For i = 0 To UBound(player_data_file)
+                    If InStr(player_data_file（i）, "service-username"） > 0 Then
+                        su = i
+                    End If
+                Next
+                If su > 0 Then
+
+                    Dim org_hang = UBound(player_data_file) '原来的行数
+                    ReDim Preserve player_data_file(org_hang + 5)
+
+                    For y = org_hang To su Step -1
+                        player_data_file(y + 5) = player_data_file(y)
+                    Next
+                    player_data_file(su) = "  ""latest-multiplayer-connections"": ["
+                    player_data_file(su + 1) = "    {"
+                    player_data_file(su + 2) = "      ""address"": ""工厂世界"""
+                    player_data_file(su + 3) = "    }"
+                    player_data_file(su + 4) = "  ],"
+                Else
+                    'service-username也找不到，报错
+                    err = 1
+                    MsgBox（“错误编号 1”）
+                    Exit Sub
+                End If
+
+            End If
 
         Catch ex As Exception
-            MsgBox("处理错误")
+            MsgBox("错误编号1")
+            err = 1
         End Try
 
         Dim hosts_file_string = ""
@@ -305,6 +366,7 @@ Public Class Form_main
             hosts_file_string = (hosts_file_string & player_data_file(i) & vbCrLf)
         Next
         System.IO.File.WriteAllText("player-data.json", hosts_file_string, encoding:=System.Text.Encoding.Default)
+        Threading.Thread.Sleep(200)
     End Sub
 
     Private Sub Timer_enable_refresh_serverlist_Tick(sender As Object, e As EventArgs)
@@ -354,8 +416,8 @@ Public Class Form_main
         End If
     End Sub
 
-    Private Sub LinkLabel_ver_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel_ver.LinkClicked
-        Process.Start("https://raw.githubusercontent.com/yjfyy/yxgcsj/master/%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F/trunk/updatafiles/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97.txt")
+    Private Sub LinkLabel_ver_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
+        'Process.Start("https://raw.githubusercontent.com/yjfyy/yxgcsj/master/%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F/trunk/updatafiles/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97.txt")
     End Sub
 
 
@@ -532,8 +594,13 @@ Public Class Form_main
         Shell("""data/facw/svn.exe"" ci ./data/facw/sl -m ""new"" --username ipuppublic --password 1234abcD", AppWinStyle.NormalFocus, True, 30000)
     End Sub
 
-    Private Sub Timer_load_sl_Tick(sender As Object, e As EventArgs) Handles Timer_load_sl.Tick
+    Private Sub Timer_load_sl_Tick(sender As Object, e As EventArgs) Handles Timer_load_sl.Tick, Button_reload_serverlist.Click
+        ListView1.Items.Clear()
+        miao = 10
         Timer_load_sl.Enabled = False
+        Button_reload_serverlist.Enabled = False
+        Button_join.Enabled = False
+        Button_join.Text = "正在载入服务器列表"
         '载入服务器列表
         '后台开始下载serverlist文件
         'Shell("./data/facw/svn co http://code.taobao.org/svn/yxgcipup/trunk ./data/facw", AppWinStyle.Hide, True, 30000)
@@ -621,5 +688,25 @@ delete:'删除时间为"2017/01/01 00:00:00"的
         'Next
 
 
+    End Sub
+
+    Private Sub Timer_enable_reload_serverlist_Tick(sender As Object, e As EventArgs) Handles Timer_enable_reload_serverlist.Tick
+        Dim tishi = "刷新服务器列表 "
+        miao = miao - 1
+        Button_reload_serverlist.Text = tishi & miao.ToString
+        If miao <= 0 Then
+            Button_reload_serverlist.Enabled = True
+            Timer_enable_reload_serverlist.Enabled = False
+        End If
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Process.Start("使用说明.txt")
+
+    End Sub
+
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+        'Process.Start("mailto://yjfyy@163.com")
+        Process.Start("http://mail.qq.com")
     End Sub
 End Class
