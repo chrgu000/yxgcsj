@@ -8,9 +8,10 @@ E:\Projects\yxgcsj\异星工厂世界\bin\Debug\data\facw\libsvn_ra-1.dll
 E:\Projects\yxgcsj\异星工厂世界\bin\Debug\data\facw\libsvn_repos-1.dll
 E:\Projects\yxgcsj\异星工厂世界\bin\Debug\data\facw\libsvn_subr-1.dll
 E:\Projects\yxgcsj\异星工厂世界\bin\Debug\data\facw\libsvn_wc-1.dll
-E:\Projects\yxgcsj\异星工厂世界\bin\Debug\data\facw\msvcp100.dll
 E:\Projects\yxgcsj\异星工厂世界\bin\Debug\data\facw\msvcr100.dll
 E:\Projects\yxgcsj\异星工厂世界\bin\Debug\data\facw\svn.exe
+E:\Projects\yxgcsj\异星工厂世界\bin\Debug\data\facw\msvcp100.dll
+E:\Projects\yxgcsj\异星工厂世界\bin\Debug\使用说明.txt
 E:\Projects\yxgcsj\异星工厂世界\bin\Debug\工厂世界.exe
 E:\Projects\yxgcsj\异星工厂世界\bin\Debug\工厂世界.pdb
 E:\Projects\yxgcsj\异星工厂世界\bin\Debug\工厂世界.xml
@@ -23,5 +24,3 @@ E:\Projects\yxgcsj\异星工厂世界\obj\Debug\异星工厂世界.vbproj.CoreCo
 E:\Projects\yxgcsj\异星工厂世界\obj\Debug\工厂世界.exe
 E:\Projects\yxgcsj\异星工厂世界\obj\Debug\工厂世界.xml
 E:\Projects\yxgcsj\异星工厂世界\obj\Debug\工厂世界.pdb
-E:\Projects\yxgcsj\异星工厂世界\bin\Debug\使用说明.txt
-E:\Projects\yxgcsj\异星工厂世界\obj\Debug\异星工厂世界.vbprojResolveAssemblyReference.cache

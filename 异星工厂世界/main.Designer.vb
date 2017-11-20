@@ -72,6 +72,7 @@ Partial Class Form_main
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.Label_ver = New System.Windows.Forms.Label()
         Me.BackgroundWorker_creact_dsl = New System.ComponentModel.BackgroundWorker()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage_client.SuspendLayout()
         Me.TabPage_server.SuspendLayout()
@@ -290,7 +291,6 @@ Partial Class Form_main
         Me.TextBox_IP.Name = "TextBox_IP"
         Me.TextBox_IP.Size = New System.Drawing.Size(112, 21)
         Me.TextBox_IP.TabIndex = 33
-        Me.TextBox_IP.Text = "255.255.255.255"
         '
         'Label12
         '
@@ -467,7 +467,7 @@ Partial Class Form_main
         '
         'Timer_sync_server
         '
-        Me.Timer_sync_server.Interval = 120000
+        Me.Timer_sync_server.Interval = 180000
         '
         'Timer_load_sl
         '
@@ -475,7 +475,7 @@ Partial Class Form_main
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(123, 412)
+        Me.Button2.Location = New System.Drawing.Point(72, 412)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 11
@@ -503,16 +503,26 @@ Partial Class Form_main
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(23, 12)
         Me.Label_ver.TabIndex = 13
-        Me.Label_ver.Text = "0.5"
+        Me.Label_ver.Text = "0.6"
         '
         'BackgroundWorker_creact_dsl
         '
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(192, 412)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(75, 23)
+        Me.Button3.TabIndex = 14
+        Me.Button3.Text = "清理缓存"
+        Me.Button3.UseVisualStyleBackColor = True
         '
         'Form_main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(514, 463)
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Label_ver)
         Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.Button2)
@@ -581,4 +591,5 @@ Partial Class Form_main
     Friend WithEvents LinkLabel1 As LinkLabel
     Friend WithEvents Label_ver As Label
     Friend WithEvents BackgroundWorker_creact_dsl As System.ComponentModel.BackgroundWorker
+    Friend WithEvents Button3 As Button
 End Class

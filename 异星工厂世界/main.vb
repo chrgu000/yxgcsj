@@ -28,7 +28,7 @@ Public Class Form_main
     Public l_version = "0"
     Dim server_select = 0
     Dim server_id
-    Dim miao = 10
+    Dim miao = 30
     Dim err = 0
 
     'serverlist数组 x0为服务器名称，x1为介绍，x2时间（暂时无用）,x3 ip x4 ping 暂时无用
@@ -440,7 +440,7 @@ Public Class Form_main
     End Sub
 
     Private Sub Button_create_server_Click(sender As Object, e As EventArgs) Handles Button_create_server.Click
-        If TextBox_server_intro.Text = "" Or TextBox_server_name.Text = "" Then
+        If TextBox_server_intro.Text = "" Or TextBox_server_name.Text = "" Or TextBox_IP.Text = "" Then
             MsgBox("请输入服务器名称和介绍")
             Exit Sub
         End If
@@ -597,7 +597,6 @@ Public Class Form_main
 
     Private Sub Timer_load_sl_Tick(sender As Object, e As EventArgs) Handles Timer_load_sl.Tick, Button_reload_serverlist.Click
         ListView1.Items.Clear()
-        miao = 10
         Timer_load_sl.Enabled = False
         Button_reload_serverlist.Enabled = False
         Button_join.Enabled = False
@@ -639,11 +638,10 @@ Public Class Form_main
             Next
         Next
 
-        '删除两小时没有报告的服务器
+        '删除十分钟没有报告的服务器
         For i = 0 To UBound(serverlist, 2)
             If DateDiff("n", CDate(serverlist(2, i)）， Now) > 10 Then
                 serverlist(2, i) = "2017/01/01 00:00:00"
-
             End If
 
         Next
@@ -697,8 +695,10 @@ delete:'删除时间为"2017/01/01 00:00:00"的
 
 
         '上传sl
+        Shell("""./data/facw/svn.exe""  cleanup  ./data/facw/sl", AppWinStyle.Hide, True)
         Threading.Thread.Sleep(200)
-        Shell("""data/facw/svn.exe"" ci ./data/facw/sl -m ""new"" --username ipuppublic --password 1234abcD", AppWinStyle.NormalFocus, True, 30000)
+        Threading.Thread.Sleep(200)
+        Shell("""data/facw/svn.exe"" ci ./data/facw/sl -m ""new"" --username ipuppublic --password 1234abcD", AppWinStyle.Hide, True, 30000)
         Threading.Thread.Sleep(200)
 
 
@@ -777,4 +777,16 @@ delete:'删除时间为"2017/01/01 00:00:00"的
 
     End Sub
 
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        If My.Computer.FileSystem.DirectoryExists(".\data\facw\sl\.svn") Then
+            Try
+                Shell("cmd  /c rd /s /q data\facw\sl", AppWinStyle.Hide, True)
+                MsgBox("清理完成！")
+            Catch ex As Exception
+                MsgBox("清理失败，请重试！")
+            End Try
+        Else
+            MsgBox("无需清理！")
+        End If
+    End Sub
 End Class
