@@ -155,7 +155,7 @@ Partial Class Form_main
         Me.TabPage_client.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage_client.Size = New System.Drawing.Size(479, 342)
         Me.TabPage_client.TabIndex = 0
-        Me.TabPage_client.Text = "连如服务器"
+        Me.TabPage_client.Text = "连接服务器"
         Me.TabPage_client.UseVisualStyleBackColor = True
         '
         'Button_reload_serverlist
