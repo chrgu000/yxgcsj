@@ -205,9 +205,9 @@ Public Class Form_main
 
 
         '启动游戏
-        If err = 0 Then
-            Shell(".\bin\x64\factorio.exe", Style:=AppWinStyle.NormalFocus)
-        End If
+        'If err = 0 Then
+        Shell(".\bin\x64\factorio.exe", Style:=AppWinStyle.NormalFocus)
+        'End If
 
 
 
@@ -286,87 +286,161 @@ Public Class Form_main
     Private Sub edit_player_data_json()
         Dim player_data_file(0)
         Dim player_data_file_hang = -1     '临时统计文件有几行.-1为校正数组从0开始
-        Try
-            Dim sr = New StreamReader("player-data.json", encoding:=System.Text.Encoding.Default)
 
-            Do
-                player_data_file_hang = player_data_file_hang + 1
-                ReDim Preserve player_data_file(player_data_file_hang)
-                player_data_file(player_data_file_hang) = sr.ReadLine()
-
-            Loop Until player_data_file(player_data_file_hang) Is Nothing
-            sr.Close()
+        If My.Computer.FileSystem.FileExists(Environ("AppData") & "\Factorio\player-data.json") Then
 
 
+            Try
+                Dim sr = New StreamReader(Environ("AppData") & "\Factorio\player-data.json", encoding:=System.Text.Encoding.Default)
 
-            'For i = 0 To UBound(player_data_file)
-            '    If InStr(player_data_file（i）, "service-username"） > 0 Then
-            '        su = i
-            '    End If
-            'Next
-            'If su > 0 Then
-            '    Dim temp
-            '    temp = Split(player_data_file(su), """")
-            '    temp(3) = 'temp(3)=原来的用户名
+                Do
+                    player_data_file_hang = player_data_file_hang + 1
+                    ReDim Preserve player_data_file(player_data_file_hang)
+                    player_data_file(player_data_file_hang) = sr.ReadLine()
 
+                Loop Until player_data_file(player_data_file_hang) Is Nothing
+                sr.Close()
 
-            'Else
-            '    err = 1
-            '    MsgBox（“错误编号 1”）
-            '    Exit Sub
-            'End If
-
-
-            Dim lmc = 0 'latest-multiplayer-connections所在行数
-            For i = 0 To UBound(player_data_file)
-                If InStr(player_data_file（i）, "latest-multiplayer-connections"） > 0 Then
-                    lmc = i
-                End If
-            Next
-            If lmc > 0 Then
-                player_data_file(lmc + 2) = "      ""address"": ""工厂世界"""
-            Else
-                '如果没有，找 service-username所在行，顺延5
-                '
-                Dim su 'service-usernames所在行
+                Dim lmc = 0 'latest-multiplayer-connections所在行数
                 For i = 0 To UBound(player_data_file)
-                    If InStr(player_data_file（i）, "service-username"） > 0 Then
-                        su = i
+                    If InStr(player_data_file（i）, "latest-multiplayer-connections"） > 0 Then
+                        lmc = i
                     End If
                 Next
-                If su > 0 Then
-
-                    Dim org_hang = UBound(player_data_file) '原来的行数
-                    ReDim Preserve player_data_file(org_hang + 5)
-
-                    For y = org_hang To su Step -1
-                        player_data_file(y + 5) = player_data_file(y)
-                    Next
-                    player_data_file(su) = "  ""latest-multiplayer-connections"": ["
-                    player_data_file(su + 1) = "    {"
-                    player_data_file(su + 2) = "      ""address"": ""工厂世界"""
-                    player_data_file(su + 3) = "    }"
-                    player_data_file(su + 4) = "  ],"
+                If lmc > 0 Then
+                    player_data_file(lmc + 2) = "      ""address"": ""工厂世界"""
                 Else
-                    'service-username也找不到，报错
-                    err = 1
-                    MsgBox（“错误编号 1”）
-                    Exit Sub
+                    '如果没有，找 service-username所在行，顺延5
+                    '
+                    Dim su 'service-usernames所在行
+                    For i = 0 To UBound(player_data_file)
+                        If InStr(player_data_file（i）, "service-username"） > 0 Then
+                            su = i
+                        End If
+                    Next
+
+                    If su > 0 Then
+
+                        Dim org_hang = UBound(player_data_file) '原来的行数
+                        ReDim Preserve player_data_file(org_hang + 5)
+
+                        For y = org_hang To su Step -1
+                            player_data_file(y + 5) = player_data_file(y)
+                        Next
+                        player_data_file(su) = "  ""latest-multiplayer-connections"": ["
+                        player_data_file(su + 1) = "    {"
+                        player_data_file(su + 2) = "      ""address"": ""工厂世界"""
+                        player_data_file(su + 3) = "    }"
+                        player_data_file(su + 4) = "  ],"
+                    Else
+                        'service-username也找不到，报错
+                        err = 1
+                        'MsgBox（“错误编号 2”）
+                        Exit Sub
+                    End If
+
                 End If
 
-            End If
+            Catch ex As Exception
+                ' MsgBox("错误编号2")
+                err = 1
+            End Try
 
-        Catch ex As Exception
-            MsgBox("错误编号1")
-            err = 1
-        End Try
+            Dim hosts_file_string = ""
+            For i = 0 To UBound(player_data_file)
+                hosts_file_string = (hosts_file_string & player_data_file(i) & vbCrLf)
+            Next
+            System.IO.File.WriteAllText(Environ("AppData") & "\Factorio\player-data.json", hosts_file_string, encoding:=System.Text.Encoding.Default)
+            Threading.Thread.Sleep(200)
 
-        Dim hosts_file_string = ""
-        For i = 0 To UBound(player_data_file)
-            hosts_file_string = (hosts_file_string & player_data_file(i) & vbCrLf)
-        Next
-        System.IO.File.WriteAllText("player-data.json", hosts_file_string, encoding:=System.Text.Encoding.Default)
-        Threading.Thread.Sleep(200)
+        End If
+
+        If My.Computer.FileSystem.FileExists("player-data.json") Then
+            ReDim player_data_file(0)
+            player_data_file_hang = -1
+            Try
+                Dim sr = New StreamReader("player-data.json", encoding:=System.Text.Encoding.Default)
+
+                Do
+                    player_data_file_hang = player_data_file_hang + 1
+                    ReDim Preserve player_data_file(player_data_file_hang)
+                    player_data_file(player_data_file_hang) = sr.ReadLine()
+
+                Loop Until player_data_file(player_data_file_hang) Is Nothing
+                sr.Close()
+
+
+
+                'For i = 0 To UBound(player_data_file)
+                '    If InStr(player_data_file（i）, "service-username"） > 0 Then
+                '        su = i
+                '    End If
+                'Next
+                'If su > 0 Then
+                '    Dim temp
+                '    temp = Split(player_data_file(su), """")
+                '    temp(3) = 'temp(3)=原来的用户名
+
+
+                'Else
+                '    err = 1
+                '    MsgBox（“错误编号 1”）
+                '    Exit Sub
+                'End If
+
+
+                Dim lmc = 0 'latest-multiplayer-connections所在行数
+                For i = 0 To UBound(player_data_file)
+                    If InStr(player_data_file（i）, "latest-multiplayer-connections"） > 0 Then
+                        lmc = i
+                    End If
+                Next
+                If lmc > 0 Then
+                    player_data_file(lmc + 2) = "      ""address"": ""工厂世界"""
+                Else
+                    '如果没有，找 service-username所在行，顺延5
+                    '
+                    Dim su 'service-usernames所在行
+                    For i = 0 To UBound(player_data_file)
+                        If InStr(player_data_file（i）, "service-username"） > 0 Then
+                            su = i
+                        End If
+                    Next
+                    If su > 0 Then
+
+                        Dim org_hang = UBound(player_data_file) '原来的行数
+                        ReDim Preserve player_data_file(org_hang + 5)
+
+                        For y = org_hang To su Step -1
+                            player_data_file(y + 5) = player_data_file(y)
+                        Next
+                        player_data_file(su) = "  ""latest-multiplayer-connections"": ["
+                        player_data_file(su + 1) = "    {"
+                        player_data_file(su + 2) = "      ""address"": ""工厂世界"""
+                        player_data_file(su + 3) = "    }"
+                        player_data_file(su + 4) = "  ],"
+                    Else
+                        'service-username也找不到，报错
+                        err = 1
+                        ' MsgBox（“错误编号 1”）
+                        Exit Sub
+                    End If
+
+                End If
+
+            Catch ex As Exception
+                'MsgBox("错误编号1")
+                err = 1
+            End Try
+
+            Dim hosts_file_string = ""
+            For i = 0 To UBound(player_data_file)
+                hosts_file_string = (hosts_file_string & player_data_file(i) & vbCrLf)
+            Next
+            System.IO.File.WriteAllText("player-data.json", hosts_file_string, encoding:=System.Text.Encoding.Default)
+            Threading.Thread.Sleep(200)
+        End If
+
     End Sub
 
     Private Sub Timer_enable_refresh_serverlist_Tick(sender As Object, e As EventArgs)

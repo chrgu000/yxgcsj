@@ -1,0 +1,9 @@
+{
+  "available-campaign-levels": {
+    "demo": {
+      "level-01": "hard"
+    }
+  },
+  "service-username": "aa",
+  "service-token": ""
+}
