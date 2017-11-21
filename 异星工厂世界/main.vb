@@ -711,6 +711,7 @@ delete:'删除时间为"2017/01/01 00:00:00"的
         If miao <= 0 Then
             Button_reload_serverlist.Enabled = True
             Timer_enable_reload_serverlist.Enabled = False
+            miao = 30
         End If
     End Sub
 

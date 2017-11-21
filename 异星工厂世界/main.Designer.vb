@@ -503,7 +503,7 @@ Partial Class Form_main
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(23, 12)
         Me.Label_ver.TabIndex = 13
-        Me.Label_ver.Text = "0.6"
+        Me.Label_ver.Text = "0.7"
         '
         'BackgroundWorker_creact_dsl
         '
