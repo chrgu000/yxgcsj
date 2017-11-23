@@ -679,7 +679,14 @@ Public Class Form_main
         '后台开始下载serverlist文件
         'Shell("./data/facw/svn co http://code.taobao.org/svn/yxgcipup/trunk ./data/facw", AppWinStyle.Hide, True, 30000)
         'load_server_list()
-        BackgroundWorker_download_serverlist.RunWorkerAsync()
+
+        '判断目录正确，调试时关闭
+        If My.Computer.FileSystem.FileExists(".\bin\x64\factorio.exe") Then
+            BackgroundWorker_download_serverlist.RunWorkerAsync()
+        Else
+            MsgBox("工厂世界安装的目录不正确，请确认安装到异星工厂的游戏根目录，而不是bin\x64目录下！")
+        End If
+
     End Sub
 
     Private Sub edit_server_list()
@@ -863,5 +870,15 @@ delete:'删除时间为"2017/01/01 00:00:00"的
         Else
             MsgBox("无需清理！")
         End If
+    End Sub
+
+    Private Sub Timer_Thank_list_Tick(sender As Object, e As EventArgs) Handles Timer_Thank_list.Tick
+        'Dim old_x = Label_thank_list.Location.X
+        Label_thank_list.Location = New Point(Label_thank_list.Location.X - 5, Label_thank_list.Location.Y)
+        If Label_thank_list.Size.Width + Label_thank_list.Location.X < 0 Then
+            Label_thank_list.Location = New Point(Me.Size.Width, Label_thank_list.Location.Y)
+
+        End If
+
     End Sub
 End Class

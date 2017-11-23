@@ -73,6 +73,8 @@ Partial Class Form_main
         Me.Label_ver = New System.Windows.Forms.Label()
         Me.BackgroundWorker_creact_dsl = New System.ComponentModel.BackgroundWorker()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.Label_thank_list = New System.Windows.Forms.Label()
+        Me.Timer_Thank_list = New System.Windows.Forms.Timer(Me.components)
         Me.TabControl1.SuspendLayout()
         Me.TabPage_client.SuspendLayout()
         Me.TabPage_server.SuspendLayout()
@@ -489,7 +491,7 @@ Partial Class Form_main
         'LinkLabel1
         '
         Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(266, 442)
+        Me.LinkLabel1.Location = New System.Drawing.Point(266, 470)
         Me.LinkLabel1.Name = "LinkLabel1"
         Me.LinkLabel1.Size = New System.Drawing.Size(245, 12)
         Me.LinkLabel1.TabIndex = 12
@@ -503,7 +505,7 @@ Partial Class Form_main
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(23, 12)
         Me.Label_ver.TabIndex = 13
-        Me.Label_ver.Text = "0.8"
+        Me.Label_ver.Text = "0.9"
         '
         'BackgroundWorker_creact_dsl
         '
@@ -517,11 +519,26 @@ Partial Class Form_main
         Me.Button3.Text = "清理缓存"
         Me.Button3.UseVisualStyleBackColor = True
         '
+        'Label_thank_list
+        '
+        Me.Label_thank_list.AutoSize = True
+        Me.Label_thank_list.Location = New System.Drawing.Point(502, 448)
+        Me.Label_thank_list.Name = "Label_thank_list"
+        Me.Label_thank_list.Size = New System.Drawing.Size(761, 12)
+        Me.Label_thank_list.TabIndex = 15
+        Me.Label_thank_list.Text = "感谢JJ提供中文输入的思路，感谢zhu455239506和qq350557712报告一直提示错误编号1的问题，感谢の莣.钚辽.●报告提示找不到文件的问题。" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
+        'Timer_Thank_list
+        '
+        Me.Timer_Thank_list.Enabled = True
+        Me.Timer_Thank_list.Interval = 200
+        '
         'Form_main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(514, 463)
+        Me.ClientSize = New System.Drawing.Size(514, 491)
+        Me.Controls.Add(Me.Label_thank_list)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Label_ver)
         Me.Controls.Add(Me.LinkLabel1)
@@ -592,4 +609,6 @@ Partial Class Form_main
     Friend WithEvents Label_ver As Label
     Friend WithEvents BackgroundWorker_creact_dsl As System.ComponentModel.BackgroundWorker
     Friend WithEvents Button3 As Button
+    Friend WithEvents Label_thank_list As Label
+    Friend WithEvents Timer_Thank_list As Timer
 End Class
