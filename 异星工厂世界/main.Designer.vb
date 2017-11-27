@@ -72,10 +72,10 @@ Partial Class Form_main
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.Label_ver = New System.Windows.Forms.Label()
         Me.BackgroundWorker_creact_dsl = New System.ComponentModel.BackgroundWorker()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.Label_thank_list = New System.Windows.Forms.Label()
         Me.Timer_Thank_list = New System.Windows.Forms.Timer(Me.components)
         Me.TextBox_game_ver = New System.Windows.Forms.TextBox()
+        Me.Label_ver_status = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage_client.SuspendLayout()
         Me.TabPage_server.SuspendLayout()
@@ -83,17 +83,17 @@ Partial Class Form_main
         '
         'Button_updata
         '
-        Me.Button_updata.Location = New System.Drawing.Point(312, 419)
+        Me.Button_updata.Location = New System.Drawing.Point(371, 419)
         Me.Button_updata.Name = "Button_updata"
         Me.Button_updata.Size = New System.Drawing.Size(75, 23)
         Me.Button_updata.TabIndex = 3
-        Me.Button_updata.Text = "检测更新"
+        Me.Button_updata.Text = "更新程序"
         Me.Button_updata.UseVisualStyleBackColor = True
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(393, 425)
+        Me.Label2.Location = New System.Drawing.Point(349, 470)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(29, 12)
         Me.Label2.TabIndex = 4
@@ -478,7 +478,7 @@ Partial Class Form_main
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(72, 419)
+        Me.Button2.Location = New System.Drawing.Point(101, 419)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 11
@@ -492,7 +492,7 @@ Partial Class Form_main
         'LinkLabel1
         '
         Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(266, 470)
+        Me.LinkLabel1.Location = New System.Drawing.Point(17, 470)
         Me.LinkLabel1.Name = "LinkLabel1"
         Me.LinkLabel1.Size = New System.Drawing.Size(245, 12)
         Me.LinkLabel1.TabIndex = 12
@@ -502,23 +502,14 @@ Partial Class Form_main
         'Label_ver
         '
         Me.Label_ver.AutoSize = True
-        Me.Label_ver.Location = New System.Drawing.Point(424, 425)
+        Me.Label_ver.Location = New System.Drawing.Point(380, 470)
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(29, 12)
         Me.Label_ver.TabIndex = 13
-        Me.Label_ver.Text = "0.10"
+        Me.Label_ver.Text = "0.11"
         '
         'BackgroundWorker_creact_dsl
         '
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(192, 419)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 23)
-        Me.Button3.TabIndex = 14
-        Me.Button3.Text = "清理缓存"
-        Me.Button3.UseVisualStyleBackColor = True
         '
         'Label_thank_list
         '
@@ -542,14 +533,23 @@ Partial Class Form_main
         Me.TextBox_game_ver.TabIndex = 16
         Me.TextBox_game_ver.Text = "0.15.37"
         '
+        'Label_ver_status
+        '
+        Me.Label_ver_status.AutoSize = True
+        Me.Label_ver_status.Location = New System.Drawing.Point(415, 470)
+        Me.Label_ver_status.Name = "Label_ver_status"
+        Me.Label_ver_status.Size = New System.Drawing.Size(11, 12)
+        Me.Label_ver_status.TabIndex = 17
+        Me.Label_ver_status.Text = "."
+        '
         'Form_main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(514, 491)
+        Me.Controls.Add(Me.Label_ver_status)
         Me.Controls.Add(Me.TextBox_game_ver)
         Me.Controls.Add(Me.Label_thank_list)
-        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Label_ver)
         Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.Button2)
@@ -618,8 +618,8 @@ Partial Class Form_main
     Friend WithEvents LinkLabel1 As LinkLabel
     Friend WithEvents Label_ver As Label
     Friend WithEvents BackgroundWorker_creact_dsl As System.ComponentModel.BackgroundWorker
-    Friend WithEvents Button3 As Button
     Friend WithEvents Label_thank_list As Label
     Friend WithEvents Timer_Thank_list As Timer
     Friend WithEvents TextBox_game_ver As TextBox
+    Friend WithEvents Label_ver_status As Label
 End Class

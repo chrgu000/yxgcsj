@@ -23,7 +23,9 @@ Public Class Form_main
 
 
     'Public upsrc = "http://code.taobao.org/svn/yxgcsj/trunk/updatafiles/"
-    Public up_root = "https://raw.githubusercontent.com/yjfyy/yxgcsj/master/%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F/trunk/serverlist/"
+    'Public up_root = "https://raw.githubusercontent.com/yjfyy/yxgcsj/master/%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F/trunk/serverlist/"
+    Public sl_root = "http://code.taobao.org/svn/yxgcipup/trunk/"
+    Public up_root = "http://code.taobao.org/svn/yxgcsj/trunk/updatafiles/"
     Public r_version = "0"
     Public l_version = "0"
     Dim server_select = 0
@@ -92,9 +94,9 @@ Public Class Form_main
         '处理列表
         '判断是否有serverlist
         ReDim serverlist(4, 0)
-        If My.Computer.FileSystem.FileExists("./data/facw/sl/sl.txt") Then
+        If My.Computer.FileSystem.FileExists("sl.txt") Then
             Dim i = -1 '临时统计文件有几行.-1为校正数组从0开始
-            FileOpen(1, "./data/facw/sl/sl.txt", OpenMode.Input)
+            FileOpen(1, "sl.txt", OpenMode.Input)
             Do While Not EOF(1)
 
                 Dim temp
@@ -105,7 +107,7 @@ Public Class Form_main
             ' MsgBox(i)
 
             ReDim serverlist(4, i)
-            FileOpen(1, "./data/facw/sl/sl.txt", OpenMode.Input)
+            FileOpen(1, "sl.txt", OpenMode.Input)
             Dim temp2
             Do While Not EOF(1)
                 For l = 0 To i
@@ -122,9 +124,9 @@ Public Class Form_main
             i = i - 1 '校正最后一次循环
             '处理完毕
             '删除serverlist.txt文件
-            If My.Computer.FileSystem.FileExists("./data/facw/sl/sl.txt") Then
+            If My.Computer.FileSystem.FileExists("sl.txt") Then
                 Try
-                    My.Computer.FileSystem.DeleteFile("./data/facw/sl/sl.txt")
+                    My.Computer.FileSystem.DeleteFile("sl.txt")
                 Catch ex As Exception
                 End Try
             End If
@@ -161,32 +163,66 @@ Public Class Form_main
     End Sub
 
     Private Sub BackgroundWorker_download_serverlist_DoWork(sender As Object, e As DoWorkEventArgs) Handles BackgroundWorker_download_serverlist.DoWork
-        Shell("""./data/facw/svn.exe""  cleanup  ./data/facw/sl", AppWinStyle.Hide, True)
-        Threading.Thread.Sleep(200)
-        Shell("""./data/facw/svn.exe""  co  http://code.taobao.org/svn/yxgcipup/trunk  ./data/facw/sl", AppWinStyle.Hide, True)
-        Threading.Thread.Sleep(200)
-        If My.Computer.FileSystem.FileExists("data/facw/sl/sl.txt") Then
-        Else
-            Button_join.Text = "下载失败!"
-        End If
-        '--------------原来，直接下载方式
-        'Dim dFile As New System.Net.WebClient
-        'Dim upUri_serverlist As New Uri(up_root & "serverlist.txt")
-        'Try
-        '    dFile.DownloadFile(upUri_serverlist, "serverlist.txt")
-        'Catch ex As Exception
+        'svn下载方式
+        'Shell("""./data/facw/svn.exe""  cleanup  ./data/facw/sl", AppWinStyle.Hide, True)
+        'Threading.Thread.Sleep(200)
+        'Shell("""./data/facw/svn.exe""  co  http://code.taobao.org/svn/yxgcipup/trunk  ./data/facw/sl", AppWinStyle.Hide, True)
+        'Threading.Thread.Sleep(200)
+        'If My.Computer.FileSystem.FileExists("data/facw/sl/sl.txt") Then
+        'Else
         '    Button_join.Text = "下载失败!"
-        'End Try
+        'End If
+
+        '--------------原来，直接下载方式
+        Dim dFile As New System.Net.WebClient
+        '完整url http://code.taobao.org/svn/yxgcipup/trunk/sl.txt
+        Dim upUri_serverlist As New Uri(sl_root & "sl.txt")
+        Try
+            dFile.DownloadFile(upUri_serverlist, "sl.txt")
+        Catch ex As Exception
+
+        End Try
         '----------原来，直接下载方式结束。
+
+        '检测更新
+
+        Dim upUri_version As New Uri(up_root + "version.txt")
+        Try
+            r_version = dFile.DownloadString(upUri_version)
+        Catch ex As Exception
+            r_version = "0"
+        End Try
+
+
     End Sub
 
     Private Sub BackgroundWorker_download_serverlist_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BackgroundWorker_download_serverlist.RunWorkerCompleted
         '下载完成开始load serverlist
-        If Button_join.Text = "下载失败!" Then
-        Else
+        If My.Computer.FileSystem.FileExists("sl.txt") Then
             load_server_list()
+        Else
+            Me.Button_join.Text = "下载失败!"
+            miao = 1
+
         End If
         Timer_enable_reload_serverlist.Enabled = True
+
+        '判断更新
+        If r_version = "0" Then
+            Label_ver_status.Text = "检测失败"
+        Else
+            l_version = Label_ver.Text
+            If l_version = r_version Then
+                Label_ver_status.Text = "已是最新版本！"
+            Else
+                Label_ver_status.Text = "需要升级"
+                Label_ver_status.ForeColor = Color.Red
+            End If
+
+        End If
+
+
+
     End Sub
 
     Private Sub Button_join_Click(sender As Object, e As EventArgs) Handles Button_join.Click
@@ -488,6 +524,19 @@ Public Class Form_main
 
             End Try
         End If
+
+        If My.Computer.FileSystem.DirectoryExists(".\data\facw\sl") Then
+            Try
+                Shell("cmd  /c rd /s /q data\facw\sl", AppWinStyle.Hide, True)
+                'MsgBox("清理完成！")
+            Catch ex As Exception
+                'MsgBox("清理失败，请重试！")
+            End Try
+        Else
+            'MsgBox("无需清理！")
+        End If
+
+
     End Sub
 
     Private Sub LinkLabel_ver_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
@@ -685,6 +734,7 @@ Public Class Form_main
             BackgroundWorker_download_serverlist.RunWorkerAsync()
         Else
             MsgBox("工厂世界安装的目录不正确，请确认安装到异星工厂的游戏根目录，而不是bin\x64目录下！")
+            Me.Close()
         End If
 
     End Sub
@@ -859,17 +909,8 @@ delete:'删除时间为"2017/01/01 00:00:00"的
 
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        If My.Computer.FileSystem.DirectoryExists(".\data\facw\sl\.svn") Then
-            Try
-                Shell("cmd  /c rd /s /q data\facw\sl", AppWinStyle.Hide, True)
-                MsgBox("清理完成！")
-            Catch ex As Exception
-                MsgBox("清理失败，请重试！")
-            End Try
-        Else
-            MsgBox("无需清理！")
-        End If
+    Private Sub Button3_Click(sender As Object, e As EventArgs)
+
     End Sub
 
     Private Sub Timer_Thank_list_Tick(sender As Object, e As EventArgs) Handles Timer_Thank_list.Tick
@@ -881,4 +922,6 @@ delete:'删除时间为"2017/01/01 00:00:00"的
         End If
 
     End Sub
+
+
 End Class
