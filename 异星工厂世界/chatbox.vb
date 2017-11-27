@@ -21,7 +21,7 @@
 
             End Try
             Try
-                AppActivate("Factorio 0.15.37")
+                AppActivate("Factorio " & Form_main.TextBox_game_ver.Text)
                 Threading.Thread.Sleep(100)
                 SendKeys.Send("`")
                 Threading.Thread.Sleep(100)
@@ -29,7 +29,7 @@
                 Threading.Thread.Sleep(100)
                 SendKeys.Send("{ENTER}")
             Catch ex As Exception
-                MsgBox（"请确认已经打开游戏，游戏版本是0.15.37")
+                MsgBox（"请确认已经打开游戏并且游戏版本输入正确！")
             End Try
 
             'Shell("cmd.exe /c ""chat.vbs""", , True, vbHide)

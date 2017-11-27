@@ -24,4 +24,3 @@ E:\Projects\yxgcsj\异星工厂世界\obj\Release\异星工厂世界.vbproj.Core
 E:\Projects\yxgcsj\异星工厂世界\obj\Release\工厂世界.exe
 E:\Projects\yxgcsj\异星工厂世界\obj\Release\工厂世界.xml
 E:\Projects\yxgcsj\异星工厂世界\obj\Release\工厂世界.pdb
-E:\Projects\yxgcsj\异星工厂世界\obj\Release\异星工厂世界.vbprojResolveAssemblyReference.cache

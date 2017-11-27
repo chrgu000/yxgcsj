@@ -75,6 +75,7 @@ Partial Class Form_main
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Label_thank_list = New System.Windows.Forms.Label()
         Me.Timer_Thank_list = New System.Windows.Forms.Timer(Me.components)
+        Me.TextBox_game_ver = New System.Windows.Forms.TextBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage_client.SuspendLayout()
         Me.TabPage_server.SuspendLayout()
@@ -82,7 +83,7 @@ Partial Class Form_main
         '
         'Button_updata
         '
-        Me.Button_updata.Location = New System.Drawing.Point(312, 412)
+        Me.Button_updata.Location = New System.Drawing.Point(312, 419)
         Me.Button_updata.Name = "Button_updata"
         Me.Button_updata.Size = New System.Drawing.Size(75, 23)
         Me.Button_updata.TabIndex = 3
@@ -92,7 +93,7 @@ Partial Class Form_main
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(393, 418)
+        Me.Label2.Location = New System.Drawing.Point(393, 425)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(29, 12)
         Me.Label2.TabIndex = 4
@@ -459,9 +460,9 @@ Partial Class Form_main
         Me.CheckBox_chinese_chat.CheckState = System.Windows.Forms.CheckState.Checked
         Me.CheckBox_chinese_chat.Location = New System.Drawing.Point(12, 390)
         Me.CheckBox_chinese_chat.Name = "CheckBox_chinese_chat"
-        Me.CheckBox_chinese_chat.Size = New System.Drawing.Size(354, 16)
+        Me.CheckBox_chinese_chat.Size = New System.Drawing.Size(300, 16)
         Me.CheckBox_chinese_chat.TabIndex = 9
-        Me.CheckBox_chinese_chat.Text = "中文聊天支持（Ctrl+~激活输入窗口），目前只支持0.15.37版"
+        Me.CheckBox_chinese_chat.Text = "中文聊天支持（Ctrl+~激活输入窗口），游戏版本："
         Me.CheckBox_chinese_chat.UseVisualStyleBackColor = True
         '
         'BackgroundWorker_download_serverlist
@@ -477,7 +478,7 @@ Partial Class Form_main
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(72, 412)
+        Me.Button2.Location = New System.Drawing.Point(72, 419)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 11
@@ -501,18 +502,18 @@ Partial Class Form_main
         'Label_ver
         '
         Me.Label_ver.AutoSize = True
-        Me.Label_ver.Location = New System.Drawing.Point(424, 418)
+        Me.Label_ver.Location = New System.Drawing.Point(424, 425)
         Me.Label_ver.Name = "Label_ver"
-        Me.Label_ver.Size = New System.Drawing.Size(23, 12)
+        Me.Label_ver.Size = New System.Drawing.Size(29, 12)
         Me.Label_ver.TabIndex = 13
-        Me.Label_ver.Text = "0.9"
+        Me.Label_ver.Text = "0.10"
         '
         'BackgroundWorker_creact_dsl
         '
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(192, 412)
+        Me.Button3.Location = New System.Drawing.Point(192, 419)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(75, 23)
         Me.Button3.TabIndex = 14
@@ -522,7 +523,7 @@ Partial Class Form_main
         'Label_thank_list
         '
         Me.Label_thank_list.AutoSize = True
-        Me.Label_thank_list.Location = New System.Drawing.Point(502, 448)
+        Me.Label_thank_list.Location = New System.Drawing.Point(505, 449)
         Me.Label_thank_list.Name = "Label_thank_list"
         Me.Label_thank_list.Size = New System.Drawing.Size(761, 12)
         Me.Label_thank_list.TabIndex = 15
@@ -533,11 +534,20 @@ Partial Class Form_main
         Me.Timer_Thank_list.Enabled = True
         Me.Timer_Thank_list.Interval = 200
         '
+        'TextBox_game_ver
+        '
+        Me.TextBox_game_ver.Location = New System.Drawing.Point(308, 388)
+        Me.TextBox_game_ver.Name = "TextBox_game_ver"
+        Me.TextBox_game_ver.Size = New System.Drawing.Size(100, 21)
+        Me.TextBox_game_ver.TabIndex = 16
+        Me.TextBox_game_ver.Text = "0.15.37"
+        '
         'Form_main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(514, 491)
+        Me.Controls.Add(Me.TextBox_game_ver)
         Me.Controls.Add(Me.Label_thank_list)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Label_ver)
@@ -611,4 +621,5 @@ Partial Class Form_main
     Friend WithEvents Button3 As Button
     Friend WithEvents Label_thank_list As Label
     Friend WithEvents Timer_Thank_list As Timer
+    Friend WithEvents TextBox_game_ver As TextBox
 End Class
