@@ -37,6 +37,8 @@ Partial Class Form_main
         Me.TextBox_serverlist = New System.Windows.Forms.TextBox()
         Me.Button_join = New System.Windows.Forms.Button()
         Me.TabPage_server = New System.Windows.Forms.TabPage()
+        Me.TextBox_config_path_cfg = New System.Windows.Forms.TextBox()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.TextBox_server_intro = New System.Windows.Forms.TextBox()
         Me.TextBox_server_name = New System.Windows.Forms.TextBox()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -194,6 +196,8 @@ Partial Class Form_main
         '
         'TabPage_server
         '
+        Me.TabPage_server.Controls.Add(Me.TextBox_config_path_cfg)
+        Me.TabPage_server.Controls.Add(Me.Button3)
         Me.TabPage_server.Controls.Add(Me.TextBox_server_intro)
         Me.TabPage_server.Controls.Add(Me.TextBox_server_name)
         Me.TabPage_server.Controls.Add(Me.Label15)
@@ -227,6 +231,25 @@ Partial Class Form_main
         Me.TabPage_server.TabIndex = 1
         Me.TabPage_server.Text = "创建服务器"
         Me.TabPage_server.UseVisualStyleBackColor = True
+        '
+        'TextBox_config_path_cfg
+        '
+        Me.TextBox_config_path_cfg.Location = New System.Drawing.Point(330, 48)
+        Me.TextBox_config_path_cfg.Name = "TextBox_config_path_cfg"
+        Me.TextBox_config_path_cfg.Size = New System.Drawing.Size(100, 21)
+        Me.TextBox_config_path_cfg.TabIndex = 42
+        Me.TextBox_config_path_cfg.Text = "config-path=__PATH__executable__/../../config" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "use-system-read-write-data-directo" &
+    "ries=false"
+        Me.TextBox_config_path_cfg.Visible = False
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(319, 9)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(111, 23)
+        Me.Button3.TabIndex = 41
+        Me.Button3.Text = "Steam版转Zip版"
+        Me.Button3.UseVisualStyleBackColor = True
         '
         'TextBox_server_intro
         '
@@ -506,7 +529,7 @@ Partial Class Form_main
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(29, 12)
         Me.Label_ver.TabIndex = 13
-        Me.Label_ver.Text = "0.11"
+        Me.Label_ver.Text = "0.12"
         '
         'BackgroundWorker_creact_dsl
         '
@@ -516,9 +539,10 @@ Partial Class Form_main
         Me.Label_thank_list.AutoSize = True
         Me.Label_thank_list.Location = New System.Drawing.Point(505, 449)
         Me.Label_thank_list.Name = "Label_thank_list"
-        Me.Label_thank_list.Size = New System.Drawing.Size(761, 12)
+        Me.Label_thank_list.Size = New System.Drawing.Size(1151, 12)
         Me.Label_thank_list.TabIndex = 15
-        Me.Label_thank_list.Text = "感谢JJ提供中文输入的思路，感谢zhu455239506和qq350557712报告一直提示错误编号1的问题，感谢の莣.钚辽.●报告提示找不到文件的问题。" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.Label_thank_list.Text = "感谢JJ提供中文输入的思路，感谢zhu455239506和qq350557712报告一直提示错误编号1的问题，感谢の莣.钚辽.●报告提示找不到文件的问题，感谢东方" &
+    "的守护喵报告的使用Steam同时建服和游戏引起的文件冲突问题。" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'Timer_Thank_list
         '
@@ -622,4 +646,6 @@ Partial Class Form_main
     Friend WithEvents Timer_Thank_list As Timer
     Friend WithEvents TextBox_game_ver As TextBox
     Friend WithEvents Label_ver_status As Label
+    Friend WithEvents Button3 As Button
+    Friend WithEvents TextBox_config_path_cfg As TextBox
 End Class

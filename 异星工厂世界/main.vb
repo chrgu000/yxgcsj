@@ -923,5 +923,15 @@ delete:'删除时间为"2017/01/01 00:00:00"的
 
     End Sub
 
+    Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles Button3.Click
 
+        Try
+            System.IO.File.WriteAllText("config-path.cfg", TextBox_config_path_cfg.Text, encoding:=System.Text.Encoding.Default)
+            MsgBox（"修改成功"）
+        Catch ex As Exception
+            MsgBox（"未能修改")
+        End Try
+
+
+    End Sub
 End Class
