@@ -183,7 +183,7 @@ Public Class server
         server_settings(22) = ""
 
         If CheckBox_user_game_password.Checked = True Then
-            server_settings(23) = "  ""game_password"": " & TextBox_game_password.Text & ","
+            server_settings(23) = "  ""game_password"": """ & TextBox_game_password.Text & ""","
         Else
             server_settings(23) = "  ""game_password"": """","
         End If

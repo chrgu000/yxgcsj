@@ -8,3 +8,4 @@ E:\Projects\yxgcsj\server\obj\Debug\工厂世界服务端.Resources.resources
 E:\Projects\yxgcsj\server\obj\Debug\工厂世界服务端.exe
 E:\Projects\yxgcsj\server\obj\Debug\工厂世界服务端.xml
 E:\Projects\yxgcsj\server\obj\Debug\工厂世界服务端.pdb
+E:\Projects\yxgcsj\server\obj\Debug\server.vbprojResolveAssemblyReference.cache
