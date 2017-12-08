@@ -33,48 +33,24 @@ Partial Class Form_main
         Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage_client = New System.Windows.Forms.TabPage()
+        Me.Button_select_server = New System.Windows.Forms.Button()
         Me.Button_reload_serverlist = New System.Windows.Forms.Button()
-        Me.TextBox_serverlist = New System.Windows.Forms.TextBox()
-        Me.Button_join = New System.Windows.Forms.Button()
+        Me.Button_run_game = New System.Windows.Forms.Button()
         Me.TabPage_server = New System.Windows.Forms.TabPage()
-        Me.TextBox_config_path_cfg = New System.Windows.Forms.TextBox()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.TextBox_server_intro = New System.Windows.Forms.TextBox()
-        Me.TextBox_server_name = New System.Windows.Forms.TextBox()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button_check_ip = New System.Windows.Forms.Button()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.TextBox_IP = New System.Windows.Forms.TextBox()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.ComboBox_auto_pause = New System.Windows.Forms.ComboBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.TextBox_afk_autokick_interval = New System.Windows.Forms.TextBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.TextBox_autosave_slots = New System.Windows.Forms.TextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.TextBox_autosave_interval = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.TextBox_max_players = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.TextBox_saves = New System.Windows.Forms.TextBox()
+        Me.LinkLabel_game_download_url = New System.Windows.Forms.LinkLabel()
+        Me.Button_test_mode = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Button_create_server = New System.Windows.Forms.Button()
+        Me.TextBox_test_mode_pass = New System.Windows.Forms.TextBox()
+        Me.TextBox_serverlist = New System.Windows.Forms.TextBox()
         Me.CheckBox_chinese_chat = New System.Windows.Forms.CheckBox()
         Me.BackgroundWorker_download_serverlist = New System.ComponentModel.BackgroundWorker()
         Me.Timer_sync_server = New System.Windows.Forms.Timer(Me.components)
         Me.Timer_load_sl = New System.Windows.Forms.Timer(Me.components)
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button_readme = New System.Windows.Forms.Button()
         Me.Timer_enable_reload_serverlist = New System.Windows.Forms.Timer(Me.components)
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.Label_ver = New System.Windows.Forms.Label()
         Me.BackgroundWorker_creact_dsl = New System.ComponentModel.BackgroundWorker()
-        Me.Label_thank_list = New System.Windows.Forms.Label()
         Me.Timer_Thank_list = New System.Windows.Forms.Timer(Me.components)
         Me.TextBox_game_ver = New System.Windows.Forms.TextBox()
         Me.Label_ver_status = New System.Windows.Forms.Label()
@@ -85,6 +61,7 @@ Partial Class Form_main
         '
         'Button_updata
         '
+        Me.Button_updata.Enabled = False
         Me.Button_updata.Location = New System.Drawing.Point(371, 419)
         Me.Button_updata.Name = "Button_updata"
         Me.Button_updata.Size = New System.Drawing.Size(75, 23)
@@ -95,7 +72,7 @@ Partial Class Form_main
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(349, 470)
+        Me.Label2.Location = New System.Drawing.Point(370, 454)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(29, 12)
         Me.Label2.TabIndex = 4
@@ -151,9 +128,9 @@ Partial Class Form_main
         '
         'TabPage_client
         '
+        Me.TabPage_client.Controls.Add(Me.Button_select_server)
         Me.TabPage_client.Controls.Add(Me.Button_reload_serverlist)
-        Me.TabPage_client.Controls.Add(Me.TextBox_serverlist)
-        Me.TabPage_client.Controls.Add(Me.Button_join)
+        Me.TabPage_client.Controls.Add(Me.Button_run_game)
         Me.TabPage_client.Controls.Add(Me.ListView1)
         Me.TabPage_client.Location = New System.Drawing.Point(4, 22)
         Me.TabPage_client.Name = "TabPage_client"
@@ -163,19 +140,90 @@ Partial Class Form_main
         Me.TabPage_client.Text = "连接服务器"
         Me.TabPage_client.UseVisualStyleBackColor = True
         '
+        'Button_select_server
+        '
+        Me.Button_select_server.Enabled = False
+        Me.Button_select_server.Location = New System.Drawing.Point(6, 311)
+        Me.Button_select_server.Name = "Button_select_server"
+        Me.Button_select_server.Size = New System.Drawing.Size(119, 23)
+        Me.Button_select_server.TabIndex = 12
+        Me.Button_select_server.Text = "切换到选定服务器"
+        Me.Button_select_server.UseVisualStyleBackColor = True
+        '
         'Button_reload_serverlist
         '
-        Me.Button_reload_serverlist.Location = New System.Drawing.Point(252, 311)
+        Me.Button_reload_serverlist.Enabled = False
+        Me.Button_reload_serverlist.Location = New System.Drawing.Point(353, 311)
         Me.Button_reload_serverlist.Name = "Button_reload_serverlist"
-        Me.Button_reload_serverlist.Size = New System.Drawing.Size(178, 23)
+        Me.Button_reload_serverlist.Size = New System.Drawing.Size(119, 23)
         Me.Button_reload_serverlist.TabIndex = 11
         Me.Button_reload_serverlist.Text = "刷新服务器列表 0"
         Me.Button_reload_serverlist.UseVisualStyleBackColor = True
         '
+        'Button_run_game
+        '
+        Me.Button_run_game.Enabled = False
+        Me.Button_run_game.Location = New System.Drawing.Point(177, 311)
+        Me.Button_run_game.Name = "Button_run_game"
+        Me.Button_run_game.Size = New System.Drawing.Size(127, 23)
+        Me.Button_run_game.TabIndex = 7
+        Me.Button_run_game.Text = "启动游戏"
+        Me.Button_run_game.UseVisualStyleBackColor = True
+        '
+        'TabPage_server
+        '
+        Me.TabPage_server.Controls.Add(Me.LinkLabel_game_download_url)
+        Me.TabPage_server.Controls.Add(Me.Button_test_mode)
+        Me.TabPage_server.Controls.Add(Me.Label1)
+        Me.TabPage_server.Controls.Add(Me.TextBox_test_mode_pass)
+        Me.TabPage_server.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage_server.Name = "TabPage_server"
+        Me.TabPage_server.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage_server.Size = New System.Drawing.Size(479, 342)
+        Me.TabPage_server.TabIndex = 1
+        Me.TabPage_server.Text = "工具"
+        Me.TabPage_server.UseVisualStyleBackColor = True
+        '
+        'LinkLabel_game_download_url
+        '
+        Me.LinkLabel_game_download_url.AutoSize = True
+        Me.LinkLabel_game_download_url.Location = New System.Drawing.Point(7, 277)
+        Me.LinkLabel_game_download_url.Name = "LinkLabel_game_download_url"
+        Me.LinkLabel_game_download_url.Size = New System.Drawing.Size(89, 12)
+        Me.LinkLabel_game_download_url.TabIndex = 3
+        Me.LinkLabel_game_download_url.TabStop = True
+        Me.LinkLabel_game_download_url.Text = "最新版游戏下载"
+        Me.LinkLabel_game_download_url.Visible = False
+        '
+        'Button_test_mode
+        '
+        Me.Button_test_mode.Location = New System.Drawing.Point(178, 313)
+        Me.Button_test_mode.Name = "Button_test_mode"
+        Me.Button_test_mode.Size = New System.Drawing.Size(75, 23)
+        Me.Button_test_mode.TabIndex = 2
+        Me.Button_test_mode.Text = "打开"
+        Me.Button_test_mode.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(7, 318)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(59, 12)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "测试功能:"
+        '
+        'TextBox_test_mode_pass
+        '
+        Me.TextBox_test_mode_pass.Location = New System.Drawing.Point(72, 315)
+        Me.TextBox_test_mode_pass.Name = "TextBox_test_mode_pass"
+        Me.TextBox_test_mode_pass.Size = New System.Drawing.Size(100, 21)
+        Me.TextBox_test_mode_pass.TabIndex = 0
+        '
         'TextBox_serverlist
         '
         Me.TextBox_serverlist.Enabled = False
-        Me.TextBox_serverlist.Location = New System.Drawing.Point(365, 313)
+        Me.TextBox_serverlist.Location = New System.Drawing.Point(236, 421)
         Me.TextBox_serverlist.Multiline = True
         Me.TextBox_serverlist.Name = "TextBox_serverlist"
         Me.TextBox_serverlist.Size = New System.Drawing.Size(100, 21)
@@ -184,303 +232,12 @@ Partial Class Form_main
     "4"
         Me.TextBox_serverlist.Visible = False
         '
-        'Button_join
-        '
-        Me.Button_join.Enabled = False
-        Me.Button_join.Location = New System.Drawing.Point(75, 311)
-        Me.Button_join.Name = "Button_join"
-        Me.Button_join.Size = New System.Drawing.Size(127, 23)
-        Me.Button_join.TabIndex = 7
-        Me.Button_join.Text = "正在载入服务器列表"
-        Me.Button_join.UseVisualStyleBackColor = True
-        '
-        'TabPage_server
-        '
-        Me.TabPage_server.Controls.Add(Me.TextBox_config_path_cfg)
-        Me.TabPage_server.Controls.Add(Me.Button3)
-        Me.TabPage_server.Controls.Add(Me.TextBox_server_intro)
-        Me.TabPage_server.Controls.Add(Me.TextBox_server_name)
-        Me.TabPage_server.Controls.Add(Me.Label15)
-        Me.TabPage_server.Controls.Add(Me.Label14)
-        Me.TabPage_server.Controls.Add(Me.Button1)
-        Me.TabPage_server.Controls.Add(Me.Button_check_ip)
-        Me.TabPage_server.Controls.Add(Me.Label13)
-        Me.TabPage_server.Controls.Add(Me.TextBox_IP)
-        Me.TabPage_server.Controls.Add(Me.Label12)
-        Me.TabPage_server.Controls.Add(Me.Label11)
-        Me.TabPage_server.Controls.Add(Me.Label10)
-        Me.TabPage_server.Controls.Add(Me.Label9)
-        Me.TabPage_server.Controls.Add(Me.Label8)
-        Me.TabPage_server.Controls.Add(Me.ComboBox_auto_pause)
-        Me.TabPage_server.Controls.Add(Me.Label7)
-        Me.TabPage_server.Controls.Add(Me.TextBox_afk_autokick_interval)
-        Me.TabPage_server.Controls.Add(Me.Label6)
-        Me.TabPage_server.Controls.Add(Me.TextBox_autosave_slots)
-        Me.TabPage_server.Controls.Add(Me.Label5)
-        Me.TabPage_server.Controls.Add(Me.TextBox_autosave_interval)
-        Me.TabPage_server.Controls.Add(Me.Label4)
-        Me.TabPage_server.Controls.Add(Me.TextBox_max_players)
-        Me.TabPage_server.Controls.Add(Me.Label3)
-        Me.TabPage_server.Controls.Add(Me.TextBox_saves)
-        Me.TabPage_server.Controls.Add(Me.Label1)
-        Me.TabPage_server.Controls.Add(Me.Button_create_server)
-        Me.TabPage_server.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage_server.Name = "TabPage_server"
-        Me.TabPage_server.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage_server.Size = New System.Drawing.Size(479, 342)
-        Me.TabPage_server.TabIndex = 1
-        Me.TabPage_server.Text = "创建服务器"
-        Me.TabPage_server.UseVisualStyleBackColor = True
-        '
-        'TextBox_config_path_cfg
-        '
-        Me.TextBox_config_path_cfg.Location = New System.Drawing.Point(330, 48)
-        Me.TextBox_config_path_cfg.Name = "TextBox_config_path_cfg"
-        Me.TextBox_config_path_cfg.Size = New System.Drawing.Size(100, 21)
-        Me.TextBox_config_path_cfg.TabIndex = 42
-        Me.TextBox_config_path_cfg.Text = "config-path=__PATH__executable__/../../config" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "use-system-read-write-data-directo" &
-    "ries=false"
-        Me.TextBox_config_path_cfg.Visible = False
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(319, 9)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(111, 23)
-        Me.Button3.TabIndex = 41
-        Me.Button3.Text = "Steam版转Zip版"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
-        'TextBox_server_intro
-        '
-        Me.TextBox_server_intro.Location = New System.Drawing.Point(49, 146)
-        Me.TextBox_server_intro.Name = "TextBox_server_intro"
-        Me.TextBox_server_intro.Size = New System.Drawing.Size(238, 21)
-        Me.TextBox_server_intro.TabIndex = 40
-        '
-        'TextBox_server_name
-        '
-        Me.TextBox_server_name.Location = New System.Drawing.Point(85, 115)
-        Me.TextBox_server_name.Name = "TextBox_server_name"
-        Me.TextBox_server_name.Size = New System.Drawing.Size(135, 21)
-        Me.TextBox_server_name.TabIndex = 39
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(8, 149)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(35, 12)
-        Me.Label15.TabIndex = 38
-        Me.Label15.Text = "简介:"
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(8, 118)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(71, 12)
-        Me.Label14.TabIndex = 37
-        Me.Label14.Text = "服务器名称:"
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(269, 313)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(104, 23)
-        Me.Button1.TabIndex = 36
-        Me.Button1.Text = "保存并停止服务"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'Button_check_ip
-        '
-        Me.Button_check_ip.Location = New System.Drawing.Point(179, 9)
-        Me.Button_check_ip.Name = "Button_check_ip"
-        Me.Button_check_ip.Size = New System.Drawing.Size(75, 23)
-        Me.Button_check_ip.TabIndex = 35
-        Me.Button_check_ip.Text = "自动检测"
-        Me.Button_check_ip.UseVisualStyleBackColor = True
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.ForeColor = System.Drawing.Color.Red
-        Me.Label13.Location = New System.Drawing.Point(8, 37)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(269, 12)
-        Me.Label13.TabIndex = 34
-        Me.Label13.Text = "如自动检测不正确请输入正确IP，否则别人连不上"
-        '
-        'TextBox_IP
-        '
-        Me.TextBox_IP.Location = New System.Drawing.Point(61, 11)
-        Me.TextBox_IP.Name = "TextBox_IP"
-        Me.TextBox_IP.Size = New System.Drawing.Size(112, 21)
-        Me.TextBox_IP.TabIndex = 33
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(8, 14)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(47, 12)
-        Me.Label12.TabIndex = 32
-        Me.Label12.Text = "外网IP:"
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(195, 211)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(59, 12)
-        Me.Label11.TabIndex = 27
-        Me.Label11.Text = "0为不限制"
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(191, 242)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(29, 12)
-        Me.Label10.TabIndex = 26
-        Me.Label10.Text = "分钟"
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.ForeColor = System.Drawing.Color.Red
-        Me.Label9.Location = New System.Drawing.Point(8, 93)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(221, 12)
-        Me.Label9.TabIndex = 25
-        Me.Label9.Text = "先在游中创建存档，再此输入，注意路径"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(179, 180)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(89, 12)
-        Me.Label8.TabIndex = 24
-        Me.Label8.Text = "分钟   0为不踢"
-        '
-        'ComboBox_auto_pause
-        '
-        Me.ComboBox_auto_pause.FormattingEnabled = True
-        Me.ComboBox_auto_pause.Items.AddRange(New Object() {"是", "否"})
-        Me.ComboBox_auto_pause.Location = New System.Drawing.Point(133, 270)
-        Me.ComboBox_auto_pause.Name = "ComboBox_auto_pause"
-        Me.ComboBox_auto_pause.Size = New System.Drawing.Size(60, 20)
-        Me.ComboBox_auto_pause.TabIndex = 23
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(8, 273)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(119, 12)
-        Me.Label7.TabIndex = 22
-        Me.Label7.Text = "服务器无人自动暂停:"
-        '
-        'TextBox_afk_autokick_interval
-        '
-        Me.TextBox_afk_autokick_interval.Location = New System.Drawing.Point(73, 177)
-        Me.TextBox_afk_autokick_interval.Name = "TextBox_afk_autokick_interval"
-        Me.TextBox_afk_autokick_interval.Size = New System.Drawing.Size(100, 21)
-        Me.TextBox_afk_autokick_interval.TabIndex = 21
-        Me.TextBox_afk_autokick_interval.Text = "0"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(8, 180)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(59, 12)
-        Me.Label6.TabIndex = 20
-        Me.Label6.Text = "挂机踢出:"
-        '
-        'TextBox_autosave_slots
-        '
-        Me.TextBox_autosave_slots.Location = New System.Drawing.Point(315, 239)
-        Me.TextBox_autosave_slots.Name = "TextBox_autosave_slots"
-        Me.TextBox_autosave_slots.Size = New System.Drawing.Size(95, 21)
-        Me.TextBox_autosave_slots.TabIndex = 19
-        Me.TextBox_autosave_slots.Text = "5"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(226, 242)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(83, 12)
-        Me.Label5.TabIndex = 18
-        Me.Label5.Text = "自动存盘数量:"
-        '
-        'TextBox_autosave_interval
-        '
-        Me.TextBox_autosave_interval.Location = New System.Drawing.Point(121, 239)
-        Me.TextBox_autosave_interval.Name = "TextBox_autosave_interval"
-        Me.TextBox_autosave_interval.Size = New System.Drawing.Size(64, 21)
-        Me.TextBox_autosave_interval.TabIndex = 17
-        Me.TextBox_autosave_interval.Text = "30"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(8, 242)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(107, 12)
-        Me.Label4.TabIndex = 16
-        Me.Label4.Text = "自动存盘间隔时间:"
-        '
-        'TextBox_max_players
-        '
-        Me.TextBox_max_players.Location = New System.Drawing.Point(85, 208)
-        Me.TextBox_max_players.Name = "TextBox_max_players"
-        Me.TextBox_max_players.Size = New System.Drawing.Size(100, 21)
-        Me.TextBox_max_players.TabIndex = 15
-        Me.TextBox_max_players.Text = "0"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(8, 211)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(71, 12)
-        Me.Label3.TabIndex = 14
-        Me.Label3.Text = "最大玩家数:"
-        '
-        'TextBox_saves
-        '
-        Me.TextBox_saves.Location = New System.Drawing.Point(73, 65)
-        Me.TextBox_saves.Name = "TextBox_saves"
-        Me.TextBox_saves.Size = New System.Drawing.Size(195, 21)
-        Me.TextBox_saves.TabIndex = 13
-        Me.TextBox_saves.Text = "saves/_autosave1.zip"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(8, 68)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(59, 12)
-        Me.Label1.TabIndex = 12
-        Me.Label1.Text = "存档文件:"
-        '
-        'Button_create_server
-        '
-        Me.Button_create_server.Location = New System.Drawing.Point(85, 313)
-        Me.Button_create_server.Name = "Button_create_server"
-        Me.Button_create_server.Size = New System.Drawing.Size(75, 23)
-        Me.Button_create_server.TabIndex = 0
-        Me.Button_create_server.Text = "创建"
-        Me.Button_create_server.UseVisualStyleBackColor = True
-        '
         'CheckBox_chinese_chat
         '
         Me.CheckBox_chinese_chat.AutoSize = True
         Me.CheckBox_chinese_chat.Checked = True
         Me.CheckBox_chinese_chat.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBox_chinese_chat.Enabled = False
         Me.CheckBox_chinese_chat.Location = New System.Drawing.Point(12, 390)
         Me.CheckBox_chinese_chat.Name = "CheckBox_chinese_chat"
         Me.CheckBox_chinese_chat.Size = New System.Drawing.Size(300, 16)
@@ -499,14 +256,15 @@ Partial Class Form_main
         '
         Me.Timer_load_sl.Interval = 500
         '
-        'Button2
+        'Button_readme
         '
-        Me.Button2.Location = New System.Drawing.Point(101, 419)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 11
-        Me.Button2.Text = "使用说明"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.Button_readme.Enabled = False
+        Me.Button_readme.Location = New System.Drawing.Point(79, 419)
+        Me.Button_readme.Name = "Button_readme"
+        Me.Button_readme.Size = New System.Drawing.Size(75, 23)
+        Me.Button_readme.TabIndex = 11
+        Me.Button_readme.Text = "使用说明"
+        Me.Button_readme.UseVisualStyleBackColor = True
         '
         'Timer_enable_reload_serverlist
         '
@@ -515,7 +273,7 @@ Partial Class Form_main
         'LinkLabel1
         '
         Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(17, 470)
+        Me.LinkLabel1.Location = New System.Drawing.Point(38, 454)
         Me.LinkLabel1.Name = "LinkLabel1"
         Me.LinkLabel1.Size = New System.Drawing.Size(245, 12)
         Me.LinkLabel1.TabIndex = 12
@@ -525,24 +283,11 @@ Partial Class Form_main
         'Label_ver
         '
         Me.Label_ver.AutoSize = True
-        Me.Label_ver.Location = New System.Drawing.Point(380, 470)
+        Me.Label_ver.Location = New System.Drawing.Point(401, 454)
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(29, 12)
         Me.Label_ver.TabIndex = 13
-        Me.Label_ver.Text = "0.12"
-        '
-        'BackgroundWorker_creact_dsl
-        '
-        '
-        'Label_thank_list
-        '
-        Me.Label_thank_list.AutoSize = True
-        Me.Label_thank_list.Location = New System.Drawing.Point(505, 449)
-        Me.Label_thank_list.Name = "Label_thank_list"
-        Me.Label_thank_list.Size = New System.Drawing.Size(1151, 12)
-        Me.Label_thank_list.TabIndex = 15
-        Me.Label_thank_list.Text = "感谢JJ提供中文输入的思路，感谢zhu455239506和qq350557712报告一直提示错误编号1的问题，感谢の莣.钚辽.●报告提示找不到文件的问题，感谢东方" &
-    "的守护喵报告的使用Steam同时建服和游戏引起的文件冲突问题。" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.Label_ver.Text = "0.14"
         '
         'Timer_Thank_list
         '
@@ -551,6 +296,7 @@ Partial Class Form_main
         '
         'TextBox_game_ver
         '
+        Me.TextBox_game_ver.Enabled = False
         Me.TextBox_game_ver.Location = New System.Drawing.Point(308, 388)
         Me.TextBox_game_ver.Name = "TextBox_game_ver"
         Me.TextBox_game_ver.Size = New System.Drawing.Size(100, 21)
@@ -560,7 +306,7 @@ Partial Class Form_main
         'Label_ver_status
         '
         Me.Label_ver_status.AutoSize = True
-        Me.Label_ver_status.Location = New System.Drawing.Point(415, 470)
+        Me.Label_ver_status.Location = New System.Drawing.Point(430, 454)
         Me.Label_ver_status.Name = "Label_ver_status"
         Me.Label_ver_status.Size = New System.Drawing.Size(11, 12)
         Me.Label_ver_status.TabIndex = 17
@@ -570,13 +316,13 @@ Partial Class Form_main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(514, 491)
+        Me.ClientSize = New System.Drawing.Size(514, 479)
         Me.Controls.Add(Me.Label_ver_status)
+        Me.Controls.Add(Me.TextBox_serverlist)
         Me.Controls.Add(Me.TextBox_game_ver)
-        Me.Controls.Add(Me.Label_thank_list)
         Me.Controls.Add(Me.Label_ver)
         Me.Controls.Add(Me.LinkLabel1)
-        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.Button_readme)
         Me.Controls.Add(Me.CheckBox_chinese_chat)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.Label2)
@@ -587,7 +333,6 @@ Partial Class Form_main
         Me.Text = "工厂世界"
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage_client.ResumeLayout(False)
-        Me.TabPage_client.PerformLayout()
         Me.TabPage_server.ResumeLayout(False)
         Me.TabPage_server.PerformLayout()
         Me.ResumeLayout(False)
@@ -604,48 +349,24 @@ Partial Class Form_main
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage_client As TabPage
     Friend WithEvents TabPage_server As TabPage
-    Friend WithEvents Button_join As Button
-    Friend WithEvents Button_create_server As Button
+    Friend WithEvents Button_run_game As Button
     Friend WithEvents CheckBox_chinese_chat As CheckBox
     Friend WithEvents TextBox_serverlist As TextBox
     Friend WithEvents BackgroundWorker_download_serverlist As System.ComponentModel.BackgroundWorker
-    Friend WithEvents Label9 As Label
-    Friend WithEvents Label8 As Label
-    Friend WithEvents ComboBox_auto_pause As ComboBox
-    Friend WithEvents Label7 As Label
-    Friend WithEvents TextBox_afk_autokick_interval As TextBox
-    Friend WithEvents Label6 As Label
-    Friend WithEvents TextBox_autosave_slots As TextBox
-    Friend WithEvents Label5 As Label
-    Friend WithEvents TextBox_autosave_interval As TextBox
-    Friend WithEvents Label4 As Label
-    Friend WithEvents TextBox_max_players As TextBox
-    Friend WithEvents Label3 As Label
-    Friend WithEvents TextBox_saves As TextBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label11 As Label
-    Friend WithEvents Label10 As Label
-    Friend WithEvents Button_check_ip As Button
-    Friend WithEvents Label13 As Label
-    Friend WithEvents TextBox_IP As TextBox
-    Friend WithEvents Label12 As Label
-    Friend WithEvents Button1 As Button
-    Friend WithEvents TextBox_server_intro As TextBox
-    Friend WithEvents TextBox_server_name As TextBox
-    Friend WithEvents Label15 As Label
-    Friend WithEvents Label14 As Label
     Friend WithEvents Timer_sync_server As Timer
     Friend WithEvents Timer_load_sl As Timer
-    Friend WithEvents Button2 As Button
+    Friend WithEvents Button_readme As Button
     Friend WithEvents Button_reload_serverlist As Button
     Friend WithEvents Timer_enable_reload_serverlist As Timer
     Friend WithEvents LinkLabel1 As LinkLabel
     Friend WithEvents Label_ver As Label
     Friend WithEvents BackgroundWorker_creact_dsl As System.ComponentModel.BackgroundWorker
-    Friend WithEvents Label_thank_list As Label
     Friend WithEvents Timer_Thank_list As Timer
     Friend WithEvents TextBox_game_ver As TextBox
     Friend WithEvents Label_ver_status As Label
-    Friend WithEvents Button3 As Button
-    Friend WithEvents TextBox_config_path_cfg As TextBox
+    Friend WithEvents Button_select_server As Button
+    Friend WithEvents Button_test_mode As Button
+    Friend WithEvents Label1 As Label
+    Friend WithEvents TextBox_test_mode_pass As TextBox
+    Friend WithEvents LinkLabel_game_download_url As LinkLabel
 End Class

@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "异星工厂世界", "异星工厂世界.vbproj", "{33A305E4-F9AA-4DD2-812A-135F1FFA4A4B}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "server", "..\server\server.vbproj", "{18177EB9-AB5A-4A25-8B3F-30877376184B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{33A305E4-F9AA-4DD2-812A-135F1FFA4A4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33A305E4-F9AA-4DD2-812A-135F1FFA4A4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33A305E4-F9AA-4DD2-812A-135F1FFA4A4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18177EB9-AB5A-4A25-8B3F-30877376184B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18177EB9-AB5A-4A25-8B3F-30877376184B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18177EB9-AB5A-4A25-8B3F-30877376184B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18177EB9-AB5A-4A25-8B3F-30877376184B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

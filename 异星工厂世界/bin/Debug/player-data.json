@@ -4,6 +4,12 @@
       "level-01": "hard"
     }
   },
+  "latest-multiplayer-connections": [
+    {
+      "address": "工厂世界"
+    }
+  ],
   "service-username": "aa",
   "service-token": ""
 }
+
