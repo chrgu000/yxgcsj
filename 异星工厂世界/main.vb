@@ -277,7 +277,7 @@ Public Class Form_main
 
         If My.Computer.FileSystem.FileExists(Environ("AppData") & "\Factorio\player-data.json") Then
             Try
-                Dim sr = New StreamReader(Environ("AppData") & "\Factorio\player-data.json", encoding:=System.Text.Encoding.Default)
+                Dim sr = New StreamReader(Environ("AppData") & "\Factorio\player-data.json")
 
                 Do
                     player_data_file_hang = player_data_file_hang + 1
@@ -350,7 +350,7 @@ Public Class Form_main
             ReDim player_data_file(0)
             player_data_file_hang = -1
             Try
-                Dim sr = New StreamReader("player-data.json", encoding:=System.Text.Encoding.Default)
+                Dim sr = New StreamReader("player-data.json")
 
                 Do
                     player_data_file_hang = player_data_file_hang + 1

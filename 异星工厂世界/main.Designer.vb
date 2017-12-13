@@ -287,7 +287,7 @@ Partial Class Form_main
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(29, 12)
         Me.Label_ver.TabIndex = 13
-        Me.Label_ver.Text = "0.14"
+        Me.Label_ver.Text = "0.15"
         '
         'Timer_Thank_list
         '
