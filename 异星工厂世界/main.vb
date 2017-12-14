@@ -612,6 +612,7 @@ Public Class Form_main
         server_select = ListView1.FocusedItem.Index
         '修改host文件
         edit_hosts()
+        MsgBox("切换成功")
     End Sub
 
     Private Sub Button_test_mode_Click(sender As Object, e As EventArgs) Handles Button_test_mode.Click
