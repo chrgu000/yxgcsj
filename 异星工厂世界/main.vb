@@ -544,14 +544,14 @@ Public Class Form_main
         End Try
         '----------原来，直接下载方式结束。
 
-        '检测更新
+        ''检测更新
 
-        Dim upUri_version As New Uri(up_root + "version.txt")
-        Try
-            r_version = dFile.DownloadString(upUri_version)
-        Catch ex As Exception
-            r_version = "0"
-        End Try
+        'Dim upUri_version As New Uri(up_root + "version.txt")
+        'Try
+        '    r_version = dFile.DownloadString(upUri_version)
+        'Catch ex As Exception
+        '    r_version = "0"
+        'End Try
 
 
     End Sub
@@ -566,19 +566,19 @@ Public Class Form_main
         End If
         Timer_enable_reload_serverlist.Enabled = True
 
-        '判断更新
-        If r_version = "0" Then
-            Label_ver_status.Text = "检测失败"
-        Else
-            l_version = Label_ver.Text
-            If l_version = r_version Then
-                Label_ver_status.Text = "已是最新版本！"
-            Else
-                Label_ver_status.Text = "需要升级"
-                Label_ver_status.ForeColor = Color.Red
-            End If
+        ''判断更新
+        'If r_version = "0" Then
+        '    Label_ver_status.Text = "检测失败"
+        'Else
+        '    l_version = Label_ver.Text
+        '    If l_version = r_version Then
+        '        Label_ver_status.Text = "已是最新版本！"
+        '    Else
+        '        Label_ver_status.Text = "需要升级"
+        '        Label_ver_status.ForeColor = Color.Red
+        '    End If
 
-        End If
+        'End If
 
     End Sub
 
@@ -622,6 +622,6 @@ Public Class Form_main
     End Sub
 
     Private Sub LinkLabel_game_download_url_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel_game_download_url.LinkClicked
-        Process.Start("https://pan.baidu.com/s/1sk95K5Z")
+        Process.Start("http://code.taobao.org/svn/yxgcsj/trunk/downloadrul/downloadurl.txt")
     End Sub
 End Class

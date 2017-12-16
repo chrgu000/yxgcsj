@@ -51,7 +51,6 @@ Partial Class Form_main
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.Label_ver = New System.Windows.Forms.Label()
         Me.BackgroundWorker_creact_dsl = New System.ComponentModel.BackgroundWorker()
-        Me.Timer_Thank_list = New System.Windows.Forms.Timer(Me.components)
         Me.TextBox_game_ver = New System.Windows.Forms.TextBox()
         Me.Label_ver_status = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
@@ -287,12 +286,7 @@ Partial Class Form_main
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(29, 12)
         Me.Label_ver.TabIndex = 13
-        Me.Label_ver.Text = "0.16"
-        '
-        'Timer_Thank_list
-        '
-        Me.Timer_Thank_list.Enabled = True
-        Me.Timer_Thank_list.Interval = 200
+        Me.Label_ver.Text = "0.20"
         '
         'TextBox_game_ver
         '
@@ -301,7 +295,7 @@ Partial Class Form_main
         Me.TextBox_game_ver.Name = "TextBox_game_ver"
         Me.TextBox_game_ver.Size = New System.Drawing.Size(100, 21)
         Me.TextBox_game_ver.TabIndex = 16
-        Me.TextBox_game_ver.Text = "0.16.0"
+        Me.TextBox_game_ver.Text = "0.16.3"
         '
         'Label_ver_status
         '
@@ -361,7 +355,6 @@ Partial Class Form_main
     Friend WithEvents LinkLabel1 As LinkLabel
     Friend WithEvents Label_ver As Label
     Friend WithEvents BackgroundWorker_creact_dsl As System.ComponentModel.BackgroundWorker
-    Friend WithEvents Timer_Thank_list As Timer
     Friend WithEvents TextBox_game_ver As TextBox
     Friend WithEvents Label_ver_status As Label
     Friend WithEvents Button_select_server As Button

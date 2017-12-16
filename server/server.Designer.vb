@@ -25,11 +25,6 @@ Partial Class server
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(server))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.Button6 = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.Label16 = New System.Windows.Forms.Label()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.CheckBox_pppoe = New System.Windows.Forms.CheckBox()
         Me.Label1_status = New System.Windows.Forms.Label()
@@ -67,6 +62,11 @@ Partial Class server
         Me.TextBox_saves = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button_create_server = New System.Windows.Forms.Button()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Button6 = New System.Windows.Forms.Button()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.Label16 = New System.Windows.Forms.Label()
         Me.OpenFileDialog_open_save_zip = New System.Windows.Forms.OpenFileDialog()
         Me.Label_ver = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
@@ -75,71 +75,19 @@ Partial Class server
         Me.BackgroundWorker_creact_dsl = New System.ComponentModel.BackgroundWorker()
         Me.Button_readme = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
-        Me.TabPage2.SuspendLayout()
         Me.TabPage1.SuspendLayout()
+        Me.TabPage2.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
         '
-        Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage1)
+        Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Location = New System.Drawing.Point(12, 12)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(492, 492)
         Me.TabControl1.TabIndex = 0
-        '
-        'TabPage2
-        '
-        Me.TabPage2.Controls.Add(Me.Button6)
-        Me.TabPage2.Controls.Add(Me.Button5)
-        Me.TabPage2.Controls.Add(Me.TextBox2)
-        Me.TabPage2.Controls.Add(Me.Label16)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(484, 466)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "游戏内创建游戏发布"
-        Me.TabPage2.UseVisualStyleBackColor = True
-        '
-        'Button6
-        '
-        Me.Button6.Enabled = False
-        Me.Button6.Location = New System.Drawing.Point(174, 76)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(75, 23)
-        Me.Button6.TabIndex = 94
-        Me.Button6.Text = "发布"
-        Me.Button6.UseVisualStyleBackColor = True
-        '
-        'Button5
-        '
-        Me.Button5.Enabled = False
-        Me.Button5.Location = New System.Drawing.Point(255, 21)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(75, 23)
-        Me.Button5.TabIndex = 93
-        Me.Button5.Text = "自动检测"
-        Me.Button5.UseVisualStyleBackColor = True
-        '
-        'TextBox2
-        '
-        Me.TextBox2.Enabled = False
-        Me.TextBox2.Location = New System.Drawing.Point(137, 23)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(112, 21)
-        Me.TextBox2.TabIndex = 92
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.Enabled = False
-        Me.Label16.Location = New System.Drawing.Point(84, 26)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(47, 12)
-        Me.Label16.TabIndex = 91
-        Me.Label16.Text = "外网IP:"
         '
         'TabPage1
         '
@@ -431,7 +379,7 @@ Partial Class server
         Me.TextBox_autosave_slots.Name = "TextBox_autosave_slots"
         Me.TextBox_autosave_slots.Size = New System.Drawing.Size(95, 21)
         Me.TextBox_autosave_slots.TabIndex = 78
-        Me.TextBox_autosave_slots.Text = "10"
+        Me.TextBox_autosave_slots.Text = "20"
         '
         'Label5
         '
@@ -502,6 +450,58 @@ Partial Class server
         Me.Button_create_server.Text = "创建"
         Me.Button_create_server.UseVisualStyleBackColor = True
         '
+        'TabPage2
+        '
+        Me.TabPage2.Controls.Add(Me.Button6)
+        Me.TabPage2.Controls.Add(Me.Button5)
+        Me.TabPage2.Controls.Add(Me.TextBox2)
+        Me.TabPage2.Controls.Add(Me.Label16)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(484, 466)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "游戏内创建游戏发布"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'Button6
+        '
+        Me.Button6.Enabled = False
+        Me.Button6.Location = New System.Drawing.Point(174, 76)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(75, 23)
+        Me.Button6.TabIndex = 94
+        Me.Button6.Text = "发布"
+        Me.Button6.UseVisualStyleBackColor = True
+        '
+        'Button5
+        '
+        Me.Button5.Enabled = False
+        Me.Button5.Location = New System.Drawing.Point(255, 21)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(75, 23)
+        Me.Button5.TabIndex = 93
+        Me.Button5.Text = "自动检测"
+        Me.Button5.UseVisualStyleBackColor = True
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Enabled = False
+        Me.TextBox2.Location = New System.Drawing.Point(137, 23)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(112, 21)
+        Me.TextBox2.TabIndex = 92
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Enabled = False
+        Me.Label16.Location = New System.Drawing.Point(84, 26)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(47, 12)
+        Me.Label16.TabIndex = 91
+        Me.Label16.Text = "外网IP:"
+        '
         'OpenFileDialog_open_save_zip
         '
         Me.OpenFileDialog_open_save_zip.FileName = "*.zip"
@@ -514,7 +514,7 @@ Partial Class server
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(29, 12)
         Me.Label_ver.TabIndex = 15
-        Me.Label_ver.Text = "0.16"
+        Me.Label_ver.Text = "0.20"
         '
         'Label17
         '
@@ -567,10 +567,10 @@ Partial Class server
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "工厂世界服务端"
         Me.TabControl1.ResumeLayout(False)
-        Me.TabPage2.ResumeLayout(False)
-        Me.TabPage2.PerformLayout()
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
+        Me.TabPage2.ResumeLayout(False)
+        Me.TabPage2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
