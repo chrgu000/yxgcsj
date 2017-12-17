@@ -38,14 +38,17 @@ Public Class form_updata
 
 
         If l_version = r_version Then
-            Me.Label_status.Text = "已是最新版本！"
+            Me.Label_status.Text = "已是最新版!"
+            Form_main.Label_ver_status.Text = "已是最新版!"
             Form_main.Show()
-            Form_chat.Hide()
+            Me.Hide()
         Else
             If r_version = "0" Then
                 Label_status.Text = “检测失败”
             Else
                 MsgBox（“需要升级”）
+                Form_main.Label_ver_status.Text = "有更新"
+                Form_main.Label_ver_status.ForeColor = Color.Red
                 Label_status.Text = "正在下载..."
                 Up_autoupdata()
             End If
@@ -97,4 +100,12 @@ Public Class form_updata
         'MsgBox("shown")
     End Sub
 
+    Private Sub Button_fix_Click(sender As Object, e As EventArgs) Handles Button_fix.Click
+        Up_autoupdata()
+    End Sub
+
+    Private Sub Button_hide_Click(sender As Object, e As EventArgs) Handles Button_hide.Click
+        Me.Hide()
+        Form_main.Show()
+    End Sub
 End Class

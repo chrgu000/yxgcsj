@@ -162,7 +162,7 @@ Public Class Form_main
 
             ListView1.Items(0).Focused = True
             ListView1.Items(0).Selected = True
-            ' ListView1.Focus()
+            ListView1.Focus()
 
 
         Else
@@ -623,5 +623,24 @@ Public Class Form_main
 
     Private Sub LinkLabel_game_download_url_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel_game_download_url.LinkClicked
         Process.Start("http://code.taobao.org/svn/yxgcsj/trunk/downloadrul/downloadurl.txt")
+    End Sub
+
+    Private Sub ListView1_DoubleClick(sender As Object, e As EventArgs) Handles ListView1.DoubleClick
+        Button_join_Click(sender, e)
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button_change_player_color.Click
+        ColorDialog1.ShowDialog()
+        Try
+            AppActivate("Factorio " & TextBox_game_ver.Text)
+            Threading.Thread.Sleep(100)
+            SendKeys.Send("`")
+            Threading.Thread.Sleep(100)
+            SendKeys.Send("/color " & ColorDialog1.Color.R.ToString & " " & ColorDialog1.Color.G.ToString & " " & ColorDialog1.Color.B.ToString & " " & ColorDialog1.Color.A.ToString)
+            Threading.Thread.Sleep(100)
+            SendKeys.Send("{ENTER}")
+        Catch ex As Exception
+            MsgBox（"请确认已经打开游戏并且游戏版本输入正确！")
+        End Try
     End Sub
 End Class

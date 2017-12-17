@@ -37,6 +37,9 @@ Partial Class Form_main
         Me.Button_reload_serverlist = New System.Windows.Forms.Button()
         Me.Button_run_game = New System.Windows.Forms.Button()
         Me.TabPage_server = New System.Windows.Forms.TabPage()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Button_change_player_color = New System.Windows.Forms.Button()
         Me.LinkLabel_game_download_url = New System.Windows.Forms.LinkLabel()
         Me.Button_test_mode = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -53,9 +56,11 @@ Partial Class Form_main
         Me.BackgroundWorker_creact_dsl = New System.ComponentModel.BackgroundWorker()
         Me.TextBox_game_ver = New System.Windows.Forms.TextBox()
         Me.Label_ver_status = New System.Windows.Forms.Label()
+        Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.TabControl1.SuspendLayout()
         Me.TabPage_client.SuspendLayout()
         Me.TabPage_server.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Button_updata
@@ -65,7 +70,7 @@ Partial Class Form_main
         Me.Button_updata.Name = "Button_updata"
         Me.Button_updata.Size = New System.Drawing.Size(75, 23)
         Me.Button_updata.TabIndex = 3
-        Me.Button_updata.Text = "更新程序"
+        Me.Button_updata.Text = "强制修复"
         Me.Button_updata.UseVisualStyleBackColor = True
         '
         'Label2
@@ -79,11 +84,13 @@ Partial Class Form_main
         '
         'ListView1
         '
+        Me.ListView1.Activation = System.Windows.Forms.ItemActivation.TwoClick
         Me.ListView1.AllowColumnReorder = True
         Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4})
         Me.ListView1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.ListView1.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.ListView1.FullRowSelect = True
         Me.ListView1.GridLines = True
-        Me.ListView1.HideSelection = False
         Me.ListView1.Location = New System.Drawing.Point(3, 3)
         Me.ListView1.Name = "ListView1"
         Me.ListView1.Size = New System.Drawing.Size(473, 304)
@@ -171,6 +178,7 @@ Partial Class Form_main
         '
         'TabPage_server
         '
+        Me.TabPage_server.Controls.Add(Me.GroupBox1)
         Me.TabPage_server.Controls.Add(Me.LinkLabel_game_download_url)
         Me.TabPage_server.Controls.Add(Me.Button_test_mode)
         Me.TabPage_server.Controls.Add(Me.Label1)
@@ -182,6 +190,35 @@ Partial Class Form_main
         Me.TabPage_server.TabIndex = 1
         Me.TabPage_server.Text = "工具"
         Me.TabPage_server.UseVisualStyleBackColor = True
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.Label3)
+        Me.GroupBox1.Controls.Add(Me.Button_change_player_color)
+        Me.GroupBox1.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(467, 243)
+        Me.GroupBox1.TabIndex = 6
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "控制台命令"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(6, 17)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(101, 12)
+        Me.Label3.TabIndex = 4
+        Me.Label3.Text = "改变角色的颜色："
+        '
+        'Button_change_player_color
+        '
+        Me.Button_change_player_color.Location = New System.Drawing.Point(113, 12)
+        Me.Button_change_player_color.Name = "Button_change_player_color"
+        Me.Button_change_player_color.Size = New System.Drawing.Size(75, 23)
+        Me.Button_change_player_color.TabIndex = 5
+        Me.Button_change_player_color.Text = "选择颜色"
+        Me.Button_change_player_color.UseVisualStyleBackColor = True
         '
         'LinkLabel_game_download_url
         '
@@ -286,7 +323,7 @@ Partial Class Form_main
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(29, 12)
         Me.Label_ver.TabIndex = 13
-        Me.Label_ver.Text = "0.20"
+        Me.Label_ver.Text = "0.22"
         '
         'TextBox_game_ver
         '
@@ -329,6 +366,8 @@ Partial Class Form_main
         Me.TabPage_client.ResumeLayout(False)
         Me.TabPage_server.ResumeLayout(False)
         Me.TabPage_server.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -362,4 +401,8 @@ Partial Class Form_main
     Friend WithEvents Label1 As Label
     Friend WithEvents TextBox_test_mode_pass As TextBox
     Friend WithEvents LinkLabel_game_download_url As LinkLabel
+    Friend WithEvents Button_change_player_color As Button
+    Friend WithEvents Label3 As Label
+    Friend WithEvents ColorDialog1 As ColorDialog
+    Friend WithEvents GroupBox1 As GroupBox
 End Class
