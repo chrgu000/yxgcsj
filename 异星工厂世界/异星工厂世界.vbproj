@@ -142,6 +142,14 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="data\facw\web\graphics\core\graphics\factorio.icns" />
+    <None Include="data\facw\web\graphics\core\graphics\shaders\alpha-mask.cso" />
+    <None Include="data\facw\web\graphics\core\graphics\shaders\alpha-mask.glsl" />
+    <None Include="data\facw\web\graphics\core\graphics\shaders\compile.bat" />
+    <None Include="data\facw\web\graphics\core\graphics\shaders\game.cso" />
+    <None Include="data\facw\web\graphics\core\graphics\shaders\game.glsl" />
+    <None Include="data\facw\web\graphics\core\graphics\shaders\zoom-to-world.cso" />
+    <None Include="data\facw\web\graphics\core\graphics\shaders\zoom-to-world.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\facw\libapr-1.dll">
@@ -184,6 +192,638 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="tb.ico" />
+    <Content Include="data\facw\web\graphics\.gitignore" />
+    <Content Include="data\facw\web\graphics\base\graphics\equipment\battery-equipment.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\graphics\base\graphics\equipment\battery-mk2-equipment.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\graphics\base\graphics\equipment\belt-immunity-equipment.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\graphics\base\graphics\equipment\discharge-defense-equipment-ability.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\graphics\base\graphics\equipment\discharge-defense-equipment.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\graphics\base\graphics\equipment\energy-shield-equipment.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\graphics\base\graphics\equipment\energy-shield-mk2-equipment.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\graphics\base\graphics\equipment\exoskeleton-equipment.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\graphics\base\graphics\equipment\fusion-reactor-equipment.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\graphics\base\graphics\equipment\night-vision-equipment.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\graphics\base\graphics\equipment\personal-laser-defense-equipment.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\graphics\base\graphics\equipment\personal-roboport-equipment.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\graphics\base\graphics\equipment\personal-roboport-mk2-equipment.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\graphics\base\graphics\equipment\solar-panel-equipment.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\graphics\base\graphics\icons\accumulator.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\advanced-circuit.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\alien-artifact-goo.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\arithmetic-combinator.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\artillery-shell.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\artillery-targeting-remote.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\artillery-turret.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\artillery-wagon.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\assembling-machine-1.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\assembling-machine-2.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\assembling-machine-3.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\atomic-bomb.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\battery-equipment.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\battery-mk2-equipment.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\battery.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\beacon.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\behemoth-biter.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\behemoth-spitter.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\belt-immunity-equipment.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\big-biter-corpse.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\big-biter.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\big-electric-pole.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\big-spitter.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\big-worm-corpse.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\big-worm.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\biter-spawner-corpse.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\biter-spawner.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\blueprint-book.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\blueprint.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\boiler.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\burner-inserter.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\burner-mining-drill.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\cannon-shell.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\car.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\cargo-wagon.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\centrifuge.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\chemical-plant.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\cliff-explosives.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\cliff-icon.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\cluster-grenade.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\coal-dark-background.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\coal.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\coin.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\combat-shotgun.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\computer.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\concrete.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\constant-combinator.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\construction-robot.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\copper-cable.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\copper-ore.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\copper-plate.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\creeper.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\crude-oil.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\curved-rail-remnants.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\curved-rail.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\dead-dry-hairy-tree.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\dead-grey-trunk.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\dead-tree.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\decider-combinator.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\deconstruction-planner.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\defender.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\destroyer.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\diesel-locomotive.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\dirt.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\discharge-defense-equipment.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\distractor.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\dry-hairy-tree.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\dry-tree.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\effectivity-module-2.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\effectivity-module-3.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\effectivity-module.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\electric-engine-unit.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\electric-furnace.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\electric-mining-drill.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\electronic-circuit.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\energy-shield-equipment.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\energy-shield-mk2-equipment.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\engine-unit.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\exoskeleton-equipment.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\explosive-cannon-shell.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\explosive-rocket.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\explosive-uranium-cannon-shell.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\explosives.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\express-loader.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\express-splitter.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\express-transport-belt.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\express-underground-belt.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fast-inserter.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fast-loader.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fast-splitter.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fast-transport-belt.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fast-underground-belt.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\filter-inserter.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\firearm-magazine.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fish.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\flamethrower-ammo.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\flamethrower-turret.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\flamethrower.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fluid-wagon.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fluid\advanced-oil-processing.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fluid\barreling\barrel-empty-side-mask.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fluid\barreling\barrel-empty-top-mask.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fluid\barreling\barrel-empty.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fluid\barreling\barrel-fill-side-mask.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fluid\barreling\barrel-fill-top-mask.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fluid\barreling\barrel-fill.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fluid\barreling\barrel-hoop-top-mask.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fluid\barreling\barrel-side-mask.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fluid\barreling\empty-barrel.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fluid\basic-oil-processing.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fluid\coal-liquefaction.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fluid\crude-oil.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fluid\heavy-oil-cracking.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fluid\heavy-oil.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fluid\light-oil-cracking.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fluid\light-oil.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fluid\lubricant.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fluid\petroleum-gas.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fluid\steam.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fluid\sulfuric-acid.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fluid\water.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\flying-robot-frame.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\fusion-reactor-equipment.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\gate.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\grass.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\green-wire.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\grenade.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\gun-turret.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\hazard-concrete.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\heat-boiler.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\heat-pipe.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\heavy-armor.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\high-tech-science-pack.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\icons-new\coal.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\icons-new\copper-ore.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\icons-new\iron-ore.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\icons-new\stone.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\icons-new\uranium-ore.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\infinity-chest.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\inserter.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\iron-axe.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\iron-chest.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\iron-gear-wheel.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\iron-ore.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\iron-plate.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\iron-stick.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\kovarex-enrichment-process.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\lab.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\land-mine.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\landfill.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\laser-turret.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\light-armor.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\loader.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\logistic-chest-active-provider.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\logistic-chest-buffer.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\logistic-chest-passive-provider.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\logistic-chest-requester.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\logistic-chest-storage.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\logistic-robot.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\long-handed-inserter.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\market.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\medium-biter-corpse.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\medium-biter.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\medium-electric-pole.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\medium-spitter.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\medium-worm-corpse.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\medium-worm.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\military-science-pack.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\modular-armor.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\night-vision-equipment.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\nuclear-fuel-reprocessing.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\nuclear-fuel.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\nuclear-reactor.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\offshore-pump.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\oil-refinery.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\personal-laser-defense-equipment.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\personal-roboport-equipment.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\personal-roboport-mk2-equipment.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\piercing-rounds-magazine.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\piercing-shotgun-shell.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\pipe-to-ground.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\pipe.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\pistol.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\plastic-bar.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\player-port.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\player.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\poison-capsule.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\power-armor-mk2.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\power-armor.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\power-switch.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\processing-unit.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\production-science-pack.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\productivity-module-2.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\productivity-module-3.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\productivity-module.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\programmable-speaker.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\pump.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\pumpjack.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\radar.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\rail-chain-signal.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\rail-signal.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\rail.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\railgun-ammo.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\railgun.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\raw-wood.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\red-wire.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\remnants.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\repair-pack.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\roboport.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\rock-big-icon.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\rock-huge-icon.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\rocket-control-unit.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\rocket-fuel.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\rocket-launcher.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\rocket-part.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\rocket-silo.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\rocket-structure.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\rocket.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\root-tree.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\satellite.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\science-pack-1.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\science-pack-2.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\science-pack-3.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\ship-wreck\big-ship-wreck-1.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\ship-wreck\big-ship-wreck-2.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\ship-wreck\big-ship-wreck-3.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\ship-wreck\big-ship-wreck-grass.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\ship-wreck\medium-ship-wreck.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\ship-wreck\small-ship-wreck-grass.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\ship-wreck\small-ship-wreck.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\shotgun-shell.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\shotgun.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\shape_square.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_0.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_1.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_2.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_3.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_4.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_5.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_6.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_7.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_8.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_9.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_A.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_anything.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_B.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_black.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_blue.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_C.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_cyan.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_D.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_E.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_each.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_everything.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_F.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_G.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_green.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_grey.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_H.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_I.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_J.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_K.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_L.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_M.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_N.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_O.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_P.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_pink.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_Q.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_R.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_red.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_S.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_T.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_U.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_V.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_W.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_white.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_X.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_Y.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_yellow.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\signal\signal_Z.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\slowdown-capsule.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\small-biter-corpse.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\small-biter.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\small-electric-pole.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\small-lamp.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\small-plane.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\small-scorchmark.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\small-spitter.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\small-worm-corpse.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\small-worm.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\solar-panel-equipment.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\solar-panel.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\solid-fuel-from-heavy-oil.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\solid-fuel-from-light-oil.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\solid-fuel-from-petroleum-gas.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\solid-fuel.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\space-module-wreck.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\space-science-pack.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\speed-module-2.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\speed-module-3.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\speed-module.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\splitter.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\stack-filter-inserter.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\stack-inserter.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\steam-engine.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\steam-turbine.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\steel-axe.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\steel-chest.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\steel-furnace.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\steel-plate.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\stone-brick.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\stone-furnace.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\stone-wall.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\stone.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\storage-tank.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\straight-rail-remnants.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\submachine-gun.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\substation.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\sulfur.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\tank-cannon.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\tank.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\train-stop.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\transport-belt.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\tree-01-stump.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\tree-01.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\tree-02-stump.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\tree-02.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\tree-03-stump.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\tree-03.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\tree-04-stump.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\tree-04.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\tree-05-stump.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\tree-05.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\tree-06-stump.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\tree-06.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\tree-07-stump.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\tree-07.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\tree-08-stump.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\tree-08.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\tree-09-stump.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\tree-09.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\underground-belt.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\uranium-235.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\uranium-238.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\uranium-cannon-shell.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\uranium-fuel-cell.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\uranium-ore.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\uranium-processing.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\uranium-rounds-magazine.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\used-up-uranium-fuel-cell.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\wall-remnants.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\water.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\wood.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\icons\wooden-chest.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\item-group\fluids.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\item-group\intermediate-products.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\item-group\logistics.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\item-group\military.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\item-group\production.png" />
+    <Content Include="data\facw\web\graphics\base\graphics\item-group\signals.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\achievement-labels.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\add-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\ammo-icon-red.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\and-or-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\arrow-button.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\fake-selection-box-2x2.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\fluid-indication-arrow-both-ways.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\fluid-indication-arrow.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\gui-arrow-circle.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\gui-arrow-medium.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\gui-arrow-small.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\heat-exchange-indication.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\hint-orange-arrow-down.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\hint-orange-arrow-left.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\hint-orange-arrow-right.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\hint-orange-arrow-up.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\hint-orange-box.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\inactive-arrow-gui-ascending-hovered.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\inactive-arrow-gui-ascending.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\inactive-arrow-gui-descending-hovered.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\inactive-arrow-gui-descending.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\indication-arrow-gui-ascending-hovered.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\indication-arrow-gui-ascending.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\indication-arrow-gui-descending-hovered.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\indication-arrow-gui-descending.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\indication-arrow-up-to-down.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\indication-arrow.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\indication-line.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\rail-planner-indication-arrow-too-far.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\rail-planner-indication-arrow.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\short-indication-line.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\underground-lines-remove.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\arrows\underground-lines.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\artillery-impact-map-visualization.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\background-image-logo.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\background-image.jpg" />
+    <Content Include="data\facw\web\graphics\core\graphics\battery.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\blueprint-slot-tileset.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\bonus-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\brush-circle-shape.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\brush-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\brush-square-shape.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\cable-editor-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\cancel.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\circuit-network-panel.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\clear.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\clock-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\clouds.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\color-effect-small.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\confirm.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\copper-wire.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\covered-chunk.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\cursor-boxes-32x32.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\cursor-boxes.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\cursor-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\danger-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\decorative-editor-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\destroyed-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\diode-green.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\diode-grey.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\diode-yellow.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\editor-selection.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\electric-network-info.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\electricity-icon-red.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\electricity-icon-unplugged.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\empty.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\enemy-force-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\enter-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\entity-editor-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\entity-info-dark-background.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\export.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\factorio-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\factorio.ico" />
+    <Content Include="data\facw\web\graphics\core\graphics\factorio.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\favourite-grey-hovered.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\favourite-grey.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\favourite-hovered.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\favourite.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\fluid-icon-red.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\force-editor-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\fuel-icon-red.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\game-stopped-visualization.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\ghost-bar.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\goto-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\green-circle.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\green-dot.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\green-wire.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\gui.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\hand.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\health-bar-green.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\health-bar-red.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\health-bar-yellow.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\hr-copper-wire.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\hr-green-wire.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\hr-red-wire.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\hr-wire-highlight.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\hr-wire-shadow.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\import.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\item-editor-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\left-arrow.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\light-cone.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\light-medium.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\light-small.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\logistic-delivery.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\logistic-network-panel.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\misaligned-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\multiplayer-waiting-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\no-building-material-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\no-recipe.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\no-storage-space-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\not-enough-construction-robots-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\not-enough-repair-packs-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\pause-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\play-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\player-force-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\pollution-visualization.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\questionmark.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\rail-path-not-possible.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\rail-placement-indicators.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\raw-progress-bar-background.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\raw-progress-bar.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\recharge-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\red-wire.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\remove-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\rename-normal.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\rename-small.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\reset.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\resource-editor-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\right-arrow.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\robot-slot.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\scrollbar-mini.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\search-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\selected-train-stop-in-map-view.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\shaders\alpha-mask.psh" />
+    <Content Include="data\facw\web\graphics\core\graphics\shaders\game.psh" />
+    <Content Include="data\facw\web\graphics\core\graphics\shaders\zoom-to-world.psh" />
+    <Content Include="data\facw\web\graphics\core\graphics\shoot-cursor-green.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\shoot-cursor-red.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\shoot.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\show-electric-network-in-map-view.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\show-logistics-network-in-map-view.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\show-player-names-in-map-view.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\show-pollution-in-map-view.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\show-train-station-names-in-map-view.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\show-turret-range-in-map-view.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\side-menu-icons.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\slot-icon-ammo.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\slot-icon-armor.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\slot-icon-blueprint.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\slot-icon-fuel.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\slot-icon-gun.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\slot-icon-module.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\slot-icon-resource.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\slot-icon-result.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\slot-icon-robot-material.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\slot-icon-robot.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\slot-icon-tool.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\slot.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\spawn-flag.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\speed-down.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\speed-up.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\splash-screen-image.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\spray-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\surface-editor-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\switch-button-gui.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\switch-quickbar.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\tile-editor-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\too-far-from-roboport-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\too-far.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\track-button.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\train-stop-in-map-view.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\trash-bin.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\treex32-provisional.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\treex64-provisional.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\visualization-construction-radius.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\visualization-logistic-radius.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\warning-icon.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\white-square.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\wire-highlight.png" />
+    <Content Include="data\facw\web\graphics\core\graphics\wire-shadow.png" />
+    <Content Include="data\facw\web\quantorio.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\quantorio_files\base64-string.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\quantorio_files\bootstrap-theme.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\quantorio_files\bootstrap.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\quantorio_files\bootstrap.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\quantorio_files\data.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\quantorio_files\en.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\quantorio_files\index.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\quantorio_files\index.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\quantorio_files\intermediate-products.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\quantorio_files\jquery-1.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\quantorio_files\logistics.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\quantorio_files\lz-string.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\quantorio_files\military.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\quantorio_files\production.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\facw\web\quantorio_files\zh-CN.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="使用说明服务端.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

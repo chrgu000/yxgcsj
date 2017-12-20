@@ -186,15 +186,16 @@ Public Class Form_main
         'serverlist（4, server_select) ping
 
         '修改host文件
-        edit_hosts()
+        'edit_hosts()
 
         '修改player-data.json文件
-        edit_player_data_json()
+        'edit_player_data_json()
 
+        '获取选定服务器ip
 
         '启动游戏
         'If err = 0 Then
-        Shell(".\bin\x64\factorio.exe", Style:=AppWinStyle.NormalFocus)
+        Shell(".\bin\x64\factorio.exe --mp-connect " & serverlist（3, server_select), Style:=AppWinStyle.NormalFocus)
         'End If
 
 
@@ -642,5 +643,13 @@ Public Class Form_main
         Catch ex As Exception
             MsgBox（"请确认已经打开游戏并且游戏版本输入正确！")
         End Try
+    End Sub
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        Process.Start(".\data\facw\web\quantorio.htm")
+    End Sub
+
+    Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
+        Process.Start("http://quantorio.garveen.net")
     End Sub
 End Class

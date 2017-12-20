@@ -22,7 +22,6 @@ Partial Class server
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(server))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
@@ -71,7 +70,7 @@ Partial Class server
         Me.Label_ver = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
-        Me.Timer_sync_server = New System.Windows.Forms.Timer(Me.components)
+        Me.Timer_sync_server = New System.Windows.Forms.Timer()
         Me.BackgroundWorker_creact_dsl = New System.ComponentModel.BackgroundWorker()
         Me.Button_readme = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
@@ -514,7 +513,7 @@ Partial Class server
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(29, 12)
         Me.Label_ver.TabIndex = 15
-        Me.Label_ver.Text = "0.22"
+        Me.Label_ver.Text = "0.23"
         '
         'Label17
         '

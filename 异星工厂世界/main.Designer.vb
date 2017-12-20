@@ -37,6 +37,11 @@ Partial Class Form_main
         Me.Button_reload_serverlist = New System.Windows.Forms.Button()
         Me.Button_run_game = New System.Windows.Forms.Button()
         Me.TabPage_server = New System.Windows.Forms.TabPage()
+        Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.TextBox_game_ver = New System.Windows.Forms.TextBox()
+        Me.CheckBox_chinese_chat = New System.Windows.Forms.CheckBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Button_change_player_color = New System.Windows.Forms.Button()
@@ -45,7 +50,6 @@ Partial Class Form_main
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBox_test_mode_pass = New System.Windows.Forms.TextBox()
         Me.TextBox_serverlist = New System.Windows.Forms.TextBox()
-        Me.CheckBox_chinese_chat = New System.Windows.Forms.CheckBox()
         Me.BackgroundWorker_download_serverlist = New System.ComponentModel.BackgroundWorker()
         Me.Timer_sync_server = New System.Windows.Forms.Timer(Me.components)
         Me.Timer_load_sl = New System.Windows.Forms.Timer(Me.components)
@@ -54,7 +58,6 @@ Partial Class Form_main
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.Label_ver = New System.Windows.Forms.Label()
         Me.BackgroundWorker_creact_dsl = New System.ComponentModel.BackgroundWorker()
-        Me.TextBox_game_ver = New System.Windows.Forms.TextBox()
         Me.Label_ver_status = New System.Windows.Forms.Label()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.TabControl1.SuspendLayout()
@@ -68,9 +71,9 @@ Partial Class Form_main
         Me.Button_updata.Enabled = False
         Me.Button_updata.Location = New System.Drawing.Point(371, 419)
         Me.Button_updata.Name = "Button_updata"
-        Me.Button_updata.Size = New System.Drawing.Size(75, 23)
+        Me.Button_updata.Size = New System.Drawing.Size(87, 23)
         Me.Button_updata.TabIndex = 3
-        Me.Button_updata.Text = "强制修复"
+        Me.Button_updata.Text = "强制更新修复"
         Me.Button_updata.UseVisualStyleBackColor = True
         '
         'Label2
@@ -134,7 +137,6 @@ Partial Class Form_main
         '
         'TabPage_client
         '
-        Me.TabPage_client.Controls.Add(Me.Button_select_server)
         Me.TabPage_client.Controls.Add(Me.Button_reload_serverlist)
         Me.TabPage_client.Controls.Add(Me.Button_run_game)
         Me.TabPage_client.Controls.Add(Me.ListView1)
@@ -149,19 +151,20 @@ Partial Class Form_main
         'Button_select_server
         '
         Me.Button_select_server.Enabled = False
-        Me.Button_select_server.Location = New System.Drawing.Point(6, 311)
+        Me.Button_select_server.Location = New System.Drawing.Point(204, 419)
         Me.Button_select_server.Name = "Button_select_server"
         Me.Button_select_server.Size = New System.Drawing.Size(119, 23)
         Me.Button_select_server.TabIndex = 12
         Me.Button_select_server.Text = "切换到选定服务器"
         Me.Button_select_server.UseVisualStyleBackColor = True
+        Me.Button_select_server.Visible = False
         '
         'Button_reload_serverlist
         '
         Me.Button_reload_serverlist.Enabled = False
-        Me.Button_reload_serverlist.Location = New System.Drawing.Point(353, 311)
+        Me.Button_reload_serverlist.Location = New System.Drawing.Point(264, 313)
         Me.Button_reload_serverlist.Name = "Button_reload_serverlist"
-        Me.Button_reload_serverlist.Size = New System.Drawing.Size(119, 23)
+        Me.Button_reload_serverlist.Size = New System.Drawing.Size(178, 23)
         Me.Button_reload_serverlist.TabIndex = 11
         Me.Button_reload_serverlist.Text = "刷新服务器列表 0"
         Me.Button_reload_serverlist.UseVisualStyleBackColor = True
@@ -169,15 +172,20 @@ Partial Class Form_main
         'Button_run_game
         '
         Me.Button_run_game.Enabled = False
-        Me.Button_run_game.Location = New System.Drawing.Point(177, 311)
+        Me.Button_run_game.Location = New System.Drawing.Point(37, 313)
         Me.Button_run_game.Name = "Button_run_game"
-        Me.Button_run_game.Size = New System.Drawing.Size(127, 23)
+        Me.Button_run_game.Size = New System.Drawing.Size(178, 23)
         Me.Button_run_game.TabIndex = 7
         Me.Button_run_game.Text = "启动游戏"
         Me.Button_run_game.UseVisualStyleBackColor = True
         '
         'TabPage_server
         '
+        Me.TabPage_server.Controls.Add(Me.LinkLabel2)
+        Me.TabPage_server.Controls.Add(Me.Label4)
+        Me.TabPage_server.Controls.Add(Me.Button1)
+        Me.TabPage_server.Controls.Add(Me.TextBox_game_ver)
+        Me.TabPage_server.Controls.Add(Me.CheckBox_chinese_chat)
         Me.TabPage_server.Controls.Add(Me.GroupBox1)
         Me.TabPage_server.Controls.Add(Me.LinkLabel_game_download_url)
         Me.TabPage_server.Controls.Add(Me.Button_test_mode)
@@ -191,13 +199,63 @@ Partial Class Form_main
         Me.TabPage_server.Text = "工具"
         Me.TabPage_server.UseVisualStyleBackColor = True
         '
+        'LinkLabel2
+        '
+        Me.LinkLabel2.AutoSize = True
+        Me.LinkLabel2.Location = New System.Drawing.Point(124, 229)
+        Me.LinkLabel2.Name = "LinkLabel2"
+        Me.LinkLabel2.Size = New System.Drawing.Size(221, 12)
+        Me.LinkLabel2.TabIndex = 21
+        Me.LinkLabel2.TabStop = True
+        Me.LinkLabel2.Text = "原地址:http://quantorio.garveen.net/"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(132, 214)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(191, 12)
+        Me.Label4.TabIndex = 20
+        Me.Label4.Text = "推荐浏览器为firefox 作者:acabin"
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(9, 216)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(109, 23)
+        Me.Button1.TabIndex = 19
+        Me.Button1.Text = "量化工具离线版"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'TextBox_game_ver
+        '
+        Me.TextBox_game_ver.Enabled = False
+        Me.TextBox_game_ver.Location = New System.Drawing.Point(305, 180)
+        Me.TextBox_game_ver.Name = "TextBox_game_ver"
+        Me.TextBox_game_ver.Size = New System.Drawing.Size(100, 21)
+        Me.TextBox_game_ver.TabIndex = 18
+        Me.TextBox_game_ver.Text = "0.16.6"
+        '
+        'CheckBox_chinese_chat
+        '
+        Me.CheckBox_chinese_chat.AutoSize = True
+        Me.CheckBox_chinese_chat.Checked = True
+        Me.CheckBox_chinese_chat.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBox_chinese_chat.Enabled = False
+        Me.CheckBox_chinese_chat.Location = New System.Drawing.Point(9, 182)
+        Me.CheckBox_chinese_chat.Name = "CheckBox_chinese_chat"
+        Me.CheckBox_chinese_chat.Size = New System.Drawing.Size(300, 16)
+        Me.CheckBox_chinese_chat.TabIndex = 17
+        Me.CheckBox_chinese_chat.Text = "中文聊天支持（Ctrl+~激活输入窗口），游戏版本："
+        Me.CheckBox_chinese_chat.UseVisualStyleBackColor = True
+        '
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.Button_change_player_color)
         Me.GroupBox1.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(467, 243)
+        Me.GroupBox1.Size = New System.Drawing.Size(467, 170)
         Me.GroupBox1.TabIndex = 6
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "控制台命令"
@@ -223,7 +281,7 @@ Partial Class Form_main
         'LinkLabel_game_download_url
         '
         Me.LinkLabel_game_download_url.AutoSize = True
-        Me.LinkLabel_game_download_url.Location = New System.Drawing.Point(7, 277)
+        Me.LinkLabel_game_download_url.Location = New System.Drawing.Point(7, 288)
         Me.LinkLabel_game_download_url.Name = "LinkLabel_game_download_url"
         Me.LinkLabel_game_download_url.Size = New System.Drawing.Size(89, 12)
         Me.LinkLabel_game_download_url.TabIndex = 3
@@ -268,19 +326,6 @@ Partial Class Form_main
     "4"
         Me.TextBox_serverlist.Visible = False
         '
-        'CheckBox_chinese_chat
-        '
-        Me.CheckBox_chinese_chat.AutoSize = True
-        Me.CheckBox_chinese_chat.Checked = True
-        Me.CheckBox_chinese_chat.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox_chinese_chat.Enabled = False
-        Me.CheckBox_chinese_chat.Location = New System.Drawing.Point(12, 390)
-        Me.CheckBox_chinese_chat.Name = "CheckBox_chinese_chat"
-        Me.CheckBox_chinese_chat.Size = New System.Drawing.Size(300, 16)
-        Me.CheckBox_chinese_chat.TabIndex = 9
-        Me.CheckBox_chinese_chat.Text = "中文聊天支持（Ctrl+~激活输入窗口），游戏版本："
-        Me.CheckBox_chinese_chat.UseVisualStyleBackColor = True
-        '
         'BackgroundWorker_download_serverlist
         '
         '
@@ -323,16 +368,7 @@ Partial Class Form_main
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(29, 12)
         Me.Label_ver.TabIndex = 13
-        Me.Label_ver.Text = "0.22"
-        '
-        'TextBox_game_ver
-        '
-        Me.TextBox_game_ver.Enabled = False
-        Me.TextBox_game_ver.Location = New System.Drawing.Point(308, 388)
-        Me.TextBox_game_ver.Name = "TextBox_game_ver"
-        Me.TextBox_game_ver.Size = New System.Drawing.Size(100, 21)
-        Me.TextBox_game_ver.TabIndex = 16
-        Me.TextBox_game_ver.Text = "0.16.3"
+        Me.Label_ver.Text = "0.23"
         '
         'Label_ver_status
         '
@@ -348,13 +384,12 @@ Partial Class Form_main
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(514, 479)
+        Me.Controls.Add(Me.Button_select_server)
         Me.Controls.Add(Me.Label_ver_status)
         Me.Controls.Add(Me.TextBox_serverlist)
-        Me.Controls.Add(Me.TextBox_game_ver)
         Me.Controls.Add(Me.Label_ver)
         Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.Button_readme)
-        Me.Controls.Add(Me.CheckBox_chinese_chat)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Button_updata)
@@ -383,7 +418,6 @@ Partial Class Form_main
     Friend WithEvents TabPage_client As TabPage
     Friend WithEvents TabPage_server As TabPage
     Friend WithEvents Button_run_game As Button
-    Friend WithEvents CheckBox_chinese_chat As CheckBox
     Friend WithEvents TextBox_serverlist As TextBox
     Friend WithEvents BackgroundWorker_download_serverlist As System.ComponentModel.BackgroundWorker
     Friend WithEvents Timer_sync_server As Timer
@@ -394,7 +428,6 @@ Partial Class Form_main
     Friend WithEvents LinkLabel1 As LinkLabel
     Friend WithEvents Label_ver As Label
     Friend WithEvents BackgroundWorker_creact_dsl As System.ComponentModel.BackgroundWorker
-    Friend WithEvents TextBox_game_ver As TextBox
     Friend WithEvents Label_ver_status As Label
     Friend WithEvents Button_select_server As Button
     Friend WithEvents Button_test_mode As Button
@@ -405,4 +438,9 @@ Partial Class Form_main
     Friend WithEvents Label3 As Label
     Friend WithEvents ColorDialog1 As ColorDialog
     Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents Button1 As Button
+    Friend WithEvents TextBox_game_ver As TextBox
+    Friend WithEvents CheckBox_chinese_chat As CheckBox
+    Friend WithEvents LinkLabel2 As LinkLabel
+    Friend WithEvents Label4 As Label
 End Class
