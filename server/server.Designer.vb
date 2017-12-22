@@ -22,9 +22,13 @@ Partial Class server
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(server))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.TextBox_port = New System.Windows.Forms.TextBox()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.CheckBox_custom_port = New System.Windows.Forms.CheckBox()
         Me.CheckBox_pppoe = New System.Windows.Forms.CheckBox()
         Me.Label1_status = New System.Windows.Forms.Label()
         Me.TextBox_config_path_cfg = New System.Windows.Forms.TextBox()
@@ -70,7 +74,7 @@ Partial Class server
         Me.Label_ver = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
-        Me.Timer_sync_server = New System.Windows.Forms.Timer()
+        Me.Timer_sync_server = New System.Windows.Forms.Timer(Me.components)
         Me.BackgroundWorker_creact_dsl = New System.ComponentModel.BackgroundWorker()
         Me.Button_readme = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
@@ -90,6 +94,9 @@ Partial Class server
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.TextBox_port)
+        Me.TabPage1.Controls.Add(Me.Label18)
+        Me.TabPage1.Controls.Add(Me.CheckBox_custom_port)
         Me.TabPage1.Controls.Add(Me.CheckBox_pppoe)
         Me.TabPage1.Controls.Add(Me.Label1_status)
         Me.TabPage1.Controls.Add(Me.TextBox_config_path_cfg)
@@ -134,10 +141,38 @@ Partial Class server
         Me.TabPage1.Text = "独立服务器"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'TextBox_port
+        '
+        Me.TextBox_port.Enabled = False
+        Me.TextBox_port.Location = New System.Drawing.Point(200, 14)
+        Me.TextBox_port.Name = "TextBox_port"
+        Me.TextBox_port.Size = New System.Drawing.Size(38, 21)
+        Me.TextBox_port.TabIndex = 110
+        Me.TextBox_port.Text = "34197"
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(187, 19)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(11, 12)
+        Me.Label18.TabIndex = 109
+        Me.Label18.Text = ":"
+        '
+        'CheckBox_custom_port
+        '
+        Me.CheckBox_custom_port.AutoSize = True
+        Me.CheckBox_custom_port.Location = New System.Drawing.Point(244, 17)
+        Me.CheckBox_custom_port.Name = "CheckBox_custom_port"
+        Me.CheckBox_custom_port.Size = New System.Drawing.Size(84, 16)
+        Me.CheckBox_custom_port.TabIndex = 108
+        Me.CheckBox_custom_port.Text = "自定义端口"
+        Me.CheckBox_custom_port.UseVisualStyleBackColor = True
+        '
         'CheckBox_pppoe
         '
         Me.CheckBox_pppoe.AutoSize = True
-        Me.CheckBox_pppoe.Location = New System.Drawing.Point(272, 16)
+        Me.CheckBox_pppoe.Location = New System.Drawing.Point(336, 41)
         Me.CheckBox_pppoe.Name = "CheckBox_pppoe"
         Me.CheckBox_pppoe.Size = New System.Drawing.Size(84, 16)
         Me.CheckBox_pppoe.TabIndex = 107
@@ -155,7 +190,7 @@ Partial Class server
         '
         'TextBox_config_path_cfg
         '
-        Me.TextBox_config_path_cfg.Location = New System.Drawing.Point(358, 39)
+        Me.TextBox_config_path_cfg.Location = New System.Drawing.Point(166, 441)
         Me.TextBox_config_path_cfg.Name = "TextBox_config_path_cfg"
         Me.TextBox_config_path_cfg.Size = New System.Drawing.Size(100, 21)
         Me.TextBox_config_path_cfg.TabIndex = 104
@@ -217,7 +252,7 @@ Partial Class server
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(358, 12)
+        Me.Button3.Location = New System.Drawing.Point(347, 142)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(111, 23)
         Me.Button3.TabIndex = 96
@@ -267,11 +302,11 @@ Partial Class server
         '
         'Button_check_ip
         '
-        Me.Button_check_ip.Location = New System.Drawing.Point(191, 12)
+        Me.Button_check_ip.Location = New System.Drawing.Point(334, 12)
         Me.Button_check_ip.Name = "Button_check_ip"
-        Me.Button_check_ip.Size = New System.Drawing.Size(75, 23)
+        Me.Button_check_ip.Size = New System.Drawing.Size(88, 23)
         Me.Button_check_ip.TabIndex = 90
-        Me.Button_check_ip.Text = "自动检测"
+        Me.Button_check_ip.Text = "自动检测IP"
         Me.Button_check_ip.UseVisualStyleBackColor = True
         '
         'Label13
@@ -513,7 +548,7 @@ Partial Class server
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(29, 12)
         Me.Label_ver.TabIndex = 15
-        Me.Label_ver.Text = "0.23"
+        Me.Label_ver.Text = "0.24"
         '
         'Label17
         '
@@ -625,4 +660,7 @@ Partial Class server
     Friend WithEvents Button_readme As Button
     Friend WithEvents Label1_status As Label
     Friend WithEvents CheckBox_pppoe As CheckBox
+    Friend WithEvents TextBox_port As TextBox
+    Friend WithEvents Label18 As Label
+    Friend WithEvents CheckBox_custom_port As CheckBox
 End Class

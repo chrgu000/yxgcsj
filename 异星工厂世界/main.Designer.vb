@@ -33,9 +33,9 @@ Partial Class Form_main
         Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage_client = New System.Windows.Forms.TabPage()
-        Me.Button_select_server = New System.Windows.Forms.Button()
+        Me.Button_load_game = New System.Windows.Forms.Button()
         Me.Button_reload_serverlist = New System.Windows.Forms.Button()
-        Me.Button_run_game = New System.Windows.Forms.Button()
+        Me.Button_connect_server = New System.Windows.Forms.Button()
         Me.TabPage_server = New System.Windows.Forms.TabPage()
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -49,6 +49,8 @@ Partial Class Form_main
         Me.Button_test_mode = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBox_test_mode_pass = New System.Windows.Forms.TextBox()
+        Me.TabPage_mods = New System.Windows.Forms.TabPage()
+        Me.Button_select_server = New System.Windows.Forms.Button()
         Me.TextBox_serverlist = New System.Windows.Forms.TextBox()
         Me.BackgroundWorker_download_serverlist = New System.ComponentModel.BackgroundWorker()
         Me.Timer_sync_server = New System.Windows.Forms.Timer(Me.components)
@@ -125,59 +127,58 @@ Partial Class Form_main
         '
         Me.TabControl1.Controls.Add(Me.TabPage_client)
         Me.TabControl1.Controls.Add(Me.TabPage_server)
+        Me.TabControl1.Controls.Add(Me.TabPage_mods)
         Me.TabControl1.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.TabControl1.ItemSize = New System.Drawing.Size(240, 18)
         Me.TabControl1.Location = New System.Drawing.Point(12, 12)
         Me.TabControl1.Multiline = True
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(487, 368)
-        Me.TabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed
+        Me.TabControl1.Size = New System.Drawing.Size(487, 382)
         Me.TabControl1.TabIndex = 1
         '
         'TabPage_client
         '
+        Me.TabPage_client.Controls.Add(Me.Button_load_game)
         Me.TabPage_client.Controls.Add(Me.Button_reload_serverlist)
-        Me.TabPage_client.Controls.Add(Me.Button_run_game)
+        Me.TabPage_client.Controls.Add(Me.Button_connect_server)
         Me.TabPage_client.Controls.Add(Me.ListView1)
         Me.TabPage_client.Location = New System.Drawing.Point(4, 22)
         Me.TabPage_client.Name = "TabPage_client"
         Me.TabPage_client.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage_client.Size = New System.Drawing.Size(479, 342)
+        Me.TabPage_client.Size = New System.Drawing.Size(479, 356)
         Me.TabPage_client.TabIndex = 0
         Me.TabPage_client.Text = "连接服务器"
         Me.TabPage_client.UseVisualStyleBackColor = True
         '
-        'Button_select_server
+        'Button_load_game
         '
-        Me.Button_select_server.Enabled = False
-        Me.Button_select_server.Location = New System.Drawing.Point(204, 419)
-        Me.Button_select_server.Name = "Button_select_server"
-        Me.Button_select_server.Size = New System.Drawing.Size(119, 23)
-        Me.Button_select_server.TabIndex = 12
-        Me.Button_select_server.Text = "切换到选定服务器"
-        Me.Button_select_server.UseVisualStyleBackColor = True
-        Me.Button_select_server.Visible = False
+        Me.Button_load_game.Location = New System.Drawing.Point(398, 313)
+        Me.Button_load_game.Name = "Button_load_game"
+        Me.Button_load_game.Size = New System.Drawing.Size(75, 23)
+        Me.Button_load_game.TabIndex = 12
+        Me.Button_load_game.Text = "只引导游戏"
+        Me.Button_load_game.UseVisualStyleBackColor = True
         '
         'Button_reload_serverlist
         '
         Me.Button_reload_serverlist.Enabled = False
-        Me.Button_reload_serverlist.Location = New System.Drawing.Point(264, 313)
+        Me.Button_reload_serverlist.Location = New System.Drawing.Point(252, 313)
         Me.Button_reload_serverlist.Name = "Button_reload_serverlist"
-        Me.Button_reload_serverlist.Size = New System.Drawing.Size(178, 23)
+        Me.Button_reload_serverlist.Size = New System.Drawing.Size(120, 23)
         Me.Button_reload_serverlist.TabIndex = 11
         Me.Button_reload_serverlist.Text = "刷新服务器列表 0"
         Me.Button_reload_serverlist.UseVisualStyleBackColor = True
         '
-        'Button_run_game
+        'Button_connect_server
         '
-        Me.Button_run_game.Enabled = False
-        Me.Button_run_game.Location = New System.Drawing.Point(37, 313)
-        Me.Button_run_game.Name = "Button_run_game"
-        Me.Button_run_game.Size = New System.Drawing.Size(178, 23)
-        Me.Button_run_game.TabIndex = 7
-        Me.Button_run_game.Text = "启动游戏"
-        Me.Button_run_game.UseVisualStyleBackColor = True
+        Me.Button_connect_server.Enabled = False
+        Me.Button_connect_server.Location = New System.Drawing.Point(28, 313)
+        Me.Button_connect_server.Name = "Button_connect_server"
+        Me.Button_connect_server.Size = New System.Drawing.Size(182, 23)
+        Me.Button_connect_server.TabIndex = 7
+        Me.Button_connect_server.Text = "进入选定服务器"
+        Me.Button_connect_server.UseVisualStyleBackColor = True
         '
         'TabPage_server
         '
@@ -194,7 +195,7 @@ Partial Class Form_main
         Me.TabPage_server.Location = New System.Drawing.Point(4, 22)
         Me.TabPage_server.Name = "TabPage_server"
         Me.TabPage_server.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage_server.Size = New System.Drawing.Size(479, 342)
+        Me.TabPage_server.Size = New System.Drawing.Size(479, 356)
         Me.TabPage_server.TabIndex = 1
         Me.TabPage_server.Text = "工具"
         Me.TabPage_server.UseVisualStyleBackColor = True
@@ -314,6 +315,27 @@ Partial Class Form_main
         Me.TextBox_test_mode_pass.Size = New System.Drawing.Size(100, 21)
         Me.TextBox_test_mode_pass.TabIndex = 0
         '
+        'TabPage_mods
+        '
+        Me.TabPage_mods.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage_mods.Name = "TabPage_mods"
+        Me.TabPage_mods.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage_mods.Size = New System.Drawing.Size(479, 356)
+        Me.TabPage_mods.TabIndex = 2
+        Me.TabPage_mods.Text = "下载MODS"
+        Me.TabPage_mods.UseVisualStyleBackColor = True
+        '
+        'Button_select_server
+        '
+        Me.Button_select_server.Enabled = False
+        Me.Button_select_server.Location = New System.Drawing.Point(204, 419)
+        Me.Button_select_server.Name = "Button_select_server"
+        Me.Button_select_server.Size = New System.Drawing.Size(119, 23)
+        Me.Button_select_server.TabIndex = 12
+        Me.Button_select_server.Text = "切换到选定服务器"
+        Me.Button_select_server.UseVisualStyleBackColor = True
+        Me.Button_select_server.Visible = False
+        '
         'TextBox_serverlist
         '
         Me.TextBox_serverlist.Enabled = False
@@ -368,7 +390,7 @@ Partial Class Form_main
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(29, 12)
         Me.Label_ver.TabIndex = 13
-        Me.Label_ver.Text = "0.23"
+        Me.Label_ver.Text = "0.24"
         '
         'Label_ver_status
         '
@@ -417,7 +439,7 @@ Partial Class Form_main
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage_client As TabPage
     Friend WithEvents TabPage_server As TabPage
-    Friend WithEvents Button_run_game As Button
+    Friend WithEvents Button_connect_server As Button
     Friend WithEvents TextBox_serverlist As TextBox
     Friend WithEvents BackgroundWorker_download_serverlist As System.ComponentModel.BackgroundWorker
     Friend WithEvents Timer_sync_server As Timer
@@ -443,4 +465,6 @@ Partial Class Form_main
     Friend WithEvents CheckBox_chinese_chat As CheckBox
     Friend WithEvents LinkLabel2 As LinkLabel
     Friend WithEvents Label4 As Label
+    Friend WithEvents Button_load_game As Button
+    Friend WithEvents TabPage_mods As TabPage
 End Class

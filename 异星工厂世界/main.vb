@@ -152,7 +152,7 @@ Public Class Form_main
 
             '载入完成,控件变为可用
             Button_select_server.Enabled = True
-            Button_run_game.Enabled = True
+            Button_connect_server.Enabled = True
 
             Button_readme.Enabled = True
             Button_updata.Enabled = True
@@ -177,7 +177,7 @@ Public Class Form_main
     End Sub
 
 
-    Private Sub Button_join_Click(sender As Object, e As EventArgs) Handles Button_run_game.Click
+    Private Sub Button_join_Click(sender As Object, e As EventArgs) Handles Button_connect_server.Click
         server_select = ListView1.FocusedItem.Index
         'serverlist（0, server_select) 服务器名称
         'serverlist（1, server_select) 服务器介绍
@@ -441,8 +441,8 @@ Public Class Form_main
     End Sub
 
     Private Sub Button_refresh_serverlist_Click(sender As Object, e As EventArgs)
-        Button_run_game.Text = "正在载入服务器列表"
-        Button_run_game.Enabled = False
+        Button_connect_server.Text = "正在载入服务器列表"
+        Button_connect_server.Enabled = False
 
         BackgroundWorker_download_serverlist.RunWorkerAsync()
     End Sub
@@ -506,7 +506,7 @@ Public Class Form_main
         Timer_load_sl.Enabled = False
 
         Button_select_server.Enabled = False
-        Button_run_game.Enabled = False
+        Button_connect_server.Enabled = False
         Button_reload_serverlist.Enabled = False
         Button_reload_serverlist.Text = "正在刷新,请稍后"
         Button_readme.Enabled = False
@@ -562,7 +562,7 @@ Public Class Form_main
         If My.Computer.FileSystem.FileExists("sl.txt") Then
             load_server_list()
         Else
-            Me.Button_run_game.Text = "下载失败!"
+            Me.Button_connect_server.Text = "下载失败!"
             miao = 1
         End If
         Timer_enable_reload_serverlist.Enabled = True
@@ -651,5 +651,9 @@ Public Class Form_main
 
     Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
         Process.Start("http://quantorio.garveen.net")
+    End Sub
+
+    Private Sub Button_load_game_Click(sender As Object, e As EventArgs) Handles Button_load_game.Click
+        Shell(".\bin\x64\factorio.exe", Style:=AppWinStyle.NormalFocus)
     End Sub
 End Class

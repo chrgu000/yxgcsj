@@ -6,6 +6,7 @@ Public Class server
     '十分钟上传一次,18分钟无消息删除.
     Dim server_id
     Public serverlist(4, 0)
+    'serverlist数组 x0为服务器名称，x1为介绍，x2时间（暂时无用）,x3 ip x4 端口 暂时无用
     Private Sub Button_create_server_Click(sender As Object, e As EventArgs) Handles Button_create_server.Click
 
         If TextBox_server_intro.Text = "" Or TextBox_server_name.Text = "" Or TextBox_IP.Text = "" Then
@@ -157,7 +158,7 @@ Public Class server
     End Sub
 
     Private Sub create_server_settings()
-        Dim server_settings(59)
+        Dim server_settings(62)
         server_settings(0) = "{"
         server_settings(1) = "  ""name"": ""Name of the game as it will appear in the game listing"","
         server_settings(2) = "  ""description"": ""Description of the game that will appear in the listing"","
@@ -209,14 +210,14 @@ Public Class server
         server_settings(43) = "  ""_comment_autosave_slots"": ""server autosave slots, it is cycled through when the server autosaves."","
         server_settings(44) = "  ""autosave_slots"": " & TextBox_autosave_slots.Text & ","
         server_settings(45) = ""
-        server_settings(46) = " ""_comment_afk_autokick_interval"": ""How many minutes until someone is kicked when doing nothing, 0 for never."","
-        server_settings(47) = " ""afk_autokick_interval"": " & TextBox_afk_autokick_interval.Text & ","
+        server_settings(46) = "  ""_comment_afk_autokick_interval"": ""How many minutes until someone is kicked when doing nothing, 0 for never."","
+        server_settings(47) = "  ""afk_autokick_interval"": " & TextBox_afk_autokick_interval.Text & ","
         server_settings(48) = ""
-        server_settings(49) = " ""_comment_auto_pause"": ""Whether should the server be paused when no players are present."","
+        server_settings(49) = "  ""_comment_auto_pause"": ""Whether should the server be paused when no players are present."","
         If ComboBox_auto_pause.Text = "否" Then
-            server_settings(50) = " ""auto_pause"": false,"
+            server_settings(50) = "  ""auto_pause"": false,"
         Else
-            server_settings(50) = " ""auto_pause"": true,"
+            server_settings(50) = "  ""auto_pause"": true,"
         End If
         server_settings(51) = ""
         server_settings(52) = "  ""only_admins_can_pause_the_game"": true,"
@@ -224,9 +225,12 @@ Public Class server
         server_settings(54) = "  ""_comment_autosave_only_on_server"": ""Whether autosaves should be saved only on server or also on all connected clients. Default is true."","
         server_settings(55) = "  ""autosave_only_on_server"": true,"
         server_settings(56) = ""
-        server_settings(57) = "  ""_comment_admins"": ""List of case insensitive usernames, that will be promoted immediately"","
-        server_settings(58) = "  ""admins"": []"
-        server_settings(59) = "}"
+        server_settings(57) = "  ""_comment_non_blocking_saving"": ""Highly experimental feature, enable only at your own risk of losing your saves. On UNIX systems, server will fork itself to create an autosave. Autosaving on connected Windows clients will be disabled regardless of autosave_only_on_server option."","
+        server_settings(58) = "  ""non_blocking_saving"": false,"
+        server_settings(59) = ""
+        server_settings(60) = "  ""_comment_admins"": ""List of case insensitive usernames, that will be promoted immediately"","
+        server_settings(61) = "  ""admins"": []"
+        server_settings(62) = "}"
 
         Dim server_settings_file_string = ""
         For i = 0 To UBound(server_settings)
@@ -271,6 +275,7 @@ Public Class server
         'serverlist(2, this_server) = Format(Now, "MMddHHmm")2017/11/15 19:22:31
         serverlist(2, this_server) = Format(Now, "yyyy/MM/dd HH:mm:ss")
         serverlist(3, this_server) = TextBox_IP.Text
+        serverlist(4, this_server) = TextBox_port.Text
 
 
 
@@ -282,7 +287,7 @@ Public Class server
         'IP重复的去时间靠前的
         For i = 0 To UBound(serverlist, 2)
             For y = i + 1 To UBound(serverlist, 2)
-                If serverlist(3, i) = serverlist(3, y) Then
+                If (serverlist(3, i) = serverlist(3, y)) And (serverlist(4, i) = serverlist(4, y)) Then
                     If DateDiff("n", CDate(serverlist(2, i)), CDate(serverlist(2, y)）） > 0 Then
                         serverlist(2, i) = "2017/01/01 00:00:00"
                     Else
@@ -469,5 +474,14 @@ delete:'删除时间为"2017/01/01 00:00:00"的
 
     Private Sub CheckBox_pppoe_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_pppoe.CheckedChanged
 
+    End Sub
+
+    Private Sub CheckBox_custom_port_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_custom_port.CheckedChanged
+        If CheckBox_custom_port.Checked Then
+            TextBox_port.Enabled = True
+        Else
+            TextBox_port.Enabled = False
+            TextBox_port.Text = "34197"
+        End If
     End Sub
 End Class
