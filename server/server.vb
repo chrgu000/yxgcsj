@@ -263,7 +263,7 @@ Public Class server
         'Shell("""./data/facw/svn.exe""  cleanup  ./data/facw/sl", AppWinStyle.Hide, True)
         Label1_status.Text = "正在下载服务器列表"
         Threading.Thread.Sleep(200)
-        Shell("""./data/facw/svn.exe""  co  http://code.taobao.org/svn/yxgcipup/trunk  ./data/facw/sl", AppWinStyle.Hide, True)
+        Shell("""./data/facw/svn.exe""  co  http://code.taobao.org/svn/yxgcip/trunk  ./data/facw/sl", AppWinStyle.Hide, True)
         Threading.Thread.Sleep(200)
     End Sub
 
@@ -385,7 +385,7 @@ delete:'删除时间为"2017/01/01 00:00:00"的
                 For l = 0 To i
                     temp2 = LineInput(1)
                     Dim arr As String() = temp2.Split(vbTab) '放入arr数组
-                    For h As Integer = 0 To 3
+                    For h As Integer = 0 To 4
                         serverlist(h, l) = arr(h)
                         'MsgBox(serverlist(h, l))
                     Next
@@ -484,4 +484,6 @@ delete:'删除时间为"2017/01/01 00:00:00"的
             TextBox_port.Text = "34197"
         End If
     End Sub
+
+
 End Class

@@ -53,7 +53,6 @@ Partial Class Form_main
         Me.Button_select_server = New System.Windows.Forms.Button()
         Me.TextBox_serverlist = New System.Windows.Forms.TextBox()
         Me.BackgroundWorker_download_serverlist = New System.ComponentModel.BackgroundWorker()
-        Me.Timer_sync_server = New System.Windows.Forms.Timer(Me.components)
         Me.Timer_load_sl = New System.Windows.Forms.Timer(Me.components)
         Me.Button_readme = New System.Windows.Forms.Button()
         Me.Timer_enable_reload_serverlist = New System.Windows.Forms.Timer(Me.components)
@@ -62,6 +61,8 @@ Partial Class Form_main
         Me.BackgroundWorker_creact_dsl = New System.ComponentModel.BackgroundWorker()
         Me.Label_ver_status = New System.Windows.Forms.Label()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
+        Me.Label_tips = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage_client.SuspendLayout()
         Me.TabPage_server.SuspendLayout()
@@ -71,7 +72,7 @@ Partial Class Form_main
         'Button_updata
         '
         Me.Button_updata.Enabled = False
-        Me.Button_updata.Location = New System.Drawing.Point(371, 419)
+        Me.Button_updata.Location = New System.Drawing.Point(357, 424)
         Me.Button_updata.Name = "Button_updata"
         Me.Button_updata.Size = New System.Drawing.Size(87, 23)
         Me.Button_updata.TabIndex = 3
@@ -81,7 +82,7 @@ Partial Class Form_main
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(370, 454)
+        Me.Label2.Location = New System.Drawing.Point(369, 458)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(29, 12)
         Me.Label2.TabIndex = 4
@@ -89,14 +90,15 @@ Partial Class Form_main
         '
         'ListView1
         '
-        Me.ListView1.Activation = System.Windows.Forms.ItemActivation.TwoClick
-        Me.ListView1.AllowColumnReorder = True
         Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4})
         Me.ListView1.Dock = System.Windows.Forms.DockStyle.Top
         Me.ListView1.ForeColor = System.Drawing.SystemColors.ControlText
         Me.ListView1.FullRowSelect = True
         Me.ListView1.GridLines = True
+        Me.ListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
+        Me.ListView1.HideSelection = False
         Me.ListView1.Location = New System.Drawing.Point(3, 3)
+        Me.ListView1.MultiSelect = False
         Me.ListView1.Name = "ListView1"
         Me.ListView1.Size = New System.Drawing.Size(473, 304)
         Me.ListView1.TabIndex = 1
@@ -111,7 +113,7 @@ Partial Class Form_main
         'ColumnHeader2
         '
         Me.ColumnHeader2.Text = "介绍"
-        Me.ColumnHeader2.Width = 191
+        Me.ColumnHeader2.Width = 239
         '
         'ColumnHeader3
         '
@@ -235,7 +237,7 @@ Partial Class Form_main
         Me.TextBox_game_ver.Name = "TextBox_game_ver"
         Me.TextBox_game_ver.Size = New System.Drawing.Size(100, 21)
         Me.TextBox_game_ver.TabIndex = 18
-        Me.TextBox_game_ver.Text = "0.16.6"
+        Me.TextBox_game_ver.Text = "0.16.7"
         '
         'CheckBox_chinese_chat
         '
@@ -328,7 +330,7 @@ Partial Class Form_main
         'Button_select_server
         '
         Me.Button_select_server.Enabled = False
-        Me.Button_select_server.Location = New System.Drawing.Point(204, 419)
+        Me.Button_select_server.Location = New System.Drawing.Point(190, 424)
         Me.Button_select_server.Name = "Button_select_server"
         Me.Button_select_server.Size = New System.Drawing.Size(119, 23)
         Me.Button_select_server.TabIndex = 12
@@ -339,7 +341,7 @@ Partial Class Form_main
         'TextBox_serverlist
         '
         Me.TextBox_serverlist.Enabled = False
-        Me.TextBox_serverlist.Location = New System.Drawing.Point(236, 421)
+        Me.TextBox_serverlist.Location = New System.Drawing.Point(222, 426)
         Me.TextBox_serverlist.Multiline = True
         Me.TextBox_serverlist.Name = "TextBox_serverlist"
         Me.TextBox_serverlist.Size = New System.Drawing.Size(100, 21)
@@ -351,10 +353,6 @@ Partial Class Form_main
         'BackgroundWorker_download_serverlist
         '
         '
-        'Timer_sync_server
-        '
-        Me.Timer_sync_server.Interval = 180000
-        '
         'Timer_load_sl
         '
         Me.Timer_load_sl.Interval = 500
@@ -362,7 +360,7 @@ Partial Class Form_main
         'Button_readme
         '
         Me.Button_readme.Enabled = False
-        Me.Button_readme.Location = New System.Drawing.Point(79, 419)
+        Me.Button_readme.Location = New System.Drawing.Point(65, 424)
         Me.Button_readme.Name = "Button_readme"
         Me.Button_readme.Size = New System.Drawing.Size(75, 23)
         Me.Button_readme.TabIndex = 11
@@ -376,7 +374,7 @@ Partial Class Form_main
         'LinkLabel1
         '
         Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(38, 454)
+        Me.LinkLabel1.Location = New System.Drawing.Point(29, 458)
         Me.LinkLabel1.Name = "LinkLabel1"
         Me.LinkLabel1.Size = New System.Drawing.Size(245, 12)
         Me.LinkLabel1.TabIndex = 12
@@ -386,26 +384,48 @@ Partial Class Form_main
         'Label_ver
         '
         Me.Label_ver.AutoSize = True
-        Me.Label_ver.Location = New System.Drawing.Point(401, 454)
+        Me.Label_ver.Location = New System.Drawing.Point(400, 458)
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(29, 12)
         Me.Label_ver.TabIndex = 13
-        Me.Label_ver.Text = "0.24"
+        Me.Label_ver.Text = "0.27"
         '
         'Label_ver_status
         '
         Me.Label_ver_status.AutoSize = True
-        Me.Label_ver_status.Location = New System.Drawing.Point(430, 454)
+        Me.Label_ver_status.Location = New System.Drawing.Point(429, 458)
         Me.Label_ver_status.Name = "Label_ver_status"
         Me.Label_ver_status.Size = New System.Drawing.Size(11, 12)
         Me.Label_ver_status.TabIndex = 17
         Me.Label_ver_status.Text = "."
+        '
+        'Label_tips
+        '
+        Me.Label_tips.AutoSize = True
+        Me.Label_tips.ForeColor = System.Drawing.Color.Red
+        Me.Label_tips.Location = New System.Drawing.Point(94, 403)
+        Me.Label_tips.Name = "Label_tips"
+        Me.Label_tips.Size = New System.Drawing.Size(53, 12)
+        Me.Label_tips.TabIndex = 18
+        Me.Label_tips.Text = "提示内容"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.ForeColor = System.Drawing.Color.Red
+        Me.Label5.Location = New System.Drawing.Point(41, 403)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(47, 12)
+        Me.Label5.TabIndex = 19
+        Me.Label5.Text = "小提示:"
         '
         'Form_main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(514, 479)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.Label_tips)
         Me.Controls.Add(Me.Button_select_server)
         Me.Controls.Add(Me.Label_ver_status)
         Me.Controls.Add(Me.TextBox_serverlist)
@@ -442,7 +462,6 @@ Partial Class Form_main
     Friend WithEvents Button_connect_server As Button
     Friend WithEvents TextBox_serverlist As TextBox
     Friend WithEvents BackgroundWorker_download_serverlist As System.ComponentModel.BackgroundWorker
-    Friend WithEvents Timer_sync_server As Timer
     Friend WithEvents Timer_load_sl As Timer
     Friend WithEvents Button_readme As Button
     Friend WithEvents Button_reload_serverlist As Button
@@ -467,4 +486,6 @@ Partial Class Form_main
     Friend WithEvents Label4 As Label
     Friend WithEvents Button_load_game As Button
     Friend WithEvents TabPage_mods As TabPage
+    Friend WithEvents Label_tips As Label
+    Friend WithEvents Label5 As Label
 End Class

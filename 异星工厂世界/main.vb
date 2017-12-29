@@ -24,7 +24,7 @@ Public Class Form_main
 
     'Public upsrc = "http://code.taobao.org/svn/yxgcsj/trunk/updatafiles/"
     'Public up_root = "https://raw.githubusercontent.com/yjfyy/yxgcsj/master/%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F/trunk/serverlist/"
-    Public sl_root = "http://code.taobao.org/svn/yxgcipup/trunk/"
+    Public sl_root = "http://code.taobao.org/svn/yxgcip/trunk/"
     Public up_root = "http://code.taobao.org/svn/yxgcsj/trunk/updatafiles/"
     Public r_version = "0"
     Public l_version = "0"
@@ -57,7 +57,23 @@ Public Class Form_main
         MyBase.WndProc(m)
     End Sub
 
+    Private Sub tips()
+        Dim tips_string(5) As String
+        tips_string(0) = "---------------------------------------------------------------"
+        tips_string(1) = "双击列表中的服务器可以直接启动游戏并进入选定的服务器哦!"
+        tips_string(2) = "进游戏系后按 Ctrl+~ 可以中文输入。"
+        tips_string(3) = "如果输入中文时，提示版本不对,可以在工具标签里修改你实际的游戏版本。"
+        tips_string(4) = "工具标签里有离线版量化工具哦。"
+        tips_string(5) = "长时间不能载入服务器列表或者不能检测更新，重启我也许比等待快。"
+        Dim myRND As New Random
+        'Label_tips.Text = tips_string(0)
+        Label_tips.Text = tips_string(myRND.Next(1, 6))
+
+    End Sub
+
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+
         '清理文件
         delete_files()
 
@@ -72,11 +88,15 @@ Public Class Form_main
         '注册聊天热键
         RegisterHotKey(Handle, 0, MOD_CONTROL, 192)
 
+        '小提示
+        tips()
+
         '0.5秒后开始载入sl.txt
         Timer_load_sl.Enabled = True
 
         '直接载入serverlist，方便调试
         'load_server_list()
+
 
     End Sub
 
@@ -121,7 +141,7 @@ Public Class Form_main
                 For l = 0 To i
                     temp2 = LineInput(1)
                     Dim arr As String() = temp2.Split(vbTab) '放入arr数组
-                    For h As Integer = 0 To 3
+                    For h As Integer = 0 To 4
                         serverlist(h, l) = arr(h)
                         'MsgBox(serverlist(h, l))
                     Next
@@ -195,7 +215,7 @@ Public Class Form_main
 
         '启动游戏
         'If err = 0 Then
-        Shell(".\bin\x64\factorio.exe --mp-connect " & serverlist（3, server_select), Style:=AppWinStyle.NormalFocus)
+        Shell(".\bin\x64\factorio.exe --mp-connect " & serverlist（3, server_select) & ":" & serverlist（4, server_select), Style:=AppWinStyle.NormalFocus)
         'End If
 
 
@@ -502,6 +522,8 @@ Public Class Form_main
         '清空列表
         ListView1.Items.Clear()
 
+
+
         '界面全部禁用
         Timer_load_sl.Enabled = False
 
@@ -630,7 +652,31 @@ Public Class Form_main
         Button_join_Click(sender, e)
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button_change_player_color.Click
+
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        Process.Start(".\data\facw\web\quantorio.htm")
+    End Sub
+
+    Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
+        Process.Start("http://quantorio.garveen.net")
+    End Sub
+
+    Private Sub Button_load_game_Click(sender As Object, e As EventArgs) Handles Button_load_game.Click
+        Shell(".\bin\x64\factorio.exe", Style:=AppWinStyle.NormalFocus)
+    End Sub
+
+    Private Sub ListView1_MouseUp(sender As Object, e As MouseEventArgs) Handles ListView1.MouseUp
+        '屏蔽点击空白区
+        If ListView1.SelectedItems.Count > 0 Then
+        Else
+            ListView1.FocusedItem.Selected = True
+        End If
+    End Sub
+
+
+
+    Private Sub Button_change_player_color_Click(sender As Object, e As EventArgs) Handles Button_change_player_color.Click
         ColorDialog1.ShowDialog()
         Try
             AppActivate("Factorio " & TextBox_game_ver.Text)
@@ -643,17 +689,5 @@ Public Class Form_main
         Catch ex As Exception
             MsgBox（"请确认已经打开游戏并且游戏版本输入正确！")
         End Try
-    End Sub
-
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
-        Process.Start(".\data\facw\web\quantorio.htm")
-    End Sub
-
-    Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
-        Process.Start("http://quantorio.garveen.net")
-    End Sub
-
-    Private Sub Button_load_game_Click(sender As Object, e As EventArgs) Handles Button_load_game.Click
-        Shell(".\bin\x64\factorio.exe", Style:=AppWinStyle.NormalFocus)
     End Sub
 End Class
