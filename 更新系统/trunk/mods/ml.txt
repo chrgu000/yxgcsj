@@ -1,0 +1,1 @@
+异星工厂模组汉化文本库	0.16.4	0.16	aspd199	https://tieba.baidu.com/f?kw=异星工厂	2018-1-7	异星工厂简体中文语言文本库	http://code.taobao.org/svn/yxgcsj/trunk/mods/zh-CN_0.16.4.zip	zh-CN_0.16.4.zip

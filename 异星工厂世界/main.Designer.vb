@@ -50,6 +50,17 @@ Partial Class Form_main
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBox_test_mode_pass = New System.Windows.Forms.TextBox()
         Me.TabPage_mods = New System.Windows.Forms.TabPage()
+        Me.Label_mods_status = New System.Windows.Forms.Label()
+        Me.Button_download_mods = New System.Windows.Forms.Button()
+        Me.Button_mods_list = New System.Windows.Forms.Button()
+        Me.ListView_mods = New System.Windows.Forms.ListView()
+        Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader7 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader8 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader9 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader10 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader11 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.Button_select_server = New System.Windows.Forms.Button()
         Me.TextBox_serverlist = New System.Windows.Forms.TextBox()
         Me.BackgroundWorker_download_serverlist = New System.ComponentModel.BackgroundWorker()
@@ -63,16 +74,18 @@ Partial Class Form_main
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.Label_tips = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.BackgroundWorker_download_mods_list = New System.ComponentModel.BackgroundWorker()
         Me.TabControl1.SuspendLayout()
         Me.TabPage_client.SuspendLayout()
         Me.TabPage_server.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        Me.TabPage_mods.SuspendLayout()
         Me.SuspendLayout()
         '
         'Button_updata
         '
         Me.Button_updata.Enabled = False
-        Me.Button_updata.Location = New System.Drawing.Point(357, 424)
+        Me.Button_updata.Location = New System.Drawing.Point(430, 424)
         Me.Button_updata.Name = "Button_updata"
         Me.Button_updata.Size = New System.Drawing.Size(87, 23)
         Me.Button_updata.TabIndex = 3
@@ -82,7 +95,7 @@ Partial Class Form_main
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(369, 458)
+        Me.Label2.Location = New System.Drawing.Point(443, 458)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(29, 12)
         Me.Label2.TabIndex = 4
@@ -100,7 +113,7 @@ Partial Class Form_main
         Me.ListView1.Location = New System.Drawing.Point(3, 3)
         Me.ListView1.MultiSelect = False
         Me.ListView1.Name = "ListView1"
-        Me.ListView1.Size = New System.Drawing.Size(473, 304)
+        Me.ListView1.Size = New System.Drawing.Size(617, 304)
         Me.ListView1.TabIndex = 1
         Me.ListView1.UseCompatibleStateImageBehavior = False
         Me.ListView1.View = System.Windows.Forms.View.Details
@@ -108,12 +121,12 @@ Partial Class Form_main
         'ColumnHeader1
         '
         Me.ColumnHeader1.Text = "服务器名称"
-        Me.ColumnHeader1.Width = 104
+        Me.ColumnHeader1.Width = 142
         '
         'ColumnHeader2
         '
         Me.ColumnHeader2.Text = "介绍"
-        Me.ColumnHeader2.Width = 239
+        Me.ColumnHeader2.Width = 298
         '
         'ColumnHeader3
         '
@@ -136,7 +149,7 @@ Partial Class Form_main
         Me.TabControl1.Multiline = True
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(487, 382)
+        Me.TabControl1.Size = New System.Drawing.Size(631, 382)
         Me.TabControl1.TabIndex = 1
         '
         'TabPage_client
@@ -148,14 +161,14 @@ Partial Class Form_main
         Me.TabPage_client.Location = New System.Drawing.Point(4, 22)
         Me.TabPage_client.Name = "TabPage_client"
         Me.TabPage_client.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage_client.Size = New System.Drawing.Size(479, 356)
+        Me.TabPage_client.Size = New System.Drawing.Size(623, 356)
         Me.TabPage_client.TabIndex = 0
         Me.TabPage_client.Text = "连接服务器"
         Me.TabPage_client.UseVisualStyleBackColor = True
         '
         'Button_load_game
         '
-        Me.Button_load_game.Location = New System.Drawing.Point(398, 313)
+        Me.Button_load_game.Location = New System.Drawing.Point(459, 313)
         Me.Button_load_game.Name = "Button_load_game"
         Me.Button_load_game.Size = New System.Drawing.Size(75, 23)
         Me.Button_load_game.TabIndex = 12
@@ -165,7 +178,7 @@ Partial Class Form_main
         'Button_reload_serverlist
         '
         Me.Button_reload_serverlist.Enabled = False
-        Me.Button_reload_serverlist.Location = New System.Drawing.Point(252, 313)
+        Me.Button_reload_serverlist.Location = New System.Drawing.Point(313, 313)
         Me.Button_reload_serverlist.Name = "Button_reload_serverlist"
         Me.Button_reload_serverlist.Size = New System.Drawing.Size(120, 23)
         Me.Button_reload_serverlist.TabIndex = 11
@@ -175,7 +188,7 @@ Partial Class Form_main
         'Button_connect_server
         '
         Me.Button_connect_server.Enabled = False
-        Me.Button_connect_server.Location = New System.Drawing.Point(28, 313)
+        Me.Button_connect_server.Location = New System.Drawing.Point(89, 313)
         Me.Button_connect_server.Name = "Button_connect_server"
         Me.Button_connect_server.Size = New System.Drawing.Size(182, 23)
         Me.Button_connect_server.TabIndex = 7
@@ -197,7 +210,7 @@ Partial Class Form_main
         Me.TabPage_server.Location = New System.Drawing.Point(4, 22)
         Me.TabPage_server.Name = "TabPage_server"
         Me.TabPage_server.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage_server.Size = New System.Drawing.Size(479, 356)
+        Me.TabPage_server.Size = New System.Drawing.Size(623, 356)
         Me.TabPage_server.TabIndex = 1
         Me.TabPage_server.Text = "工具"
         Me.TabPage_server.UseVisualStyleBackColor = True
@@ -237,7 +250,7 @@ Partial Class Form_main
         Me.TextBox_game_ver.Name = "TextBox_game_ver"
         Me.TextBox_game_ver.Size = New System.Drawing.Size(100, 21)
         Me.TextBox_game_ver.TabIndex = 18
-        Me.TextBox_game_ver.Text = "0.16.7"
+        Me.TextBox_game_ver.Text = "0.16.15"
         '
         'CheckBox_chinese_chat
         '
@@ -258,7 +271,7 @@ Partial Class Form_main
         Me.GroupBox1.Controls.Add(Me.Button_change_player_color)
         Me.GroupBox1.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(467, 170)
+        Me.GroupBox1.Size = New System.Drawing.Size(611, 170)
         Me.GroupBox1.TabIndex = 6
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "控制台命令"
@@ -319,18 +332,97 @@ Partial Class Form_main
         '
         'TabPage_mods
         '
+        Me.TabPage_mods.Controls.Add(Me.Label_mods_status)
+        Me.TabPage_mods.Controls.Add(Me.Button_download_mods)
+        Me.TabPage_mods.Controls.Add(Me.Button_mods_list)
+        Me.TabPage_mods.Controls.Add(Me.ListView_mods)
         Me.TabPage_mods.Location = New System.Drawing.Point(4, 22)
         Me.TabPage_mods.Name = "TabPage_mods"
         Me.TabPage_mods.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage_mods.Size = New System.Drawing.Size(479, 356)
+        Me.TabPage_mods.Size = New System.Drawing.Size(623, 356)
         Me.TabPage_mods.TabIndex = 2
         Me.TabPage_mods.Text = "下载MODS"
         Me.TabPage_mods.UseVisualStyleBackColor = True
         '
+        'Label_mods_status
+        '
+        Me.Label_mods_status.AutoSize = True
+        Me.Label_mods_status.Location = New System.Drawing.Point(457, 318)
+        Me.Label_mods_status.Name = "Label_mods_status"
+        Me.Label_mods_status.Size = New System.Drawing.Size(11, 12)
+        Me.Label_mods_status.TabIndex = 3
+        Me.Label_mods_status.Text = "."
+        '
+        'Button_download_mods
+        '
+        Me.Button_download_mods.Enabled = False
+        Me.Button_download_mods.Location = New System.Drawing.Point(89, 313)
+        Me.Button_download_mods.Name = "Button_download_mods"
+        Me.Button_download_mods.Size = New System.Drawing.Size(182, 23)
+        Me.Button_download_mods.TabIndex = 2
+        Me.Button_download_mods.Text = "下载选定的模组"
+        Me.Button_download_mods.UseVisualStyleBackColor = True
+        '
+        'Button_mods_list
+        '
+        Me.Button_mods_list.Location = New System.Drawing.Point(313, 313)
+        Me.Button_mods_list.Name = "Button_mods_list"
+        Me.Button_mods_list.Size = New System.Drawing.Size(120, 23)
+        Me.Button_mods_list.TabIndex = 1
+        Me.Button_mods_list.Text = "载入模组列表"
+        Me.Button_mods_list.UseVisualStyleBackColor = True
+        '
+        'ListView_mods
+        '
+        Me.ListView_mods.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader5, Me.ColumnHeader6, Me.ColumnHeader7, Me.ColumnHeader8, Me.ColumnHeader9, Me.ColumnHeader10, Me.ColumnHeader11})
+        Me.ListView_mods.FullRowSelect = True
+        Me.ListView_mods.GridLines = True
+        Me.ListView_mods.HideSelection = False
+        Me.ListView_mods.Location = New System.Drawing.Point(3, 3)
+        Me.ListView_mods.Name = "ListView_mods"
+        Me.ListView_mods.Size = New System.Drawing.Size(614, 304)
+        Me.ListView_mods.TabIndex = 0
+        Me.ListView_mods.UseCompatibleStateImageBehavior = False
+        Me.ListView_mods.View = System.Windows.Forms.View.Details
+        '
+        'ColumnHeader5
+        '
+        Me.ColumnHeader5.Text = "模组名称"
+        Me.ColumnHeader5.Width = 158
+        '
+        'ColumnHeader6
+        '
+        Me.ColumnHeader6.Text = "版本"
+        Me.ColumnHeader6.Width = 54
+        '
+        'ColumnHeader7
+        '
+        Me.ColumnHeader7.Text = "适用游戏版本"
+        Me.ColumnHeader7.Width = 91
+        '
+        'ColumnHeader8
+        '
+        Me.ColumnHeader8.Text = "作者"
+        Me.ColumnHeader8.Width = 76
+        '
+        'ColumnHeader9
+        '
+        Me.ColumnHeader9.Text = "官网"
+        Me.ColumnHeader9.Width = 115
+        '
+        'ColumnHeader10
+        '
+        Me.ColumnHeader10.Text = "更新日期"
+        '
+        'ColumnHeader11
+        '
+        Me.ColumnHeader11.Text = "介绍"
+        Me.ColumnHeader11.Width = 203
+        '
         'Button_select_server
         '
         Me.Button_select_server.Enabled = False
-        Me.Button_select_server.Location = New System.Drawing.Point(190, 424)
+        Me.Button_select_server.Location = New System.Drawing.Point(263, 424)
         Me.Button_select_server.Name = "Button_select_server"
         Me.Button_select_server.Size = New System.Drawing.Size(119, 23)
         Me.Button_select_server.TabIndex = 12
@@ -341,7 +433,7 @@ Partial Class Form_main
         'TextBox_serverlist
         '
         Me.TextBox_serverlist.Enabled = False
-        Me.TextBox_serverlist.Location = New System.Drawing.Point(222, 426)
+        Me.TextBox_serverlist.Location = New System.Drawing.Point(263, 397)
         Me.TextBox_serverlist.Multiline = True
         Me.TextBox_serverlist.Name = "TextBox_serverlist"
         Me.TextBox_serverlist.Size = New System.Drawing.Size(100, 21)
@@ -360,7 +452,7 @@ Partial Class Form_main
         'Button_readme
         '
         Me.Button_readme.Enabled = False
-        Me.Button_readme.Location = New System.Drawing.Point(65, 424)
+        Me.Button_readme.Location = New System.Drawing.Point(138, 424)
         Me.Button_readme.Name = "Button_readme"
         Me.Button_readme.Size = New System.Drawing.Size(75, 23)
         Me.Button_readme.TabIndex = 11
@@ -384,16 +476,16 @@ Partial Class Form_main
         'Label_ver
         '
         Me.Label_ver.AutoSize = True
-        Me.Label_ver.Location = New System.Drawing.Point(400, 458)
+        Me.Label_ver.Location = New System.Drawing.Point(474, 458)
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(29, 12)
         Me.Label_ver.TabIndex = 13
-        Me.Label_ver.Text = "0.27"
+        Me.Label_ver.Text = "0.28"
         '
         'Label_ver_status
         '
         Me.Label_ver_status.AutoSize = True
-        Me.Label_ver_status.Location = New System.Drawing.Point(429, 458)
+        Me.Label_ver_status.Location = New System.Drawing.Point(503, 458)
         Me.Label_ver_status.Name = "Label_ver_status"
         Me.Label_ver_status.Size = New System.Drawing.Size(11, 12)
         Me.Label_ver_status.TabIndex = 17
@@ -419,11 +511,14 @@ Partial Class Form_main
         Me.Label5.TabIndex = 19
         Me.Label5.Text = "小提示:"
         '
+        'BackgroundWorker_download_mods_list
+        '
+        '
         'Form_main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(514, 479)
+        Me.ClientSize = New System.Drawing.Size(655, 479)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label_tips)
         Me.Controls.Add(Me.Button_select_server)
@@ -445,6 +540,8 @@ Partial Class Form_main
         Me.TabPage_server.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.TabPage_mods.ResumeLayout(False)
+        Me.TabPage_mods.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -488,4 +585,16 @@ Partial Class Form_main
     Friend WithEvents TabPage_mods As TabPage
     Friend WithEvents Label_tips As Label
     Friend WithEvents Label5 As Label
+    Friend WithEvents Button_download_mods As Button
+    Friend WithEvents Button_mods_list As Button
+    Friend WithEvents ListView_mods As ListView
+    Friend WithEvents ColumnHeader5 As ColumnHeader
+    Friend WithEvents ColumnHeader6 As ColumnHeader
+    Friend WithEvents ColumnHeader7 As ColumnHeader
+    Friend WithEvents ColumnHeader8 As ColumnHeader
+    Friend WithEvents ColumnHeader9 As ColumnHeader
+    Friend WithEvents ColumnHeader10 As ColumnHeader
+    Friend WithEvents BackgroundWorker_download_mods_list As System.ComponentModel.BackgroundWorker
+    Friend WithEvents ColumnHeader11 As ColumnHeader
+    Friend WithEvents Label_mods_status As Label
 End Class

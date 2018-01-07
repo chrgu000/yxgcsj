@@ -182,7 +182,7 @@ Partial Class server
         'Label1_status
         '
         Me.Label1_status.AutoSize = True
-        Me.Label1_status.Location = New System.Drawing.Point(375, 444)
+        Me.Label1_status.Location = New System.Drawing.Point(156, 444)
         Me.Label1_status.Name = "Label1_status"
         Me.Label1_status.Size = New System.Drawing.Size(29, 12)
         Me.Label1_status.TabIndex = 106
@@ -548,7 +548,7 @@ Partial Class server
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(29, 12)
         Me.Label_ver.TabIndex = 15
-        Me.Label_ver.Text = "0.27"
+        Me.Label_ver.Text = "0.28"
         '
         'Label17
         '

@@ -6,6 +6,8 @@ Public Class server
     '十分钟上传一次,18分钟无消息删除.
     Dim server_id
     Public serverlist(4, 0)
+    Public modsconfig(1, 0)
+    Public mods_config_up_string = ""
     'serverlist数组 x0为服务器名称，x1为介绍，x2时间（暂时无用）,x3 ip x4 端口 暂时无用
     Private Sub Button_create_server_Click(sender As Object, e As EventArgs) Handles Button_create_server.Click
 
@@ -21,18 +23,22 @@ Public Class server
         Button_create_server.Enabled = False
 
 
-        Label1_status.Text = "正在生成服务器配置文件"
+        Label1_status.Text = Now.ToString & "正在生成服务器配置文件"
         '创建server-settings.example.json。
         create_server_settings()
 
-        Label1_status.Text = "正在启动异星工厂服务"
+        'Label1_status.Text = "正在生成模组配置文件"
+        '创建模组配置文件。
+        'create_mods_config()
+
+        Label1_status.Text = Now.ToString & "正在启动异星工厂服务"
         '执行服务器启动命令。
         run_server()
 
         Button_create_server.Text = "正在运行"
 
         '开始同步serverlist。
-        Label1_status.Text = "正在同步服务器列表"
+        Label1_status.Text = Now.ToString & "正在同步服务器列表"
         Timer_sync_server_Tick(sender, e)
         Timer_sync_server.Enabled = True
 
@@ -130,7 +136,7 @@ Public Class server
 
 
 
-        Label1_status.Text = "正在清理同步进程"
+        Label1_status.Text = Now.ToString & "正在清理同步进程"
         '判断excel进程是否存在
         If System.Diagnostics.Process.GetProcessesByName("svn").Length > 0 Then
             proc = Process.GetProcessesByName("svn")
@@ -142,7 +148,7 @@ Public Class server
         proc = Nothing
 
         '下载serverlist
-        Label1_status.Text = "开始下载服务器列表"
+        Label1_status.Text = Now.ToString & "开始下载服务器列表"
         BackgroundWorker_creact_dsl.RunWorkerAsync()
 
         '变换sl到数组
@@ -243,11 +249,11 @@ Public Class server
     Private Sub run_server()
 
         'server_id = Shell("cmd /c .\bin\x64\factorio.exe --start-server " & TextBox_saves.Text & " --server-settings data/fs/fs.json", Style:=AppWinStyle.NormalFocus)
-        server_id = Shell("cmd /c.\bin\x64\factorio.exe --start-server " & TextBox_saves.Text & " --server-settings data/facw/fs.json", AppWinStyle.NormalNoFocus)
+        server_id = Shell("cmd /c .\bin\x64\factorio.exe --start-server " & TextBox_saves.Text & " --server-settings data/facw/fs.json", AppWinStyle.NormalNoFocus)
     End Sub
 
     Private Sub BackgroundWorker_creact_dsl_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker_creact_dsl.DoWork
-        Label1_status.Text = "正在删除旧服务器列表"
+        'Label1_status.Text = "正在删除旧服务器列表"
         If My.Computer.FileSystem.DirectoryExists(".\data\facw\sl") Then
             Try
                 Shell("cmd  /c rd /s /q data\facw\sl", AppWinStyle.Hide, True)
@@ -261,7 +267,7 @@ Public Class server
 
 
         'Shell("""./data/facw/svn.exe""  cleanup  ./data/facw/sl", AppWinStyle.Hide, True)
-        Label1_status.Text = "正在下载服务器列表"
+        'Label1_status.Text = "正在下载服务器列表"
         Threading.Thread.Sleep(200)
         Shell("""./data/facw/svn.exe""  co  http://code.taobao.org/svn/yxgcip/trunk  ./data/facw/sl", AppWinStyle.Hide, True)
         Threading.Thread.Sleep(200)
@@ -276,10 +282,6 @@ Public Class server
         serverlist(2, this_server) = Format(Now, "yyyy/MM/dd HH:mm:ss")
         serverlist(3, this_server) = TextBox_IP.Text
         serverlist(4, this_server) = TextBox_port.Text
-
-
-
-
 
         Dim temp_serverlist(4, 0)
 
@@ -353,18 +355,68 @@ delete:'删除时间为"2017/01/01 00:00:00"的
         Next
         System.IO.File.WriteAllText("./data/facw/sl/sl.txt", serverlist_file_string, encoding:=System.Text.Encoding.Default)
         Threading.Thread.Sleep(500)
-        Label1_status.Text = "生成新服务器列表完毕"
+
+
+        '处理mc.txt文件
+        Dim mods_this_server = UBound(modsconfig, 2) + 1
+        ReDim Preserve modsconfig(1, this_server)
+        modsconfig(0, mods_this_server) = TextBox_IP.Text & ":" & TextBox_port.Text
+        '生成mods_配置字符串.
+        Create_mods_confg_string()
+        modsconfig(1, mods_this_server) = mods_config_up_string
+
+        Dim temp_modsconfg(1, 0)
+
+
+        'IP重复删除
+        For i = 0 To UBound(modsconfig, 2)
+            For y = i + 1 To UBound(modsconfig, 2)
+                If modsconfig(0, i) = modsconfig(0, y) Then
+                    modsconfig(0, i) = "0.0.0.0"
+
+                End If
+
+            Next
+        Next
+
+
+deletemod:'删除ip=0.0.0.0的
+        For i = 0 To UBound(modsconfig, 2)
+            If modsconfig（0， i） = "0.0.0.0" Then
+                If i < UBound(modsconfig, 2) Then
+                    For y = i To UBound(modsconfig, 2） - 1
+                        modsconfig（0， y） = modsconfig（0， y + 1）
+                        modsconfig（1， y） = modsconfig（1， y + 1）
+                    Next
+                End If
+                i = i - 1
+                ReDim Preserve modsconfig(1, UBound(modsconfig, 2) - 1)
+                GoTo deletemod '删除ip=0.0.0.0的
+            End If
+        Next
+
+        Dim mc_file_string = ""
+        For i = 0 To UBound(modsconfig, 2)
+            mc_file_string = (mc_file_string & modsconfig(0, i) & vbTab & modsconfig(1, i) & vbCrLf)
+        Next
+        System.IO.File.WriteAllText("./data/facw/sl/mc.txt", mc_file_string, encoding:=System.Text.Encoding.Default)
+        Threading.Thread.Sleep(500)
+
+
+        Label1_status.Text = Now.ToString & "生成新服务器列表完毕"
         '上传sl
-        Label1_status.Text = "开始上传新服务器列表"
+        Label1_status.Text = Now.ToString & "开始上传新服务器列表"
         Shell("""./data/facw/svn.exe""  cleanup  ./data/facw/sl", AppWinStyle.Hide, True)
         Threading.Thread.Sleep(500)
         Shell("""data/facw/svn.exe"" ci ./data/facw/sl -m ""new"" --username ipuppublic --password 1234abcD", AppWinStyle.Hide, True)
         Threading.Thread.Sleep(200)
-        Label1_status.Text = "上传服务器列表完毕"
+        Label1_status.Text = Now.ToString & "上传服务器列表完毕"
     End Sub
 
     Private Sub sltoarr()
-        Label1_status.Text = "正在生成新服务器列表"
+        Label1_status.Text = Now.ToString & "正在生成新服务器列表"
+
+        'sl文件转到数组.
         '判断是否有serverlist
         ReDim serverlist(4, 0)
         If My.Computer.FileSystem.FileExists("./data/facw/sl/sl.txt") Then
@@ -403,12 +455,54 @@ delete:'删除时间为"2017/01/01 00:00:00"的
             '    End Try
             'End If
         End If
+
+        'mods_config_files 转到数组
+        ReDim modsconfig(1, 0)
+        If My.Computer.FileSystem.FileExists("./data/facw/sl/mc.txt") Then
+            Dim i = -1 '临时统计文件有几行.-1为校正数组从0开始
+            FileOpen(1, "./data/facw/sl/mc.txt", OpenMode.Input)
+            Do While Not EOF(1)
+                Dim temp
+                temp = LineInput(1)
+                i = i + 1
+            Loop
+            FileClose()
+            ' MsgBox(i)
+
+            ReDim modsconfig(1, i)
+            FileOpen(1, "./data/facw/sl/mc.txt", OpenMode.Input)
+            Dim temp2
+            Do While Not EOF(1)
+                For l = 0 To i
+                    temp2 = LineInput(1)
+                    Dim arr As String() = temp2.Split(vbTab) '放入arr数组
+                    For h As Integer = 0 To 1
+                        modsconfig(h, l) = arr(h)
+                        'MsgBox(modsconfig(h, l))
+                    Next
+                Next
+                i = i + 1
+            Loop
+            FileClose()
+            i = i - 1 '校正最后一次循环
+            '处理完毕
+            '删除serverlist.txt文件
+            'If My.Computer.FileSystem.FileExists("./data/facw/sl/sl.txt") Then
+            '    Try
+            '        My.Computer.FileSystem.DeleteFile("./data/facw/sl/sl.txt")
+            '    Catch ex As Exception
+            '    End Try
+            'End If
+        End If
+
+
         edit_server_list()
+
 
     End Sub
 
     Private Sub BackgroundWorker_creact_dsl_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BackgroundWorker_creact_dsl.RunWorkerCompleted
-        Label1_status.Text = "开始生成新服务器列表"
+        Label1_status.Text = Now.ToString & "开始生成新服务器列表"
         sltoarr()
     End Sub
 
@@ -486,4 +580,142 @@ delete:'删除时间为"2017/01/01 00:00:00"的
     End Sub
 
 
+    Private Sub Create_mods_confg_string()
+        Dim mods_config_file(0)
+        Dim mods_config_file_hang = -1     '临时统计文件有几行.-1为校正数组从0开始
+        mods_config_up_string = ""
+        If My.Computer.FileSystem.FileExists(Environ("AppData") & "\Factorio\mods\mod-list.json") Then
+            Try
+                Dim sr = New StreamReader(Environ("AppData") & "\Factorio\mods\mod-list.json")
+
+                Do
+                    mods_config_file_hang = mods_config_file_hang + 1
+                    ReDim Preserve mods_config_file(mods_config_file_hang)
+                    mods_config_file(mods_config_file_hang) = sr.ReadLine()
+                Loop Until mods_config_file(mods_config_file_hang) Is Nothing
+                sr.Close()
+
+                Dim mods_name = 7 '第一个mod所在行数
+                For i = 7 To UBound(mods_config_file)
+                    If mods_config_file(i) <> "}" And mods_config_file(i + 1) = "      ""enabled"": true" Then
+
+                        If mods_config_up_string = "" Then
+                            mods_config_up_string = Mid(mods_config_file(i), 16)
+                        Else
+                            mods_config_up_string = mods_config_up_string & Mid(mods_config_file(i), 16)
+                        End If
+
+                        ' MsgBox(mods_config_up_string)
+                        i = i + 3
+                    End If
+
+                Next
+
+            Catch ex As Exception
+                ' MsgBox("错误编号2")
+
+            End Try
+
+
+            'Try
+            '    System.IO.File.WriteAllText("./data/facw/sl/" & TextBox_IP.Text & "_" & TextBox_port.Text & "mods_config.txt", mods_config_up_string, encoding:=System.Text.Encoding.Default)
+            'Catch ex As Exception
+
+            'End Try
+
+            'Threading.Thread.Sleep(500)
+
+        End If
+
+        '    If My.Computer.FileSystem.FileExists("player-data.json") Then
+        '        ReDim mods_config_file(0)
+        '        mods_config_file_hang = -1
+        '        Try
+        '            Dim sr = New StreamReader("player-data.json")
+
+        '            Do
+        '                mods_config_file_hang = mods_config_file_hang + 1
+        '                ReDim Preserve mods_config_file(mods_config_file_hang)
+        '                mods_config_file(mods_config_file_hang) = sr.ReadLine()
+
+        '            Loop Until mods_config_file(mods_config_file_hang) Is Nothing
+        '            sr.Close()
+
+
+
+        '            'For i = 0 To UBound(mods_config_file)
+        '            '    If InStr(mods_config_file（i）, "service-username"） > 0 Then
+        '            '        su = i
+        '            '    End If
+        '            'Next
+        '            'If su > 0 Then
+        '            '    Dim temp
+        '            '    temp = Split(mods_config_file(su), """")
+        '            '    temp(3) = 'temp(3)=原来的用户名
+
+
+        '            'Else
+        '            '    err = 1
+        '            '    MsgBox（“错误编号 1”）
+        '            '    Exit Sub
+        '            'End If
+
+
+        '            Dim lmc = 0 'latest-multiplayer-connections所在行数
+        '            For i = 0 To UBound(mods_config_file)
+        '                If InStr(mods_config_file（i）, "latest-multiplayer-connections"） > 0 Then
+        '                    lmc = i
+        '                End If
+        '            Next
+        '            If lmc > 0 Then
+        '                mods_config_file(lmc + 2) = "      ""address"": ""工厂世界"""
+        '            Else
+        '                '如果没有，找 service-username所在行，顺延5
+        '                '
+        '                Dim su 'service-usernames所在行
+        '                For i = 0 To UBound(mods_config_file)
+        '                    If InStr(mods_config_file（i）, "service-username"） > 0 Then
+        '                        su = i
+        '                    End If
+        '                Next
+        '                If su > 0 Then
+
+        '                    Dim org_hang = UBound(mods_config_file) '原来的行数
+        '                    ReDim Preserve mods_config_file(org_hang + 5)
+
+        '                    For y = org_hang To su Step -1
+        '                        mods_config_file(y + 5) = mods_config_file(y)
+        '                    Next
+        '                    mods_config_file(su) = "  ""latest-multiplayer-connections"": ["
+        '                    mods_config_file(su + 1) = "    {"
+        '                    mods_config_file(su + 2) = "      ""address"": ""工厂世界"""
+        '                    mods_config_file(su + 3) = "    }"
+        '                    mods_config_file(su + 4) = "  ],"
+        '                Else
+        '                    'service-username也找不到，报错
+        '                    err = 1
+        '                    ' MsgBox（“错误编号 1”）
+        '                    Exit Sub
+        '                End If
+
+        '            End If
+
+        '        Catch ex As Exception
+        '            'MsgBox("错误编号1")
+        '            err = 1
+        '        End Try
+
+        '        Dim hosts_file_string = ""
+        '        For i = 0 To UBound(mods_config_file)
+        '            hosts_file_string = (hosts_file_string & mods_config_file(i) & vbCrLf)
+        '        Next
+        '        Try
+        '            System.IO.File.WriteAllText("player-data.json", hosts_file_string, encoding:=System.Text.Encoding.Default)
+        '        Catch ex As Exception
+
+        '        End Try
+
+        '        Threading.Thread.Sleep(500)
+        '    End If
+    End Sub
 End Class
