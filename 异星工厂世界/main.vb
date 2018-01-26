@@ -39,7 +39,7 @@ Public Class Form_main
     Public serverlist(4, 0)
 
     'modslist(0,y)名称,(1,y)版本,(2,y)试用游戏版本,(3,y)作者,(4,y)官网,(5,y)更新日期,(6,y)简介,(7,y)下载地址,(8,y)文件名
-    Public modslist(8, 0)
+    Public modslist(9, 0)
 
     Public Const WM_HOTKEY = &H312
     'Public Const MOD_ALT = &H1
@@ -766,14 +766,14 @@ Public Class Form_main
             FileClose()
             ' MsgBox(i)
 
-            ReDim modslist(8, i)
+            ReDim modslist(9, i)
             FileOpen(1, "ml.txt", OpenMode.Input)
             Dim temp2
             Do While Not EOF(1)
                 For l = 0 To i
                     temp2 = LineInput(1)
                     Dim arr As String() = temp2.Split(vbTab) '放入arr数组
-                    For h As Integer = 0 To 8
+                    For h As Integer = 0 To 9
                         modslist(h, l) = arr(h)
                         'MsgBox(serverlist(h, l))
                     Next
@@ -794,10 +794,17 @@ Public Class Form_main
             '按照数组，添加serverlist到listview控件
 
             For l = 0 To i
-                ListView_mods.Items.Add(modslist(0, l))
-                For h = 1 To 6
-                    ListView_mods.Items(l).SubItems.Add(modslist(h, l))
-                Next
+                'modslist(0,y)英文名称,(1,y)版本,(2,y)适用游戏版本,(3,y)作者,(4,y)官网,(5,y)更新日期,(6,y)中文名称,(7,y)下载地址,(8,y)文件名 (9,y)详细介绍
+                ListView_mods.Items.Add(modslist(6, l))
+                'For h = 1 To 6
+                ListView_mods.Items(l).SubItems.Add(modslist(1, l))
+                ListView_mods.Items(l).SubItems.Add(modslist(9, l))
+                ListView_mods.Items(l).SubItems.Add(modslist(0, l))
+                ListView_mods.Items(l).SubItems.Add(modslist(3, l))
+                ListView_mods.Items(l).SubItems.Add(modslist(4, l))
+                ListView_mods.Items(l).SubItems.Add(modslist(5, l))
+                'ListView_mods.Items(l).SubItems.Add(modslist(1, l))
+                'Next
             Next
 
             'ListView1.Items（0）.ForeColor = Color.Red
@@ -814,7 +821,7 @@ Public Class Form_main
 
         End If
         Button_mods_list.Text = "载入模组列表"
-        Button_mods_list.Enabled = True
+        'Button_mods_list.Enabled = True
         Button_download_mods.Enabled = True
     End Sub
 
@@ -823,27 +830,38 @@ Public Class Form_main
         mods_select = ListView_mods.FocusedItem.Index
         Button_download_mods.Enabled = False
         Label_mods_status.Text = "正在下载请稍后"
-        Dim dFile As New System.Net.WebClient
+        Dim dFile As New WebClient
 
+        AddHandler dFile.DownloadProgressChanged, AddressOf ShowDownProgress '这一句是在网上看到的，用这句来捕获下载进度变化事件，不知道对不对。
+        AddHandler dFile.DownloadFileCompleted, AddressOf wanchen
+        'DownLoadFiles()
         Dim upUri As New Uri(modslist(7, mods_select))
         Try
             If steam = True Then
-                dFile.DownloadFile(upUri, Environ("AppData") & "\Factorio\mods\" & modslist(8, mods_select))
+                'dFile.DownloadFile(upUri, Environ("AppData") & "\Factorio\mods\" & modslist(8, mods_select))
+                dFile.DownloadFileAsync(upUri, Environ("AppData") & "\Factorio\mods\" & modslist(8, mods_select))
             Else
-                dFile.DownloadFile(upUri, ".\mods\" & modslist(8, mods_select))
+                'dFile.DownloadFile(upUri, ".\mods\" & modslist(8, mods_select))
+                dFile.DownloadFileAsync(upUri, ".\mods\" & modslist(8, mods_select))
             End If
 
         Catch ex As Exception
             MsgBox("下载错误,请重试.")
         End Try
+
+    End Sub
+    Sub wanchen(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs)
         Label_mods_status.Text = "下载完成"
         Button_download_mods.Enabled = True
     End Sub
 
+    Private Sub ShowDownProgress(ByVal sender As Object, ByVal e As System.Net.DownloadProgressChangedEventArgs)
+        Invoke(New Action(Of Integer)(Sub(i) ProgressBar1.Value = i), e.ProgressPercentage)
+
+    End Sub
 
     Private Sub ListView_mods_DoubleClick(sender As Object, e As EventArgs) Handles ListView_mods.DoubleClick
         Button_download_mods_Click(sender, e)
-
     End Sub
 
 End Class

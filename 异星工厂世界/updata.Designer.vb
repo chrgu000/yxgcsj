@@ -31,12 +31,13 @@ Partial Class form_updata
         Me.Timer_chech_ver_time_out = New System.Windows.Forms.Timer(Me.components)
         Me.Button_fix = New System.Windows.Forms.Button()
         Me.Button_hide = New System.Windows.Forms.Button()
+        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.SuspendLayout()
         '
         'Label_status
         '
         Me.Label_status.AutoSize = True
-        Me.Label_status.Location = New System.Drawing.Point(132, 70)
+        Me.Label_status.Location = New System.Drawing.Point(128, 23)
         Me.Label_status.Name = "Label_status"
         Me.Label_status.Size = New System.Drawing.Size(23, 12)
         Me.Label_status.TabIndex = 1
@@ -59,9 +60,6 @@ Partial Class form_updata
         '
         Me.BackgroundWorker_check_ver.WorkerReportsProgress = True
         Me.BackgroundWorker_check_ver.WorkerSupportsCancellation = True
-        '
-        'BackgroundWorker_download_updata
-        '
         '
         'Timer_chech_ver_time_out
         '
@@ -87,6 +85,13 @@ Partial Class form_updata
         Me.Button_hide.Text = "关闭"
         Me.Button_hide.UseVisualStyleBackColor = True
         '
+        'ProgressBar1
+        '
+        Me.ProgressBar1.Location = New System.Drawing.Point(63, 59)
+        Me.ProgressBar1.Name = "ProgressBar1"
+        Me.ProgressBar1.Size = New System.Drawing.Size(210, 23)
+        Me.ProgressBar1.TabIndex = 14
+        '
         'form_updata
         '
         Me.AcceptButton = Me.Button_fix
@@ -94,6 +99,7 @@ Partial Class form_updata
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Button_hide
         Me.ClientSize = New System.Drawing.Size(337, 159)
+        Me.Controls.Add(Me.ProgressBar1)
         Me.Controls.Add(Me.Button_hide)
         Me.Controls.Add(Me.Button_fix)
         Me.Controls.Add(Me.TextBox_up_com)
@@ -115,4 +121,5 @@ Partial Class form_updata
     Friend WithEvents Timer_chech_ver_time_out As Timer
     Friend WithEvents Button_fix As Button
     Friend WithEvents Button_hide As Button
+    Friend WithEvents ProgressBar1 As ProgressBar
 End Class

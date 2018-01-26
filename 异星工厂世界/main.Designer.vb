@@ -50,6 +50,7 @@ Partial Class Form_main
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBox_test_mode_pass = New System.Windows.Forms.TextBox()
         Me.TabPage_mods = New System.Windows.Forms.TabPage()
+        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.Label_mods_status = New System.Windows.Forms.Label()
         Me.Button_download_mods = New System.Windows.Forms.Button()
         Me.Button_mods_list = New System.Windows.Forms.Button()
@@ -332,6 +333,7 @@ Partial Class Form_main
         '
         'TabPage_mods
         '
+        Me.TabPage_mods.Controls.Add(Me.ProgressBar1)
         Me.TabPage_mods.Controls.Add(Me.Label_mods_status)
         Me.TabPage_mods.Controls.Add(Me.Button_download_mods)
         Me.TabPage_mods.Controls.Add(Me.Button_mods_list)
@@ -344,10 +346,17 @@ Partial Class Form_main
         Me.TabPage_mods.Text = "下载MODS"
         Me.TabPage_mods.UseVisualStyleBackColor = True
         '
+        'ProgressBar1
+        '
+        Me.ProgressBar1.Location = New System.Drawing.Point(387, 318)
+        Me.ProgressBar1.Name = "ProgressBar1"
+        Me.ProgressBar1.Size = New System.Drawing.Size(149, 23)
+        Me.ProgressBar1.TabIndex = 4
+        '
         'Label_mods_status
         '
         Me.Label_mods_status.AutoSize = True
-        Me.Label_mods_status.Location = New System.Drawing.Point(457, 318)
+        Me.Label_mods_status.Location = New System.Drawing.Point(542, 323)
         Me.Label_mods_status.Name = "Label_mods_status"
         Me.Label_mods_status.Size = New System.Drawing.Size(11, 12)
         Me.Label_mods_status.TabIndex = 3
@@ -356,18 +365,18 @@ Partial Class Form_main
         'Button_download_mods
         '
         Me.Button_download_mods.Enabled = False
-        Me.Button_download_mods.Location = New System.Drawing.Point(89, 313)
+        Me.Button_download_mods.Location = New System.Drawing.Point(231, 318)
         Me.Button_download_mods.Name = "Button_download_mods"
-        Me.Button_download_mods.Size = New System.Drawing.Size(182, 23)
+        Me.Button_download_mods.Size = New System.Drawing.Size(102, 23)
         Me.Button_download_mods.TabIndex = 2
         Me.Button_download_mods.Text = "下载选定的模组"
         Me.Button_download_mods.UseVisualStyleBackColor = True
         '
         'Button_mods_list
         '
-        Me.Button_mods_list.Location = New System.Drawing.Point(313, 313)
+        Me.Button_mods_list.Location = New System.Drawing.Point(59, 318)
         Me.Button_mods_list.Name = "Button_mods_list"
-        Me.Button_mods_list.Size = New System.Drawing.Size(120, 23)
+        Me.Button_mods_list.Size = New System.Drawing.Size(102, 23)
         Me.Button_mods_list.TabIndex = 1
         Me.Button_mods_list.Text = "载入模组列表"
         Me.Button_mods_list.UseVisualStyleBackColor = True
@@ -377,7 +386,9 @@ Partial Class Form_main
         Me.ListView_mods.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader5, Me.ColumnHeader6, Me.ColumnHeader7, Me.ColumnHeader8, Me.ColumnHeader9, Me.ColumnHeader10, Me.ColumnHeader11})
         Me.ListView_mods.FullRowSelect = True
         Me.ListView_mods.GridLines = True
+        Me.ListView_mods.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
         Me.ListView_mods.HideSelection = False
+        Me.ListView_mods.LabelEdit = True
         Me.ListView_mods.Location = New System.Drawing.Point(3, 3)
         Me.ListView_mods.Name = "ListView_mods"
         Me.ListView_mods.Size = New System.Drawing.Size(614, 304)
@@ -387,8 +398,8 @@ Partial Class Form_main
         '
         'ColumnHeader5
         '
-        Me.ColumnHeader5.Text = "模组名称"
-        Me.ColumnHeader5.Width = 158
+        Me.ColumnHeader5.Text = "中文译名"
+        Me.ColumnHeader5.Width = 139
         '
         'ColumnHeader6
         '
@@ -397,26 +408,27 @@ Partial Class Form_main
         '
         'ColumnHeader7
         '
-        Me.ColumnHeader7.Text = "适用游戏版本"
-        Me.ColumnHeader7.Width = 91
+        Me.ColumnHeader7.Text = "详细介绍"
+        Me.ColumnHeader7.Width = 265
         '
         'ColumnHeader8
         '
-        Me.ColumnHeader8.Text = "作者"
-        Me.ColumnHeader8.Width = 76
+        Me.ColumnHeader8.Text = "官网原名"
+        Me.ColumnHeader8.Width = 147
         '
         'ColumnHeader9
         '
-        Me.ColumnHeader9.Text = "官网"
-        Me.ColumnHeader9.Width = 115
+        Me.ColumnHeader9.Text = "作者"
+        Me.ColumnHeader9.Width = 49
         '
         'ColumnHeader10
         '
-        Me.ColumnHeader10.Text = "更新日期"
+        Me.ColumnHeader10.Text = "官方网站"
+        Me.ColumnHeader10.Width = 87
         '
         'ColumnHeader11
         '
-        Me.ColumnHeader11.Text = "介绍"
+        Me.ColumnHeader11.Text = "更新日期"
         Me.ColumnHeader11.Width = 203
         '
         'Button_select_server
@@ -480,7 +492,7 @@ Partial Class Form_main
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(29, 12)
         Me.Label_ver.TabIndex = 13
-        Me.Label_ver.Text = "0.28"
+        Me.Label_ver.Text = "0.30"
         '
         'Label_ver_status
         '
@@ -597,4 +609,5 @@ Partial Class Form_main
     Friend WithEvents BackgroundWorker_download_mods_list As System.ComponentModel.BackgroundWorker
     Friend WithEvents ColumnHeader11 As ColumnHeader
     Friend WithEvents Label_mods_status As Label
+    Friend WithEvents ProgressBar1 As ProgressBar
 End Class

@@ -357,50 +357,50 @@ delete:'删除时间为"2017/01/01 00:00:00"的
         Threading.Thread.Sleep(500)
 
 
-        '处理mc.txt文件
-        Dim mods_this_server = UBound(modsconfig, 2) + 1
-        ReDim Preserve modsconfig(1, this_server)
-        modsconfig(0, mods_this_server) = TextBox_IP.Text & ":" & TextBox_port.Text
-        '生成mods_配置字符串.
-        Create_mods_confg_string()
-        modsconfig(1, mods_this_server) = mods_config_up_string
+        '        '处理mc.txt文件
+        '        Dim mods_this_server = UBound(modsconfig, 2) + 1
+        '        ReDim Preserve modsconfig(1, this_server)
+        '        modsconfig(0, mods_this_server) = TextBox_IP.Text & ":" & TextBox_port.Text
+        '        '生成mods_配置字符串.
+        '        Create_mods_confg_string()
+        '        modsconfig(1, mods_this_server) = mods_config_up_string
 
-        Dim temp_modsconfg(1, 0)
-
-
-        'IP重复删除
-        For i = 0 To UBound(modsconfig, 2)
-            For y = i + 1 To UBound(modsconfig, 2)
-                If modsconfig(0, i) = modsconfig(0, y) Then
-                    modsconfig(0, i) = "0.0.0.0"
-
-                End If
-
-            Next
-        Next
+        '        Dim temp_modsconfg(1, 0)
 
 
-deletemod:'删除ip=0.0.0.0的
-        For i = 0 To UBound(modsconfig, 2)
-            If modsconfig（0， i） = "0.0.0.0" Then
-                If i < UBound(modsconfig, 2) Then
-                    For y = i To UBound(modsconfig, 2） - 1
-                        modsconfig（0， y） = modsconfig（0， y + 1）
-                        modsconfig（1， y） = modsconfig（1， y + 1）
-                    Next
-                End If
-                i = i - 1
-                ReDim Preserve modsconfig(1, UBound(modsconfig, 2) - 1)
-                GoTo deletemod '删除ip=0.0.0.0的
-            End If
-        Next
+        '        'IP重复删除
+        '        For i = 0 To UBound(modsconfig, 2)
+        '            For y = i + 1 To UBound(modsconfig, 2)
+        '                If modsconfig(0, i) = modsconfig(0, y) Then
+        '                    modsconfig(0, i) = "0.0.0.0"
 
-        Dim mc_file_string = ""
-        For i = 0 To UBound(modsconfig, 2)
-            mc_file_string = (mc_file_string & modsconfig(0, i) & vbTab & modsconfig(1, i) & vbCrLf)
-        Next
-        System.IO.File.WriteAllText("./data/facw/sl/mc.txt", mc_file_string, encoding:=System.Text.Encoding.Default)
-        Threading.Thread.Sleep(500)
+        '                End If
+
+        '            Next
+        '        Next
+
+
+        'deletemod:'删除ip=0.0.0.0的
+        '        For i = 0 To UBound(modsconfig, 2)
+        '            If modsconfig（0， i） = "0.0.0.0" Then
+        '                If i < UBound(modsconfig, 2) Then
+        '                    For y = i To UBound(modsconfig, 2） - 1
+        '                        modsconfig（0， y） = modsconfig（0， y + 1）
+        '                        modsconfig（1， y） = modsconfig（1， y + 1）
+        '                    Next
+        '                End If
+        '                i = i - 1
+        '                ReDim Preserve modsconfig(1, UBound(modsconfig, 2) - 1)
+        '                GoTo deletemod '删除ip=0.0.0.0的
+        '            End If
+        '        Next
+
+        '        Dim mc_file_string = ""
+        '        For i = 0 To UBound(modsconfig, 2)
+        '            mc_file_string = (mc_file_string & modsconfig(0, i) & vbTab & modsconfig(1, i) & vbCrLf)
+        '        Next
+        '        System.IO.File.WriteAllText("./data/facw/sl/mc.txt", mc_file_string, encoding:=System.Text.Encoding.Default)
+        '        Threading.Thread.Sleep(500)
 
 
         Label1_status.Text = Now.ToString & "生成新服务器列表完毕"
@@ -457,6 +457,7 @@ deletemod:'删除ip=0.0.0.0的
         End If
 
         'mods_config_files 转到数组
+
         ReDim modsconfig(1, 0)
         If My.Computer.FileSystem.FileExists("./data/facw/sl/mc.txt") Then
             Dim i = -1 '临时统计文件有几行.-1为校正数组从0开始

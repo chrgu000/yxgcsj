@@ -15,8 +15,15 @@ Public Class form_updata
     End Sub
 
     Private Sub Up_autoupdata()
+        Dim dFile As New WebClient
+        Dim upUri_up_data As New Uri(up_root & "up_data.exe")
+        AddHandler dFile.DownloadProgressChanged, AddressOf ShowDownProgress '这一句是在网上看到的，用这句来捕获下载进度变化事件，不知道对不对。
+        AddHandler dFile.DownloadFileCompleted, AddressOf wanchen
         Label_status.Text = "正在下载..."
-        BackgroundWorker_download_updata.RunWorkerAsync()
+
+        'dFile.DownloadFileAsync(upUri, Environ("AppData") & "\Factorio\mods\" & modslist(8, mods_select))
+        dFile.DownloadFileAsync(upUri_up_data, "up_data.exe")
+        'BackgroundWorker_download_updata.RunWorkerAsync()
 
     End Sub
 
@@ -55,36 +62,36 @@ Public Class form_updata
         End If
     End Sub
 
-    Private Sub BackgroundWorker_download_updata_DoWork(sender As Object, e As DoWorkEventArgs) Handles BackgroundWorker_download_updata.DoWork
-        Dim dFile As New System.Net.WebClient
-        Dim upUri_up_data As New Uri(up_root & "up_data.exe")
-        Try
-            dFile.DownloadFile(upUri_up_data, "up_data.exe")
-        Catch ex As Exception
-            Label_status.Text = "下载失败!"
-        End Try
+    'Private Sub BackgroundWorker_download_updata_DoWork(sender As Object, e As DoWorkEventArgs) Handles BackgroundWorker_download_updata.DoWork
+    '    Dim dFile As New System.Net.WebClient
+    '    Dim upUri_up_data As New Uri(up_root & "up_data.exe")
+    '    Try
+    '        dFile.DownloadFile(upUri_up_data, "up_data.exe")
+    '    Catch ex As Exception
+    '        Label_status.Text = "下载失败!"
+    '    End Try
 
 
 
-    End Sub
+    ' End Sub
 
-    Private Sub BackgroundWorker_download_updata_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BackgroundWorker_download_updata.RunWorkerCompleted
-        If Label_status.Text <> "下载失败!" Then
-            Label_status.Text = "下载完成!"
-            Try
-                System.IO.File.WriteAllText("up_com.bat", TextBox_up_com.Text, encoding:=System.Text.Encoding.Default)
-                Label_status.Text = "升级完成后将自动重启。"
-                Shell("up_com.bat", Style:=AppWinStyle.NormalFocus)
-                Form_chat.Close()
-                Form_main.Close()
-                Me.Close()
-            Catch ex As Exception
-                MsgBox（"升级错误，请手动执行 up_data.exe")
-            End Try
+    'Private Sub BackgroundWorker_download_updata_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BackgroundWorker_download_updata.RunWorkerCompleted
+    '    If Label_status.Text <> "下载失败!" Then
+    '        Label_status.Text = "下载完成!"
+    '        Try
+    '            System.IO.File.WriteAllText("up_com.bat", TextBox_up_com.Text, encoding:=System.Text.Encoding.Default)
+    '            Label_status.Text = "升级完成后将自动重启。"
+    '            Shell("up_com.bat", Style:=AppWinStyle.NormalFocus)
+    '            Form_chat.Close()
+    '            Form_main.Close()
+    '            Me.Close()
+    '        Catch ex As Exception
+    '            MsgBox（"升级错误，请手动执行 up_data.exe")
+    '        End Try
 
-        End If
+    '    End If
 
-    End Sub
+    'End Sub
 
     Private Sub BackgroundWorker_check_ver_Disposed(sender As Object, e As EventArgs) Handles BackgroundWorker_check_ver.Disposed
         'MsgBox("disposed")
@@ -108,4 +115,24 @@ Public Class form_updata
         Me.Hide()
         Form_main.Show()
     End Sub
+
+    Sub wanchen(ByVal sender As Object, ByVal e As System.ComponentModel.AsyncCompletedEventArgs)
+        Label_status.Text = "下载完成"
+        Try
+            System.IO.File.WriteAllText("up_com.bat", TextBox_up_com.Text, encoding:=System.Text.Encoding.Default)
+            Label_status.Text = "升级完成后将自动重启。"
+            Shell("up_com.bat", Style:=AppWinStyle.NormalFocus)
+            Form_chat.Close()
+            Form_main.Close()
+            Me.Close()
+        Catch ex As Exception
+            MsgBox（"升级错误，请手动执行 up_data.exe")
+        End Try
+    End Sub
+
+    Private Sub ShowDownProgress(ByVal sender As Object, ByVal e As System.Net.DownloadProgressChangedEventArgs)
+        Invoke(New Action(Of Integer)(Sub(i) ProgressBar1.Value = i), e.ProgressPercentage)
+    End Sub
+
+
 End Class
