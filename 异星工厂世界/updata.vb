@@ -134,5 +134,11 @@ Public Class form_updata
         Invoke(New Action(Of Integer)(Sub(i) ProgressBar1.Value = i), e.ProgressPercentage)
     End Sub
 
+    Private Sub TextBox_up_com_TextChanged(sender As Object, e As EventArgs) Handles TextBox_up_com.TextChanged
 
+    End Sub
+
+    Private Sub ProgressBar1_Click(sender As Object, e As EventArgs) Handles ProgressBar1.Click
+
+    End Sub
 End Class

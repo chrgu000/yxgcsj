@@ -78,7 +78,7 @@ Public Class Form_main
     End Sub
 
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        del_edit_hosts()
 
         '清理文件
         delete_files()
@@ -220,7 +220,8 @@ Public Class Form_main
         'serverlist（4, server_select) ping
 
         '修改host文件
-        'edit_hosts()
+
+
 
         '修改player-data.json文件
         'edit_player_data_json()
@@ -235,77 +236,78 @@ Public Class Form_main
 
 
     End Sub
-    'Private Sub edit_hosts()
-    '    Dim host_file(0)
-    '    Dim host_file_hang = -1     '临时统计文件有几行.-1为校正数组从0开始
-    '    Try
-    '        'FileOpen(1, "C:\Windows\System32\drivers\etc\hosts", OpenMode.Input)
-    '        'Do While Not EOF(1)
+    Private Sub del_edit_hosts()
+        Dim host_file(0)
+        Dim host_file_hang = -1     '临时统计文件有几行.-1为校正数组从0开始
+        Try
+            'FileOpen(1, "C:\Windows\System32\drivers\etc\hosts", OpenMode.Input)
+            'Do While Not EOF(1)
 
-    '        '    host_file_hang = host_file_hang + 1
-    '        '    ReDim Preserve host_file(host_file_hang)
-    '        '    host_file(host_file_hang) = LineInput(1)
-    '        '    Console.WriteLine("行" & host_file_hang.ToString)
+            '    host_file_hang = host_file_hang + 1
+            '    ReDim Preserve host_file(host_file_hang)
+            '    host_file(host_file_hang) = LineInput(1)
+            '    Console.WriteLine("行" & host_file_hang.ToString)
 
-    '        '    Console.WriteLine(host_file(host_file_hang))
-    '        'Loop
-    '        'FileClose()
-    '        'MsgBox(Environ("SYSTEMROOT"))
-    '        Dim sr = New StreamReader(Environ("SYSTEMROOT") & "\System32\drivers\etc\hosts", encoding:=System.Text.Encoding.Default)
+            '    Console.WriteLine(host_file(host_file_hang))
+            'Loop
+            'FileClose()
+            'MsgBox(Environ("SYSTEMROOT"))
+            Dim sr = New StreamReader(Environ("SYSTEMROOT") & "\System32\drivers\etc\hosts", encoding:=System.Text.Encoding.Default)
 
-    '        Do
-    '            host_file_hang = host_file_hang + 1
-    '            ReDim Preserve host_file(host_file_hang)
-    '            host_file(host_file_hang) = sr.ReadLine()
+            Do
+                host_file_hang = host_file_hang + 1
+                ReDim Preserve host_file(host_file_hang)
+                host_file(host_file_hang) = sr.ReadLine()
 
-    '        Loop Until host_file(host_file_hang） Is Nothing
-    '        sr.Close()
+            Loop Until host_file(host_file_hang） Is Nothing
+            sr.Close()
 
 
 
-    '        Dim gongchangshijie_chuxiancishu = 0
-    '        For i = 0 To UBound(host_file)
-    '            'MsgBox(InStr(host_file（i）, "工厂世界"）)
-    '            If InStr(host_file（i）, "工厂世界"） > 0 Then
-    '                gongchangshijie_chuxiancishu = gongchangshijie_chuxiancishu + 1
-    '                'MsgBox(InStr(host_file（i）, "工厂世界"）)
-    '                For l = i To UBound(host_file)
-    '                    If l = UBound(host_file) Then
-    '                        host_file(l) = ""
+            Dim gongchangshijie_chuxiancishu = 0
+            For i = 0 To UBound(host_file)
+                'MsgBox(InStr(host_file（i）, "工厂世界"）)
+                If InStr(host_file（i）, "工厂世界"） > 0 Then
+                    host_file(i) = ""
+                    'gongchangshijie_chuxiancishu = gongchangshijie_chuxiancishu + 1
+                    ''MsgBox(InStr(host_file（i）, "工厂世界"）)
+                    'For l = i To UBound(host_file)
+                    '    If l = UBound(host_file) Then
+                    '        host_file(l) = ""
 
-    '                    Else
-    '                        host_file(l) = host_file(l + 1)
-    '                        'ReDim Preserve host_file(UBound(host_file) - 1)
+                    '    Else
+                    '        host_file(l) = host_file(l + 1)
+                    '        ReDim Preserve host_file(UBound(host_file) - 1)
 
-    '                    End If
-    '                Next
-    '                i = i - 1
-    '            End If
-    '        Next
-    '        ReDim Preserve host_file(UBound(host_file) - gongchangshijie_chuxiancishu)
+                    '    End If
+                    'Next
+                    'i = i - 1
+                End If
+            Next
+            ReDim Preserve host_file(UBound(host_file) - gongchangshijie_chuxiancishu)
 
-    '        If host_file(UBound(host_file)) = "" Then
-    '            host_file(UBound(host_file)) = serverlist（3, server_select) & vbTab & "工厂世界"
-    '        Else
-    '            ReDim Preserve host_file(UBound(host_file) + 1)
-    '            host_file(UBound(host_file)) = serverlist（3, server_select) & vbTab & "工厂世界"
-    '        End If
-    '    Catch ex As Exception
-    '        If host_file(UBound(host_file)) = "" Then
-    '            host_file(UBound(host_file)) = serverlist（3, server_select) & vbTab & "工厂世界"
-    '        Else
-    '            ReDim Preserve host_file(UBound(host_file) + 1)
-    '            host_file(UBound(host_file)) = serverlist（3, server_select) & vbTab & "工厂世界"
-    '        End If
-    '    End Try
+            'If host_file(UBound(host_file)) = "" Then
+            '    'host_file(UBound(host_file)) = serverlist（3, server_select) & vbTab & "工厂世界"
+            '    'Else
+            '    ReDim Preserve host_file(UBound(host_file) + 1)
+            '    host_file(UBound(host_file)) = serverlist（3, server_select) & vbTab & "工厂世界"
+            'End If
+        Catch ex As Exception
+            'If host_file(UBound(host_file)) = "" Then
+            '    host_file(UBound(host_file)) = serverlist（3, server_select) & vbTab & "工厂世界"
+            'Else
+            '    ReDim Preserve host_file(UBound(host_file) + 1)
+            '    host_file(UBound(host_file)) = serverlist（3, server_select) & vbTab & "工厂世界"
+            'End If
+        End Try
 
-    '    Dim hosts_file_string = ""
-    '    For i = 0 To UBound(host_file)
-    '        hosts_file_string = (hosts_file_string & host_file(i) & vbCrLf)
-    '    Next
-    '    System.IO.File.WriteAllText(Environ("SYSTEMROOT") & "\System32\drivers\etc\hosts", hosts_file_string, encoding:=System.Text.Encoding.Default)
-    '    Threading.Thread.Sleep(200)
-    'End Sub
+        Dim hosts_file_string = host_file(0)
+        For i = 1 To UBound(host_file)
+            hosts_file_string = (hosts_file_string & host_file(i) & vbCrLf)
+        Next
+        System.IO.File.WriteAllText(Environ("SYSTEMROOT") & "\System32\drivers\etc\hosts", hosts_file_string, encoding:=System.Text.Encoding.Default)
+        Threading.Thread.Sleep(200)
+    End Sub
 
 
 
@@ -671,13 +673,13 @@ Public Class Form_main
 
 
 
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
-        Process.Start(".\data\facw\web\quantorio.htm")
-    End Sub
+    'Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+    '    Process.Start(".\data\facw\web\quantorio.htm")
+    'End Sub
 
-    Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
-        Process.Start("http://quantorio.garveen.net")
-    End Sub
+    'Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
+    '    Process.Start("http://quantorio.garveen.net")
+    'End Sub
 
     Private Sub Button_load_game_Click(sender As Object, e As EventArgs) Handles Button_load_game.Click
         Shell(".\bin\x64\factorio.exe", Style:=AppWinStyle.NormalFocus)
@@ -864,4 +866,47 @@ Public Class Form_main
         Button_download_mods_Click(sender, e)
     End Sub
 
+    Private Sub Label4_Click(sender As Object, e As EventArgs) Handles Label4.Click
+
+    End Sub
+
+    Private Sub MenuStrip1_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs)
+
+    End Sub
+
+    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
+        Dim mods_select = 0
+
+        Try
+            mods_select = ListView_mods.FocusedItem.Index
+            Clipboard.SetText(modslist(4, mods_select))
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+    Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem2.Click
+        Dim mods_select = 0
+        Try
+            mods_select = ListView_mods.FocusedItem.Index
+            Clipboard.SetText(modslist(9, mods_select))
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+    Private Sub ToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem3.Click
+        Dim mods_select = 0
+
+        Try
+            mods_select = ListView_mods.FocusedItem.Index
+            Clipboard.SetText(modslist(3, mods_select))
+        Catch ex As Exception
+
+        End Try
+
+
+    End Sub
 End Class

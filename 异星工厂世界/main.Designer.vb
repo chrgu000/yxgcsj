@@ -62,6 +62,10 @@ Partial Class Form_main
         Me.ColumnHeader9 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader10 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader11 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.Button_select_server = New System.Windows.Forms.Button()
         Me.TextBox_serverlist = New System.Windows.Forms.TextBox()
         Me.BackgroundWorker_download_serverlist = New System.ComponentModel.BackgroundWorker()
@@ -81,6 +85,7 @@ Partial Class Form_main
         Me.TabPage_server.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.TabPage_mods.SuspendLayout()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Button_updata
@@ -122,17 +127,17 @@ Partial Class Form_main
         'ColumnHeader1
         '
         Me.ColumnHeader1.Text = "服务器名称"
-        Me.ColumnHeader1.Width = 142
+        Me.ColumnHeader1.Width = 157
         '
         'ColumnHeader2
         '
         Me.ColumnHeader2.Text = "介绍"
-        Me.ColumnHeader2.Width = 298
+        Me.ColumnHeader2.Width = 320
         '
         'ColumnHeader3
         '
         Me.ColumnHeader3.Text = "最后报告正常时间"
-        Me.ColumnHeader3.Width = 172
+        Me.ColumnHeader3.Width = 136
         '
         'ColumnHeader4
         '
@@ -169,7 +174,7 @@ Partial Class Form_main
         '
         'Button_load_game
         '
-        Me.Button_load_game.Location = New System.Drawing.Point(459, 313)
+        Me.Button_load_game.Location = New System.Drawing.Point(489, 313)
         Me.Button_load_game.Name = "Button_load_game"
         Me.Button_load_game.Size = New System.Drawing.Size(75, 23)
         Me.Button_load_game.TabIndex = 12
@@ -179,7 +184,7 @@ Partial Class Form_main
         'Button_reload_serverlist
         '
         Me.Button_reload_serverlist.Enabled = False
-        Me.Button_reload_serverlist.Location = New System.Drawing.Point(313, 313)
+        Me.Button_reload_serverlist.Location = New System.Drawing.Point(336, 313)
         Me.Button_reload_serverlist.Name = "Button_reload_serverlist"
         Me.Button_reload_serverlist.Size = New System.Drawing.Size(120, 23)
         Me.Button_reload_serverlist.TabIndex = 11
@@ -225,6 +230,7 @@ Partial Class Form_main
         Me.LinkLabel2.TabIndex = 21
         Me.LinkLabel2.TabStop = True
         Me.LinkLabel2.Text = "原地址:http://quantorio.garveen.net/"
+        Me.LinkLabel2.Visible = False
         '
         'Label4
         '
@@ -234,6 +240,7 @@ Partial Class Form_main
         Me.Label4.Size = New System.Drawing.Size(191, 12)
         Me.Label4.TabIndex = 20
         Me.Label4.Text = "推荐浏览器为firefox 作者:acabin"
+        Me.Label4.Visible = False
         '
         'Button1
         '
@@ -243,6 +250,7 @@ Partial Class Form_main
         Me.Button1.TabIndex = 19
         Me.Button1.Text = "量化工具离线版"
         Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.Visible = False
         '
         'TextBox_game_ver
         '
@@ -251,7 +259,7 @@ Partial Class Form_main
         Me.TextBox_game_ver.Name = "TextBox_game_ver"
         Me.TextBox_game_ver.Size = New System.Drawing.Size(100, 21)
         Me.TextBox_game_ver.TabIndex = 18
-        Me.TextBox_game_ver.Text = "0.16.15"
+        Me.TextBox_game_ver.Text = "0.16.22"
         '
         'CheckBox_chinese_chat
         '
@@ -384,6 +392,7 @@ Partial Class Form_main
         'ListView_mods
         '
         Me.ListView_mods.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader5, Me.ColumnHeader6, Me.ColumnHeader7, Me.ColumnHeader8, Me.ColumnHeader9, Me.ColumnHeader10, Me.ColumnHeader11})
+        Me.ListView_mods.ContextMenuStrip = Me.ContextMenuStrip1
         Me.ListView_mods.FullRowSelect = True
         Me.ListView_mods.GridLines = True
         Me.ListView_mods.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
@@ -431,6 +440,30 @@ Partial Class Form_main
         Me.ColumnHeader11.Text = "更新日期"
         Me.ColumnHeader11.Width = 203
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.ToolStripMenuItem2, Me.ToolStripMenuItem3})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(125, 70)
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(124, 22)
+        Me.ToolStripMenuItem1.Text = "复制官网"
+        '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(124, 22)
+        Me.ToolStripMenuItem2.Text = "复制介绍"
+        '
+        'ToolStripMenuItem3
+        '
+        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(124, 22)
+        Me.ToolStripMenuItem3.Text = "复制作者"
+        '
         'Button_select_server
         '
         Me.Button_select_server.Enabled = False
@@ -464,9 +497,9 @@ Partial Class Form_main
         'Button_readme
         '
         Me.Button_readme.Enabled = False
-        Me.Button_readme.Location = New System.Drawing.Point(138, 424)
+        Me.Button_readme.Location = New System.Drawing.Point(122, 424)
         Me.Button_readme.Name = "Button_readme"
-        Me.Button_readme.Size = New System.Drawing.Size(75, 23)
+        Me.Button_readme.Size = New System.Drawing.Size(87, 23)
         Me.Button_readme.TabIndex = 11
         Me.Button_readme.Text = "使用说明"
         Me.Button_readme.UseVisualStyleBackColor = True
@@ -492,7 +525,7 @@ Partial Class Form_main
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(29, 12)
         Me.Label_ver.TabIndex = 13
-        Me.Label_ver.Text = "0.30"
+        Me.Label_ver.Text = "0.32"
         '
         'Label_ver_status
         '
@@ -554,6 +587,7 @@ Partial Class Form_main
         Me.GroupBox1.PerformLayout()
         Me.TabPage_mods.ResumeLayout(False)
         Me.TabPage_mods.PerformLayout()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -610,4 +644,8 @@ Partial Class Form_main
     Friend WithEvents ColumnHeader11 As ColumnHeader
     Friend WithEvents Label_mods_status As Label
     Friend WithEvents ProgressBar1 As ProgressBar
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem2 As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem3 As ToolStripMenuItem
 End Class
