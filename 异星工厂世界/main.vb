@@ -64,21 +64,20 @@ Public Class Form_main
     End Sub
 
     Private Sub tips()
-        Dim tips_string(5) As String
+        Dim tips_string(4) As String
         tips_string(0) = "---------------------------------------------------------------"
         tips_string(1) = "双击列表中的服务器可以直接启动游戏并进入选定的服务器哦!"
         tips_string(2) = "进游戏系后按 Ctrl+~ 可以中文输入。"
         tips_string(3) = "如果输入中文时，提示版本不对,可以在工具标签里修改你实际的游戏版本。"
-        tips_string(4) = "工具标签里有离线版量化工具哦。"
-        tips_string(5) = "长时间不能载入服务器列表或者不能检测更新，重启我也许比等待快。"
+        tips_string(4) = "长时间不能载入服务器列表或者不能检测更新，重启我也许比等待快。"
         Dim myRND As New Random
         'Label_tips.Text = tips_string(0)
-        Label_tips.Text = tips_string(myRND.Next(1, 6))
+        Label_tips.Text = tips_string(myRND.Next(1, 5))
 
     End Sub
 
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        del_edit_hosts()
+        'del_edit_hosts()
 
         '清理文件
         delete_files()

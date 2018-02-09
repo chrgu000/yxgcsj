@@ -55,4 +55,3 @@ E:\Projects\yxgcsj\异星工厂世界\bin\Debug\data\facw\web\quantorio_files\lz
 E:\Projects\yxgcsj\异星工厂世界\bin\Debug\data\facw\web\quantorio_files\military.png
 E:\Projects\yxgcsj\异星工厂世界\bin\Debug\data\facw\web\quantorio_files\production.png
 E:\Projects\yxgcsj\异星工厂世界\bin\Debug\data\facw\web\quantorio_files\zh-CN.js
-E:\Projects\yxgcsj\异星工厂世界\obj\Debug\异星工厂世界.vbprojResolveAssemblyReference.cache
