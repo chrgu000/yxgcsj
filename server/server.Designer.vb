@@ -26,6 +26,7 @@ Partial Class server
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(server))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.CheckBox_auto_pause = New System.Windows.Forms.CheckBox()
         Me.TextBox_port = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.CheckBox_custom_port = New System.Windows.Forms.CheckBox()
@@ -52,8 +53,6 @@ Partial Class server
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.ComboBox_auto_pause = New System.Windows.Forms.ComboBox()
-        Me.Label7 = New System.Windows.Forms.Label()
         Me.TextBox_afk_autokick_interval = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TextBox_autosave_slots = New System.Windows.Forms.TextBox()
@@ -94,6 +93,7 @@ Partial Class server
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.CheckBox_auto_pause)
         Me.TabPage1.Controls.Add(Me.TextBox_port)
         Me.TabPage1.Controls.Add(Me.Label18)
         Me.TabPage1.Controls.Add(Me.CheckBox_custom_port)
@@ -120,8 +120,6 @@ Partial Class server
         Me.TabPage1.Controls.Add(Me.Label10)
         Me.TabPage1.Controls.Add(Me.Label9)
         Me.TabPage1.Controls.Add(Me.Label8)
-        Me.TabPage1.Controls.Add(Me.ComboBox_auto_pause)
-        Me.TabPage1.Controls.Add(Me.Label7)
         Me.TabPage1.Controls.Add(Me.TextBox_afk_autokick_interval)
         Me.TabPage1.Controls.Add(Me.Label6)
         Me.TabPage1.Controls.Add(Me.TextBox_autosave_slots)
@@ -141,6 +139,16 @@ Partial Class server
         Me.TabPage1.Text = "独立服务器"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'CheckBox_auto_pause
+        '
+        Me.CheckBox_auto_pause.AutoSize = True
+        Me.CheckBox_auto_pause.Location = New System.Drawing.Point(22, 378)
+        Me.CheckBox_auto_pause.Name = "CheckBox_auto_pause"
+        Me.CheckBox_auto_pause.Size = New System.Drawing.Size(132, 16)
+        Me.CheckBox_auto_pause.TabIndex = 112
+        Me.CheckBox_auto_pause.Text = "服务器无人自动暂停"
+        Me.CheckBox_auto_pause.UseVisualStyleBackColor = True
+        '
         'TextBox_port
         '
         Me.TextBox_port.Enabled = False
@@ -148,7 +156,6 @@ Partial Class server
         Me.TextBox_port.Name = "TextBox_port"
         Me.TextBox_port.Size = New System.Drawing.Size(38, 21)
         Me.TextBox_port.TabIndex = 110
-        Me.TextBox_port.Text = "34197"
         '
         'Label18
         '
@@ -372,31 +379,12 @@ Partial Class server
         Me.Label8.TabIndex = 83
         Me.Label8.Text = "分钟   0为不踢"
         '
-        'ComboBox_auto_pause
-        '
-        Me.ComboBox_auto_pause.FormattingEnabled = True
-        Me.ComboBox_auto_pause.Items.AddRange(New Object() {"是", "否"})
-        Me.ComboBox_auto_pause.Location = New System.Drawing.Point(145, 380)
-        Me.ComboBox_auto_pause.Name = "ComboBox_auto_pause"
-        Me.ComboBox_auto_pause.Size = New System.Drawing.Size(60, 20)
-        Me.ComboBox_auto_pause.TabIndex = 82
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(20, 383)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(119, 12)
-        Me.Label7.TabIndex = 81
-        Me.Label7.Text = "服务器无人自动暂停:"
-        '
         'TextBox_afk_autokick_interval
         '
         Me.TextBox_afk_autokick_interval.Location = New System.Drawing.Point(85, 292)
         Me.TextBox_afk_autokick_interval.Name = "TextBox_afk_autokick_interval"
         Me.TextBox_afk_autokick_interval.Size = New System.Drawing.Size(100, 21)
         Me.TextBox_afk_autokick_interval.TabIndex = 80
-        Me.TextBox_afk_autokick_interval.Text = "0"
         '
         'Label6
         '
@@ -413,7 +401,6 @@ Partial Class server
         Me.TextBox_autosave_slots.Name = "TextBox_autosave_slots"
         Me.TextBox_autosave_slots.Size = New System.Drawing.Size(95, 21)
         Me.TextBox_autosave_slots.TabIndex = 78
-        Me.TextBox_autosave_slots.Text = "20"
         '
         'Label5
         '
@@ -430,7 +417,6 @@ Partial Class server
         Me.TextBox_autosave_interval.Name = "TextBox_autosave_interval"
         Me.TextBox_autosave_interval.Size = New System.Drawing.Size(64, 21)
         Me.TextBox_autosave_interval.TabIndex = 76
-        Me.TextBox_autosave_interval.Text = "60"
         '
         'Label4
         '
@@ -447,7 +433,6 @@ Partial Class server
         Me.TextBox_max_players.Name = "TextBox_max_players"
         Me.TextBox_max_players.Size = New System.Drawing.Size(100, 21)
         Me.TextBox_max_players.TabIndex = 74
-        Me.TextBox_max_players.Text = "0"
         '
         'Label3
         '
@@ -464,7 +449,6 @@ Partial Class server
         Me.TextBox_saves.Name = "TextBox_saves"
         Me.TextBox_saves.Size = New System.Drawing.Size(256, 21)
         Me.TextBox_saves.TabIndex = 72
-        Me.TextBox_saves.Text = "my\my.zip"
         '
         'Label1
         '
@@ -548,7 +532,7 @@ Partial Class server
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(29, 12)
         Me.Label_ver.TabIndex = 15
-        Me.Label_ver.Text = "0.34"
+        Me.Label_ver.Text = "0.35"
         '
         'Label17
         '
@@ -623,8 +607,6 @@ Partial Class server
     Friend WithEvents Label10 As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents ComboBox_auto_pause As ComboBox
-    Friend WithEvents Label7 As Label
     Friend WithEvents TextBox_afk_autokick_interval As TextBox
     Friend WithEvents Label6 As Label
     Friend WithEvents TextBox_autosave_slots As TextBox
@@ -663,4 +645,5 @@ Partial Class server
     Friend WithEvents TextBox_port As TextBox
     Friend WithEvents Label18 As Label
     Friend WithEvents CheckBox_custom_port As CheckBox
+    Friend WithEvents CheckBox_auto_pause As CheckBox
 End Class

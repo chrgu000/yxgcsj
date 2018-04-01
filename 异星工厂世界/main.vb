@@ -3,6 +3,19 @@ Imports System.IO
 Imports System.Net
 
 Public Class Form_main
+    '声明INI配置文件读写API函数,lpApplicationName节名称， lpKeyName键名称，lpString是键值
+    Private Declare Function GetPrivateProfileString Lib "kernel32" Alias "GetPrivateProfileStringA" (ByVal lpApplicationName As String, ByVal lpKeyName As String, ByVal lpDefault As String, ByVal lpReturnedString As String, ByVal nSize As Int32, ByVal lpFileName As String) As Int32
+    Private Declare Function WritePrivateProfileString Lib "kernel32" Alias "WritePrivateProfileStringA" (ByVal lpApplicationName As String, ByVal lpKeyName As String, ByVal lpString As String, ByVal lpFileName As String) As Int32
+    '定义读取配置文件函数
+    Public Function GetINI(ByVal Section As String, ByVal AppName As String, ByVal lpDefault As String, ByVal FileName As String) As String
+        Dim Str As String = LSet(Str, 256)
+        GetPrivateProfileString(Section, AppName, lpDefault, Str, Len(Str), FileName)
+        Return Microsoft.VisualBasic.Left(Str, InStr(Str, Chr(0)) - 1)
+    End Function
+    '定义写入配置文件函数
+    Public Function WriteINI(ByVal Section As String, ByVal AppName As String, ByVal lpDefault As String, ByVal FileName As String) As Long
+        WriteINI = WritePrivateProfileString(Section, AppName, lpDefault, FileName)
+    End Function
     '------------------------
     '后台按键测试
     Private Declare Function PostMessage Lib "user32" Alias "PostMessageA" (ByVal hwnd As Long, ByVal wMsg As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
@@ -52,31 +65,32 @@ Public Class Form_main
 
     Public Declare Auto Function UnRegisterHotKey Lib "user32.dll" Alias _
         "UnregisterHotKey" (ByVal hwnd As IntPtr, ByVal id As Integer) As Boolean
-    Protected Overrides Sub WndProc(ByRef m As Message)
-        If m.Msg = WM_HOTKEY Then
-            If CheckBox_chinese_chat.Checked = True Then
-                Form_chat.Show()
-                AppActivate("异星工厂世界中文聊天窗口")
-                'MsgBox("在这里添加你要执行的代码", MsgBoxStyle.Information, "全局热键")
-            End If
-        End If
-        MyBase.WndProc(m)
-    End Sub
+    'Protected Overrides Sub WndProc(ByRef m As Message)
+    '    If m.Msg = WM_HOTKEY Then
+    '        If CheckBox_chinese_chat.Checked = True Then
+    '            Form_chat.Show()
+    '            AppActivate("异星工厂世界中文聊天窗口")
+    '            'MsgBox("在这里添加你要执行的代码", MsgBoxStyle.Information, "全局热键")
+    '        End If
+    '    End If
+    '    MyBase.WndProc(m)
+    'End Sub
 
     Private Sub tips()
         Dim tips_string(4) As String
         tips_string(0) = "---------------------------------------------------------------"
         tips_string(1) = "双击列表中的服务器可以直接启动游戏并进入选定的服务器哦!"
-        tips_string(2) = "进游戏系后按 Ctrl+~ 可以中文输入。"
-        tips_string(3) = "如果输入中文时，提示版本不对,可以在工具标签里修改你实际的游戏版本。"
-        tips_string(4) = "长时间不能载入服务器列表或者不能检测更新，重启我也许比等待快。"
+        'tips_string(2) = "进游戏系后按 Ctrl+~ 可以中文输入。"
+        tips_string(2) = "如果输入中文时，提示版本不对,可以在工具标签里修改你实际的游戏版本。"
+        tips_string(3) = "长时间不能载入服务器列表或者不能检测更新，重启我也许比等待快。"
         Dim myRND As New Random
         'Label_tips.Text = tips_string(0)
-        Label_tips.Text = tips_string(myRND.Next(1, 5))
+        Label_tips.Text = tips_string(myRND.Next(1, 4))
 
     End Sub
 
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_ini()
         'del_edit_hosts()
 
         '清理文件
@@ -114,6 +128,7 @@ Public Class Form_main
     End Sub
 
     Private Sub Form2_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+        save_ini（）
         '注销全局热键
         'UnRegisterHotKey(Handle, 1)
         '删除旧版文件
@@ -190,7 +205,7 @@ Public Class Form_main
             Button_readme.Enabled = True
             Button_updata.Enabled = True
 
-            CheckBox_chinese_chat.Enabled = True
+            'CheckBox_chinese_chat.Enabled = True
             TextBox_game_ver.Enabled = True
 
             ListView1.Items(0).Focused = True
@@ -552,7 +567,7 @@ Public Class Form_main
         Button_readme.Enabled = False
         Button_updata.Enabled = False
 
-        CheckBox_chinese_chat.Enabled = False
+        'CheckBox_chinese_chat.Enabled = False
         TextBox_game_ver.Enabled = False
 
         '载入服务器列表
@@ -907,5 +922,13 @@ Public Class Form_main
         End Try
 
 
+    End Sub
+    Sub load_ini()
+
+        TextBox_game_ver.Text = GetINI("client", "game_ver", "0.16.36", ".\工厂世界.ini")
+    End Sub
+    Sub save_ini()
+        'WriteINI("Language", "Language", "CHV", ".\conquer.ini")
+        WriteINI("client", "game_ver"， TextBox_game_ver.Text, ".\工厂世界.ini")
     End Sub
 End Class

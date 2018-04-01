@@ -40,11 +40,11 @@ Partial Class Form_main
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.TextBox_game_ver = New System.Windows.Forms.TextBox()
-        Me.CheckBox_chinese_chat = New System.Windows.Forms.CheckBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Button_change_player_color = New System.Windows.Forms.Button()
+        Me.TextBox_game_ver = New System.Windows.Forms.TextBox()
         Me.LinkLabel_game_download_url = New System.Windows.Forms.LinkLabel()
         Me.Button_test_mode = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -206,8 +206,6 @@ Partial Class Form_main
         Me.TabPage_server.Controls.Add(Me.LinkLabel2)
         Me.TabPage_server.Controls.Add(Me.Label4)
         Me.TabPage_server.Controls.Add(Me.Button1)
-        Me.TabPage_server.Controls.Add(Me.TextBox_game_ver)
-        Me.TabPage_server.Controls.Add(Me.CheckBox_chinese_chat)
         Me.TabPage_server.Controls.Add(Me.GroupBox1)
         Me.TabPage_server.Controls.Add(Me.LinkLabel_game_download_url)
         Me.TabPage_server.Controls.Add(Me.Button_test_mode)
@@ -224,7 +222,7 @@ Partial Class Form_main
         'LinkLabel2
         '
         Me.LinkLabel2.AutoSize = True
-        Me.LinkLabel2.Location = New System.Drawing.Point(124, 229)
+        Me.LinkLabel2.Location = New System.Drawing.Point(383, 326)
         Me.LinkLabel2.Name = "LinkLabel2"
         Me.LinkLabel2.Size = New System.Drawing.Size(221, 12)
         Me.LinkLabel2.TabIndex = 21
@@ -235,7 +233,7 @@ Partial Class Form_main
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(132, 214)
+        Me.Label4.Location = New System.Drawing.Point(391, 311)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(191, 12)
         Me.Label4.TabIndex = 20
@@ -244,7 +242,7 @@ Partial Class Form_main
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(9, 216)
+        Me.Button1.Location = New System.Drawing.Point(268, 313)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(109, 23)
         Me.Button1.TabIndex = 19
@@ -252,43 +250,32 @@ Partial Class Form_main
         Me.Button1.UseVisualStyleBackColor = True
         Me.Button1.Visible = False
         '
-        'TextBox_game_ver
-        '
-        Me.TextBox_game_ver.Enabled = False
-        Me.TextBox_game_ver.Location = New System.Drawing.Point(305, 180)
-        Me.TextBox_game_ver.Name = "TextBox_game_ver"
-        Me.TextBox_game_ver.Size = New System.Drawing.Size(100, 21)
-        Me.TextBox_game_ver.TabIndex = 18
-        Me.TextBox_game_ver.Text = "0.16.25"
-        '
-        'CheckBox_chinese_chat
-        '
-        Me.CheckBox_chinese_chat.AutoSize = True
-        Me.CheckBox_chinese_chat.Checked = True
-        Me.CheckBox_chinese_chat.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox_chinese_chat.Enabled = False
-        Me.CheckBox_chinese_chat.Location = New System.Drawing.Point(9, 182)
-        Me.CheckBox_chinese_chat.Name = "CheckBox_chinese_chat"
-        Me.CheckBox_chinese_chat.Size = New System.Drawing.Size(300, 16)
-        Me.CheckBox_chinese_chat.TabIndex = 17
-        Me.CheckBox_chinese_chat.Text = "中文聊天支持（Ctrl+~激活输入窗口），游戏版本："
-        Me.CheckBox_chinese_chat.UseVisualStyleBackColor = True
-        '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.Button_change_player_color)
+        Me.GroupBox1.Controls.Add(Me.TextBox_game_ver)
         Me.GroupBox1.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(611, 170)
+        Me.GroupBox1.Size = New System.Drawing.Size(611, 279)
         Me.GroupBox1.TabIndex = 6
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "控制台命令"
         '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(6, 17)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(65, 12)
+        Me.Label6.TabIndex = 19
+        Me.Label6.Text = "游戏版本："
+        '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(6, 17)
+        Me.Label3.Location = New System.Drawing.Point(6, 49)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(101, 12)
         Me.Label3.TabIndex = 4
@@ -296,12 +283,21 @@ Partial Class Form_main
         '
         'Button_change_player_color
         '
-        Me.Button_change_player_color.Location = New System.Drawing.Point(113, 12)
+        Me.Button_change_player_color.Location = New System.Drawing.Point(113, 44)
         Me.Button_change_player_color.Name = "Button_change_player_color"
         Me.Button_change_player_color.Size = New System.Drawing.Size(75, 23)
         Me.Button_change_player_color.TabIndex = 5
         Me.Button_change_player_color.Text = "选择颜色"
         Me.Button_change_player_color.UseVisualStyleBackColor = True
+        '
+        'TextBox_game_ver
+        '
+        Me.TextBox_game_ver.Enabled = False
+        Me.TextBox_game_ver.Location = New System.Drawing.Point(77, 14)
+        Me.TextBox_game_ver.Name = "TextBox_game_ver"
+        Me.TextBox_game_ver.Size = New System.Drawing.Size(100, 21)
+        Me.TextBox_game_ver.TabIndex = 18
+        Me.TextBox_game_ver.Text = "0.16.25"
         '
         'LinkLabel_game_download_url
         '
@@ -525,7 +521,7 @@ Partial Class Form_main
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(29, 12)
         Me.Label_ver.TabIndex = 13
-        Me.Label_ver.Text = "0.34"
+        Me.Label_ver.Text = "0.35"
         '
         'Label_ver_status
         '
@@ -624,7 +620,6 @@ Partial Class Form_main
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Button1 As Button
     Friend WithEvents TextBox_game_ver As TextBox
-    Friend WithEvents CheckBox_chinese_chat As CheckBox
     Friend WithEvents LinkLabel2 As LinkLabel
     Friend WithEvents Label4 As Label
     Friend WithEvents Button_load_game As Button
@@ -648,4 +643,5 @@ Partial Class Form_main
     Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem2 As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem3 As ToolStripMenuItem
+    Friend WithEvents Label6 As Label
 End Class

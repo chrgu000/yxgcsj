@@ -3,6 +3,22 @@ Imports System.IO
 
 Public Class server
 
+
+    '声明INI配置文件读写API函数,lpApplicationName节名称， lpKeyName键名称，lpString是键值
+    Private Declare Function GetPrivateProfileString Lib "kernel32" Alias "GetPrivateProfileStringA" (ByVal lpApplicationName As String, ByVal lpKeyName As String, ByVal lpDefault As String, ByVal lpReturnedString As String, ByVal nSize As Int32, ByVal lpFileName As String) As Int32
+    Private Declare Function WritePrivateProfileString Lib "kernel32" Alias "WritePrivateProfileStringA" (ByVal lpApplicationName As String, ByVal lpKeyName As String, ByVal lpString As String, ByVal lpFileName As String) As Int32
+    '定义读取配置文件函数
+    Public Function GetINI(ByVal Section As String, ByVal AppName As String, ByVal lpDefault As String, ByVal FileName As String) As String
+        Dim Str As String = LSet(Str, 256)
+        GetPrivateProfileString(Section, AppName, lpDefault, Str, Len(Str), FileName)
+        Return Microsoft.VisualBasic.Left(Str, InStr(Str, Chr(0)) - 1)
+    End Function
+    '定义写入配置文件函数
+    Public Function WriteINI(ByVal Section As String, ByVal AppName As String, ByVal lpDefault As String, ByVal FileName As String) As Long
+        WriteINI = WritePrivateProfileString(Section, AppName, lpDefault, FileName)
+    End Function
+
+
     '十分钟上传一次,18分钟无消息删除.
     Dim server_id
     Public serverlist(4, 0)
@@ -57,6 +73,8 @@ Public Class server
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        load_ini()
         'If My.Computer.FileSystem.FileExists(".\bin\x64\factorio.exe") Then
         '    If My.Computer.FileSystem.DirectoryExists(".\my") = False Then
         '        My.Computer.FileSystem.CreateDirectory("my")
@@ -65,7 +83,7 @@ Public Class server
         '    MsgBox("工厂世界安装的目录不正确，请确认安装到异星工厂的游戏根目录，而不是bin\x64目录下！")
         '    Me.Close()
         'End If
-        ComboBox_auto_pause.SelectedIndex = 0
+
     End Sub
 
     Private Sub Button_check_ip_Click(sender As Object, e As EventArgs) Handles Button_check_ip.Click
@@ -220,10 +238,10 @@ Public Class server
         server_settings(47) = "  ""afk_autokick_interval"": " & TextBox_afk_autokick_interval.Text & ","
         server_settings(48) = ""
         server_settings(49) = "  ""_comment_auto_pause"": ""Whether should the server be paused when no players are present."","
-        If ComboBox_auto_pause.Text = "否" Then
-            server_settings(50) = "  ""auto_pause"": false,"
-        Else
+        If CheckBox_auto_pause.Checked Then
             server_settings(50) = "  ""auto_pause"": true,"
+        Else
+            server_settings(50) = "  ""auto_pause"": false,"
         End If
         server_settings(51) = ""
         server_settings(52) = "  ""only_admins_can_pause_the_game"": true,"
@@ -522,9 +540,6 @@ delete:'删除时间为"2017/01/01 00:00:00"的
     End Sub
 
 
-    Private Sub TabControl1_Click(sender As Object, e As EventArgs) Handles TabControl1.Click
-        ComboBox_auto_pause.SelectedIndex = 0
-    End Sub
 
     Private Sub TabPage1_Click(sender As Object, e As EventArgs) Handles TabPage1.Click
 
@@ -718,5 +733,88 @@ delete:'删除时间为"2017/01/01 00:00:00"的
 
         '        Threading.Thread.Sleep(500)
         '    End If
+    End Sub
+
+    Sub load_ini()
+        TextBox_IP.Text = GetINI("server", "ip", "", ".\工厂世界.ini")
+        TextBox_port.Text = GetINI("server", "port", "34197", ".\工厂世界.ini")
+        TextBox_source_save.Text = GetINI("server", "source_save", "", ".\工厂世界.ini")
+        TextBox_saves.Text = GetINI("server", "save", "my\my.zip", ".\工厂世界.ini")
+        TextBox_server_name.Text = GetINI("server", "server_name", "", ".\工厂世界.ini")
+        TextBox_server_intro.Text = GetINI("server", "server_intro", "", ".\工厂世界.ini")
+        TextBox_game_password.Text = GetINI("server", "game_password", "", ".\工厂世界.ini")
+        TextBox_afk_autokick_interval.Text = GetINI("server", "afk_autokick_interval", "0", ".\工厂世界.ini")
+        TextBox_max_players.Text = GetINI("server", "max_players", "0", ".\工厂世界.ini")
+        TextBox_autosave_interval.Text = GetINI("server", "autosave_interval", "60", ".\工厂世界.ini")
+        TextBox_autosave_slots.Text = GetINI("server", "autosave_slots", "20", ".\工厂世界.ini")
+
+        If GetINI("server", "auto_pause", "0", ".\工厂世界.ini") = "0" Then
+            CheckBox_auto_pause.Checked = False
+        Else
+            CheckBox_auto_pause.Checked = True
+        End If
+
+        If GetINI("server", "custom_port", "0", ".\工厂世界.ini") = "0" Then
+            CheckBox_custom_port.Checked = False
+        Else
+            CheckBox_custom_port.Checked = True
+        End If
+
+        If GetINI("server", "pppoe", "0", ".\工厂世界.ini") = "0" Then
+            CheckBox_pppoe.Checked = False
+        Else
+            CheckBox_pppoe.Checked = True
+        End If
+
+        If GetINI("server", "user_game_password", "0", ".\工厂世界.ini") = "0" Then
+            CheckBox_user_game_password.Checked = False
+        Else
+            CheckBox_user_game_password.Checked = True
+        End If
+
+    End Sub
+    Sub save_ini()
+        WriteINI("server", "ip", TextBox_IP.Text, ".\工厂世界.ini")
+        WriteINI("server", "port", TextBox_port.Text, ".\工厂世界.ini")
+        WriteINI("server", "source_save", TextBox_source_save.Text, ".\工厂世界.ini")
+        WriteINI("server", "save", TextBox_saves.Text, ".\工厂世界.ini")
+        WriteINI("server", "server_name", TextBox_server_name.Text, ".\工厂世界.ini")
+        WriteINI("server", "server_intro", TextBox_server_intro.Text, ".\工厂世界.ini")
+        WriteINI("server", "game_password", TextBox_game_password.Text, ".\工厂世界.ini")
+        WriteINI("server", "afk_autokick_interval", TextBox_afk_autokick_interval.Text, ".\工厂世界.ini")
+        WriteINI("server", "max_players", TextBox_max_players.Text, ".\工厂世界.ini")
+        WriteINI("server", "autosave_interval", TextBox_autosave_interval.Text, ".\工厂世界.ini")
+        WriteINI("server", "autosave_slots", TextBox_autosave_slots.Text, ".\工厂世界.ini")
+
+
+        If CheckBox_auto_pause.Checked = False Then
+            WriteINI("server", "auto_pause", "0", ".\工厂世界.ini")
+        Else
+            WriteINI("server", "auto_pause", "1", ".\工厂世界.ini")
+        End If
+
+        If CheckBox_custom_port.Checked = False Then
+            WriteINI("server", "custom_port", "0", ".\工厂世界.ini")
+        Else
+            WriteINI("server", "custom_port", "1", ".\工厂世界.ini")
+        End If
+
+        If CheckBox_pppoe.Checked = False Then
+            GetINI("server", "pppoe", "0", ".\工厂世界.ini")
+        Else
+            GetINI("server", "pppoe", "1", ".\工厂世界.ini")
+        End If
+
+        If CheckBox_user_game_password.Checked = False Then
+            GetINI("server", "user_game_password", "0", ".\工厂世界.ini")
+        Else
+            GetINI("server", "user_game_password", "1", ".\工厂世界.ini")
+        End If
+        'WriteINI("Language", "Language", "CHV", ".\conquer.ini")
+
+    End Sub
+
+    Private Sub server_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+        save_ini()
     End Sub
 End Class
