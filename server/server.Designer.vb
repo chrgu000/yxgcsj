@@ -26,6 +26,9 @@ Partial Class server
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(server))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.CheckBox_user_mods = New System.Windows.Forms.CheckBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.TextBox_game_ver = New System.Windows.Forms.TextBox()
         Me.CheckBox_auto_pause = New System.Windows.Forms.CheckBox()
         Me.TextBox_port = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
@@ -88,11 +91,14 @@ Partial Class server
         Me.TabControl1.Location = New System.Drawing.Point(12, 12)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(492, 492)
+        Me.TabControl1.Size = New System.Drawing.Size(492, 513)
         Me.TabControl1.TabIndex = 0
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.CheckBox_user_mods)
+        Me.TabPage1.Controls.Add(Me.Label7)
+        Me.TabPage1.Controls.Add(Me.TextBox_game_ver)
         Me.TabPage1.Controls.Add(Me.CheckBox_auto_pause)
         Me.TabPage1.Controls.Add(Me.TextBox_port)
         Me.TabPage1.Controls.Add(Me.Label18)
@@ -134,15 +140,42 @@ Partial Class server
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(484, 466)
+        Me.TabPage1.Size = New System.Drawing.Size(484, 487)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "独立服务器"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'CheckBox_user_mods
+        '
+        Me.CheckBox_user_mods.AutoSize = True
+        Me.CheckBox_user_mods.Location = New System.Drawing.Point(229, 255)
+        Me.CheckBox_user_mods.Name = "CheckBox_user_mods"
+        Me.CheckBox_user_mods.Size = New System.Drawing.Size(60, 16)
+        Me.CheckBox_user_mods.TabIndex = 115
+        Me.CheckBox_user_mods.Text = "有模组"
+        Me.CheckBox_user_mods.UseVisualStyleBackColor = True
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(20, 253)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(59, 12)
+        Me.Label7.TabIndex = 114
+        Me.Label7.Text = "游戏版本:"
+        '
+        'TextBox_game_ver
+        '
+        Me.TextBox_game_ver.Location = New System.Drawing.Point(106, 250)
+        Me.TextBox_game_ver.Name = "TextBox_game_ver"
+        Me.TextBox_game_ver.Size = New System.Drawing.Size(100, 21)
+        Me.TextBox_game_ver.TabIndex = 113
+        Me.TextBox_game_ver.Text = "0.16.36"
+        '
         'CheckBox_auto_pause
         '
         Me.CheckBox_auto_pause.AutoSize = True
-        Me.CheckBox_auto_pause.Location = New System.Drawing.Point(22, 378)
+        Me.CheckBox_auto_pause.Location = New System.Drawing.Point(229, 291)
         Me.CheckBox_auto_pause.Name = "CheckBox_auto_pause"
         Me.CheckBox_auto_pause.Size = New System.Drawing.Size(132, 16)
         Me.CheckBox_auto_pause.TabIndex = 112
@@ -189,7 +222,7 @@ Partial Class server
         'Label1_status
         '
         Me.Label1_status.AutoSize = True
-        Me.Label1_status.Location = New System.Drawing.Point(156, 444)
+        Me.Label1_status.Location = New System.Drawing.Point(168, 454)
         Me.Label1_status.Name = "Label1_status"
         Me.Label1_status.Size = New System.Drawing.Size(29, 12)
         Me.Label1_status.TabIndex = 106
@@ -197,7 +230,7 @@ Partial Class server
         '
         'TextBox_config_path_cfg
         '
-        Me.TextBox_config_path_cfg.Location = New System.Drawing.Point(166, 441)
+        Me.TextBox_config_path_cfg.Location = New System.Drawing.Point(378, 445)
         Me.TextBox_config_path_cfg.Name = "TextBox_config_path_cfg"
         Me.TextBox_config_path_cfg.Size = New System.Drawing.Size(100, 21)
         Me.TextBox_config_path_cfg.TabIndex = 104
@@ -208,7 +241,7 @@ Partial Class server
         'CheckBox_user_game_password
         '
         Me.CheckBox_user_game_password.AutoSize = True
-        Me.CheckBox_user_game_password.Location = New System.Drawing.Point(22, 258)
+        Me.CheckBox_user_game_password.Location = New System.Drawing.Point(22, 291)
         Me.CheckBox_user_game_password.Name = "CheckBox_user_game_password"
         Me.CheckBox_user_game_password.Size = New System.Drawing.Size(78, 16)
         Me.CheckBox_user_game_password.TabIndex = 103
@@ -218,9 +251,9 @@ Partial Class server
         'TextBox_game_password
         '
         Me.TextBox_game_password.Enabled = False
-        Me.TextBox_game_password.Location = New System.Drawing.Point(106, 256)
+        Me.TextBox_game_password.Location = New System.Drawing.Point(106, 289)
         Me.TextBox_game_password.Name = "TextBox_game_password"
-        Me.TextBox_game_password.Size = New System.Drawing.Size(135, 21)
+        Me.TextBox_game_password.Size = New System.Drawing.Size(97, 21)
         Me.TextBox_game_password.TabIndex = 102
         '
         'Button_copy_save
@@ -300,7 +333,7 @@ Partial Class server
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(269, 415)
+        Me.Button1.Location = New System.Drawing.Point(279, 416)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(104, 23)
         Me.Button1.TabIndex = 91
@@ -345,7 +378,7 @@ Partial Class server
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(207, 324)
+        Me.Label11.Location = New System.Drawing.Point(144, 333)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(59, 12)
         Me.Label11.TabIndex = 86
@@ -354,7 +387,7 @@ Partial Class server
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(203, 354)
+        Me.Label10.Location = New System.Drawing.Point(203, 376)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(29, 12)
         Me.Label10.TabIndex = 85
@@ -373,7 +406,7 @@ Partial Class server
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(191, 295)
+        Me.Label8.Location = New System.Drawing.Point(355, 333)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(89, 12)
         Me.Label8.TabIndex = 83
@@ -381,15 +414,15 @@ Partial Class server
         '
         'TextBox_afk_autokick_interval
         '
-        Me.TextBox_afk_autokick_interval.Location = New System.Drawing.Point(85, 292)
+        Me.TextBox_afk_autokick_interval.Location = New System.Drawing.Point(285, 330)
         Me.TextBox_afk_autokick_interval.Name = "TextBox_afk_autokick_interval"
-        Me.TextBox_afk_autokick_interval.Size = New System.Drawing.Size(100, 21)
+        Me.TextBox_afk_autokick_interval.Size = New System.Drawing.Size(60, 21)
         Me.TextBox_afk_autokick_interval.TabIndex = 80
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(20, 295)
+        Me.Label6.Location = New System.Drawing.Point(220, 333)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(59, 12)
         Me.Label6.TabIndex = 79
@@ -397,7 +430,7 @@ Partial Class server
         '
         'TextBox_autosave_slots
         '
-        Me.TextBox_autosave_slots.Location = New System.Drawing.Point(327, 351)
+        Me.TextBox_autosave_slots.Location = New System.Drawing.Point(327, 373)
         Me.TextBox_autosave_slots.Name = "TextBox_autosave_slots"
         Me.TextBox_autosave_slots.Size = New System.Drawing.Size(95, 21)
         Me.TextBox_autosave_slots.TabIndex = 78
@@ -405,7 +438,7 @@ Partial Class server
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(238, 354)
+        Me.Label5.Location = New System.Drawing.Point(238, 376)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(83, 12)
         Me.Label5.TabIndex = 77
@@ -413,7 +446,7 @@ Partial Class server
         '
         'TextBox_autosave_interval
         '
-        Me.TextBox_autosave_interval.Location = New System.Drawing.Point(133, 351)
+        Me.TextBox_autosave_interval.Location = New System.Drawing.Point(133, 373)
         Me.TextBox_autosave_interval.Name = "TextBox_autosave_interval"
         Me.TextBox_autosave_interval.Size = New System.Drawing.Size(64, 21)
         Me.TextBox_autosave_interval.TabIndex = 76
@@ -421,7 +454,7 @@ Partial Class server
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(20, 354)
+        Me.Label4.Location = New System.Drawing.Point(20, 376)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(107, 12)
         Me.Label4.TabIndex = 75
@@ -429,15 +462,15 @@ Partial Class server
         '
         'TextBox_max_players
         '
-        Me.TextBox_max_players.Location = New System.Drawing.Point(97, 321)
+        Me.TextBox_max_players.Location = New System.Drawing.Point(97, 330)
         Me.TextBox_max_players.Name = "TextBox_max_players"
-        Me.TextBox_max_players.Size = New System.Drawing.Size(100, 21)
+        Me.TextBox_max_players.Size = New System.Drawing.Size(41, 21)
         Me.TextBox_max_players.TabIndex = 74
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(20, 324)
+        Me.Label3.Location = New System.Drawing.Point(20, 333)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(71, 12)
         Me.Label3.TabIndex = 73
@@ -461,7 +494,7 @@ Partial Class server
         '
         'Button_create_server
         '
-        Me.Button_create_server.Location = New System.Drawing.Point(85, 415)
+        Me.Button_create_server.Location = New System.Drawing.Point(95, 416)
         Me.Button_create_server.Name = "Button_create_server"
         Me.Button_create_server.Size = New System.Drawing.Size(75, 23)
         Me.Button_create_server.TabIndex = 70
@@ -477,7 +510,7 @@ Partial Class server
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(484, 466)
+        Me.TabPage2.Size = New System.Drawing.Size(484, 487)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "游戏内创建游戏发布"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -528,16 +561,16 @@ Partial Class server
         'Label_ver
         '
         Me.Label_ver.AutoSize = True
-        Me.Label_ver.Location = New System.Drawing.Point(445, 515)
+        Me.Label_ver.Location = New System.Drawing.Point(451, 542)
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(29, 12)
         Me.Label_ver.TabIndex = 15
-        Me.Label_ver.Text = "0.35"
+        Me.Label_ver.Text = "0.37"
         '
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(414, 515)
+        Me.Label17.Location = New System.Drawing.Point(420, 542)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(29, 12)
         Me.Label17.TabIndex = 14
@@ -546,7 +579,7 @@ Partial Class server
         'LinkLabel1
         '
         Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(93, 515)
+        Me.LinkLabel1.Location = New System.Drawing.Point(99, 542)
         Me.LinkLabel1.Name = "LinkLabel1"
         Me.LinkLabel1.Size = New System.Drawing.Size(245, 12)
         Me.LinkLabel1.TabIndex = 16
@@ -563,7 +596,7 @@ Partial Class server
         'Button_readme
         '
         Me.Button_readme.Enabled = False
-        Me.Button_readme.Location = New System.Drawing.Point(12, 510)
+        Me.Button_readme.Location = New System.Drawing.Point(18, 537)
         Me.Button_readme.Name = "Button_readme"
         Me.Button_readme.Size = New System.Drawing.Size(75, 23)
         Me.Button_readme.TabIndex = 105
@@ -574,7 +607,7 @@ Partial Class server
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(515, 549)
+        Me.ClientSize = New System.Drawing.Size(515, 573)
         Me.Controls.Add(Me.Button_readme)
         Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.Label_ver)
@@ -646,4 +679,7 @@ Partial Class server
     Friend WithEvents Label18 As Label
     Friend WithEvents CheckBox_custom_port As CheckBox
     Friend WithEvents CheckBox_auto_pause As CheckBox
+    Friend WithEvents CheckBox_user_mods As CheckBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents TextBox_game_ver As TextBox
 End Class

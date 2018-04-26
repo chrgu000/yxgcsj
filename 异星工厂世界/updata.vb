@@ -2,7 +2,8 @@
 Imports System.Net
 Public Class form_updata
 
-    Public up_root = "http://code.taobao.org/svn/yxgcsj/trunk/updatafiles/"
+    Public up_root = "https://gitee.com/yjfyeyu/yxgcupdata/raw/master/"
+    'Public up_root = "http://code.taobao.org/svn/yxgcsj/trunk/updatafiles/"
     'Public up_root = "https://raw.githubusercontent.com/yjfyy/yxgcsj/master/%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F/trunk/updatafiles/"
     Public r_version = "0"
     Public l_version = "0"

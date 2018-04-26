@@ -21,14 +21,14 @@ Public Class server
 
     '十分钟上传一次,18分钟无消息删除.
     Dim server_id
-    Public serverlist(4, 0)
+    'serverlist数组 x0为服务器名称，x1为介绍，x2时间,x3 ip x4 端口 x5 游戏版本,x6 是否使用mods
+    Public serverlist(6, 0)
     Public modsconfig(1, 0)
     Public mods_config_up_string = ""
-    'serverlist数组 x0为服务器名称，x1为介绍，x2时间（暂时无用）,x3 ip x4 端口 暂时无用
     Private Sub Button_create_server_Click(sender As Object, e As EventArgs) Handles Button_create_server.Click
 
-        If TextBox_server_intro.Text = "" Or TextBox_server_name.Text = "" Or TextBox_IP.Text = "" Then
-            MsgBox("请输入服务器IP、名称和介绍")
+        If TextBox_server_intro.Text = "" Or TextBox_server_name.Text = "" Or TextBox_IP.Text = "" Or TextBox_game_ver.Text = "" Then
+            MsgBox("请输入服务器IP、名称、介绍、游戏版本")
             Exit Sub
         End If
         If CheckBox_user_game_password.Checked = True And TextBox_game_password.Text = "" Then
@@ -73,7 +73,19 @@ Public Class server
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If My.Computer.FileSystem.DirectoryExists(".\data\facw\sl") Then
+            Try
+                Shell("cmd  /c rd /s /q data\facw\sl", AppWinStyle.MaximizedFocus, True)
+                'System.IO.Directory.Delete(".\data\face\sl", True)
 
+                'MsgBox("清理完成！")
+            Catch ex As Exception
+                MsgBox("清理失败，请重试！")
+                MsgBox(ex.ToString)
+            End Try
+        Else
+            'MsgBox("无需清理！")
+        End If
         load_ini()
         'If My.Computer.FileSystem.FileExists(".\bin\x64\factorio.exe") Then
         '    If My.Computer.FileSystem.DirectoryExists(".\my") = False Then
@@ -145,7 +157,7 @@ Public Class server
         'serverlist（1, server_select) 服务器介绍
         'serverlist（2, server_select) 服务器最后激活时间
         'serverlist（3, server_select) ip 不显示
-        'serverlist（4, server_select) ping
+        'serverlist（4, server_select) x4 端口 x5 游戏版本,x6 是否使用mods
         '确定最新1维下标
         '结束svn进程
         Dim i As Integer
@@ -274,7 +286,8 @@ Public Class server
         'Label1_status.Text = "正在删除旧服务器列表"
         If My.Computer.FileSystem.DirectoryExists(".\data\facw\sl") Then
             Try
-                Shell("cmd  /c rd /s /q data\facw\sl", AppWinStyle.Hide, True)
+                'Shell("cmd  /c rd /s /q data\facw\sl", AppWinStyle.MaximizedFocus, True)
+                System.IO.Directory.Delete("data\face\sl", True)
                 'MsgBox("清理完成！")
             Catch ex As Exception
                 'MsgBox("清理失败，请重试！")
@@ -287,19 +300,27 @@ Public Class server
         'Shell("""./data/facw/svn.exe""  cleanup  ./data/facw/sl", AppWinStyle.Hide, True)
         'Label1_status.Text = "正在下载服务器列表"
         Threading.Thread.Sleep(200)
-        Shell("""./data/facw/svn.exe""  co  http://code.taobao.org/svn/yxgcip/trunk  ./data/facw/sl", AppWinStyle.Hide, True)
+        'Shell("""./data/facw/svn.exe""  co  http://code.taobao.org/svn/yxgcip/trunk  ./data/facw/sl", AppWinStyle.Hide, True)
+        Shell("""./data/facw/svn.exe""  co  svn://gitee.com/ipup/yxgcip  ./data/facw/sl --username ipuppublic --password 1234abcD", AppWinStyle.Hide, True)
         Threading.Thread.Sleep(200)
     End Sub
 
     Private Sub edit_server_list()
         Dim this_server = UBound(serverlist， 2) + 1
-        ReDim Preserve serverlist(4, this_server)
+        ReDim Preserve serverlist(6, this_server)
         serverlist(0, this_server) = TextBox_server_name.Text
         serverlist(1, this_server) = TextBox_server_intro.Text
         'serverlist(2, this_server) = Format(Now, "MMddHHmm")2017/11/15 19:22:31
-        serverlist(2, this_server) = Format(Now, "yyyy/MM/dd HH:mm:ss")
+        serverlist(2, this_server) = Format(Now, "yyyy-MM-dd HH:mm:ss")
         serverlist(3, this_server) = TextBox_IP.Text
         serverlist(4, this_server) = TextBox_port.Text
+        serverlist(5, this_server) = TextBox_game_ver.Text
+
+        If CheckBox_user_mods.Checked Then
+            serverlist(6, this_server) = "1"
+        Else
+            serverlist(6, this_server) = "0"
+        End If
 
         Dim temp_serverlist(4, 0)
 
@@ -309,9 +330,9 @@ Public Class server
             For y = i + 1 To UBound(serverlist, 2)
                 If (serverlist(3, i) = serverlist(3, y)) And (serverlist(4, i) = serverlist(4, y)) Then
                     If DateDiff("n", CDate(serverlist(2, i)), CDate(serverlist(2, y)）） > 0 Then
-                        serverlist(2, i) = "2017/01/01 00:00:00"
+                        serverlist(2, i) = "2017-01-01 00:00:00"
                     Else
-                        serverlist(2, y) = "2017/01/01 00:00:00"
+                        serverlist(2, y) = "2017-01-01 00:00:00"
                     End If
                 End If
 
@@ -321,14 +342,14 @@ Public Class server
         '删除18分钟没有报告的服务器
         For i = 0 To UBound(serverlist, 2)
             If DateDiff("n", CDate(serverlist(2, i)）， Now) > 18 Then
-                serverlist(2, i) = "2017/01/01 00:00:00"
+                serverlist(2, i) = "2017-01-01 00:00:00"
             End If
 
         Next
 
 delete:'删除时间为"2017/01/01 00:00:00"的
         For i = 0 To UBound(serverlist, 2)
-            If serverlist（2， i） = "2017/01/01 00:00:00" Then
+            If serverlist（2， i） = "2017-01-01 00:00:00" Then
                 If i < UBound(serverlist, 2) Then
                     For y = i To UBound(serverlist, 2） - 1
                         serverlist（0， y） = serverlist（0， y + 1）
@@ -336,10 +357,12 @@ delete:'删除时间为"2017/01/01 00:00:00"的
                         serverlist（2， y） = serverlist（2， y + 1）
                         serverlist（3， y） = serverlist（3， y + 1）
                         serverlist（4， y） = serverlist（4， y + 1）
+                        serverlist（5， y） = serverlist（5， y + 1）
+                        serverlist（6， y） = serverlist（6， y + 1）
                     Next
                 End If
                 i = i - 1
-                ReDim Preserve serverlist(4, UBound(serverlist, 2) - 1)
+                ReDim Preserve serverlist(6, UBound(serverlist, 2) - 1)
                 GoTo delete '删除时间为"2017/01/01 00:00:00"的
             End If
         Next
@@ -369,9 +392,9 @@ delete:'删除时间为"2017/01/01 00:00:00"的
 
         Dim serverlist_file_string = ""
         For i = 0 To UBound(serverlist, 2)
-            serverlist_file_string = (serverlist_file_string & serverlist(0, i) & vbTab & serverlist(1, i) & vbTab & serverlist(2, i) & vbTab & serverlist(3, i) & vbTab & serverlist(4, i) & vbCrLf)
+            serverlist_file_string = (serverlist_file_string & serverlist(0, i) & vbTab & serverlist(1, i) & vbTab & serverlist(2, i) & vbTab & serverlist(3, i) & vbTab & serverlist(4, i) & vbTab & serverlist(5, i) & vbTab & serverlist(6, i) & vbCrLf)
         Next
-        System.IO.File.WriteAllText("./data/facw/sl/sl.txt", serverlist_file_string, encoding:=System.Text.Encoding.Default)
+        System.IO.File.WriteAllText("./data/facw/sl/sl.txt", serverlist_file_string, encoding:=System.Text.Encoding.UTF8)
         Threading.Thread.Sleep(500)
 
 
@@ -436,7 +459,7 @@ delete:'删除时间为"2017/01/01 00:00:00"的
 
         'sl文件转到数组.
         '判断是否有serverlist
-        ReDim serverlist(4, 0)
+        ReDim serverlist(6, 0)
         If My.Computer.FileSystem.FileExists("./data/facw/sl/sl.txt") Then
             Dim i = -1 '临时统计文件有几行.-1为校正数组从0开始
             FileOpen(1, "./data/facw/sl/sl.txt", OpenMode.Input)
@@ -448,22 +471,42 @@ delete:'删除时间为"2017/01/01 00:00:00"的
             FileClose()
             ' MsgBox(i)
 
-            ReDim serverlist(4, i)
-            FileOpen(1, "./data/facw/sl/sl.txt", OpenMode.Input)
-            Dim temp2
-            Do While Not EOF(1)
+            ReDim serverlist(6, i)
+            Dim fileReader = My.Computer.FileSystem.OpenTextFileReader("./data/facw/sl/sl.txt", encoding:=System.Text.Encoding.UTF8)
+            'FileOpen(1, "./data/facw/sl/sl.txt", OpenMode.Input)
+            Dim temp2 As String
+
+            Do While fileReader.Peek() >= 0
                 For l = 0 To i
-                    temp2 = LineInput(1)
+                    temp2 = fileReader.ReadLine()
+                    'temp2 = LineInput(1)
                     Dim arr As String() = temp2.Split(vbTab) '放入arr数组
-                    For h As Integer = 0 To 4
+                    For h As Integer = 0 To 6
                         serverlist(h, l) = arr(h)
                         'MsgBox(serverlist(h, l))
                     Next
+                    'If serverlist(6, l) = "0" Then
+                    '    serverlist(6, l) = "否"
+                    'Else
+                    '    serverlist(6, l) = "是"
+                    'End If
                 Next
-                i = i + 1
             Loop
-            FileClose()
-            i = i - 1 '校正最后一次循环
+            fileReader.Close()
+
+            'Do While Not EOF(1)
+            '    For l = 0 To i
+            '        temp2 = LineInput(1)
+            '        Dim arr As String() = temp2.Split(vbTab) '放入arr数组
+            '        For h As Integer = 0 To 4
+            '            serverlist(h, l) = arr(h)
+            '            'MsgBox(serverlist(h, l))
+            '        Next
+            '    Next
+            '    i = i + 1
+            'Loop
+            'FileClose()
+            'i = i - 1 '校正最后一次循环
             '处理完毕
             '删除serverlist.txt文件
             'If My.Computer.FileSystem.FileExists("./data/facw/sl/sl.txt") Then
@@ -541,9 +584,7 @@ delete:'删除时间为"2017/01/01 00:00:00"的
 
 
 
-    Private Sub TabPage1_Click(sender As Object, e As EventArgs) Handles TabPage1.Click
 
-    End Sub
 
     Private Sub Button_copy_save_Click(sender As Object, e As EventArgs) Handles Button_copy_save.Click
         Dim fugai As DialogResult
@@ -565,9 +606,7 @@ delete:'删除时间为"2017/01/01 00:00:00"的
 
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs)
 
-    End Sub
 
     Private Sub Button_readme_Click(sender As Object, e As EventArgs) Handles Button_readme.Click
         Process.Start("使用说明服务端.txt")
@@ -582,9 +621,7 @@ delete:'删除时间为"2017/01/01 00:00:00"的
         End If
     End Sub
 
-    Private Sub CheckBox_pppoe_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_pppoe.CheckedChanged
 
-    End Sub
 
     Private Sub CheckBox_custom_port_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_custom_port.CheckedChanged
         If CheckBox_custom_port.Checked Then
@@ -747,6 +784,7 @@ delete:'删除时间为"2017/01/01 00:00:00"的
         TextBox_max_players.Text = GetINI("server", "max_players", "0", ".\工厂世界.ini")
         TextBox_autosave_interval.Text = GetINI("server", "autosave_interval", "60", ".\工厂世界.ini")
         TextBox_autosave_slots.Text = GetINI("server", "autosave_slots", "20", ".\工厂世界.ini")
+        TextBox_game_ver.Text = GetINI("server", "game_ver", "0.16.37", ".\工厂世界.ini")
 
         If GetINI("server", "auto_pause", "0", ".\工厂世界.ini") = "0" Then
             CheckBox_auto_pause.Checked = False
@@ -772,6 +810,12 @@ delete:'删除时间为"2017/01/01 00:00:00"的
             CheckBox_user_game_password.Checked = True
         End If
 
+        If GetINI("server", "user_mods", "0", ".\工厂世界.ini") = "0" Then
+            CheckBox_user_mods.Checked = False
+        Else
+            CheckBox_user_mods.Checked = True
+        End If
+
     End Sub
     Sub save_ini()
         WriteINI("server", "ip", TextBox_IP.Text, ".\工厂世界.ini")
@@ -785,6 +829,7 @@ delete:'删除时间为"2017/01/01 00:00:00"的
         WriteINI("server", "max_players", TextBox_max_players.Text, ".\工厂世界.ini")
         WriteINI("server", "autosave_interval", TextBox_autosave_interval.Text, ".\工厂世界.ini")
         WriteINI("server", "autosave_slots", TextBox_autosave_slots.Text, ".\工厂世界.ini")
+        WriteINI("server", "game_ver", TextBox_game_ver.Text, ".\工厂世界.ini")
 
 
         If CheckBox_auto_pause.Checked = False Then
@@ -800,21 +845,40 @@ delete:'删除时间为"2017/01/01 00:00:00"的
         End If
 
         If CheckBox_pppoe.Checked = False Then
-            GetINI("server", "pppoe", "0", ".\工厂世界.ini")
+            WriteINI("server", "pppoe", "0", ".\工厂世界.ini")
         Else
-            GetINI("server", "pppoe", "1", ".\工厂世界.ini")
+            WriteINI("server", "pppoe", "1", ".\工厂世界.ini")
         End If
 
         If CheckBox_user_game_password.Checked = False Then
-            GetINI("server", "user_game_password", "0", ".\工厂世界.ini")
+            WriteINI("server", "user_game_password", "0", ".\工厂世界.ini")
         Else
-            GetINI("server", "user_game_password", "1", ".\工厂世界.ini")
+            WriteINI("server", "user_game_password", "1", ".\工厂世界.ini")
         End If
+
+        If CheckBox_user_mods.Checked = False Then
+            WriteINI("server", "user_mods", "0", ".\工厂世界.ini")
+        Else
+            WriteINI("server", "user_mods", "1", ".\工厂世界.ini")
+        End If
+
         'WriteINI("Language", "Language", "CHV", ".\conquer.ini")
 
     End Sub
 
     Private Sub server_Closed(sender As Object, e As EventArgs) Handles Me.Closed
         save_ini()
+        If My.Computer.FileSystem.DirectoryExists(".\data\facw\sl") Then
+            Try
+                'Shell("cmd  /c rd /s /q data\facw\sl", AppWinStyle.MaximizedFocus, True)
+                System.IO.Directory.Delete("data\face\sl", True)
+                'MsgBox("清理完成！")
+            Catch ex As Exception
+                'MsgBox("清理失败，请重试！")
+            End Try
+        Else
+            'MsgBox("无需清理！")
+        End If
     End Sub
+
 End Class

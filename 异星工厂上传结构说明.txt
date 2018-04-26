@@ -12,6 +12,22 @@ code.taobao.org
 密码：1234abcD
 邮箱：ipuppublic@163.com
 
+svn gitee
+
+https://gitee.com/
+用户名：ipup
+密码：
+邮箱：ipupadmin@163.com
+项目:yxgcip
+地址:svn://gitee.com/ipup/yxgcip
+
+https://gitee.com/
+用户名：ipuppublic
+密码：1234abcD
+邮箱：ipuppublic@163.com
+
+
+
 
 
 

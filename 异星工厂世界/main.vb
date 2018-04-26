@@ -3,6 +3,7 @@ Imports System.IO
 Imports System.Net
 
 Public Class Form_main
+
     '声明INI配置文件读写API函数,lpApplicationName节名称， lpKeyName键名称，lpString是键值
     Private Declare Function GetPrivateProfileString Lib "kernel32" Alias "GetPrivateProfileStringA" (ByVal lpApplicationName As String, ByVal lpKeyName As String, ByVal lpDefault As String, ByVal lpReturnedString As String, ByVal nSize As Int32, ByVal lpFileName As String) As Int32
     Private Declare Function WritePrivateProfileString Lib "kernel32" Alias "WritePrivateProfileStringA" (ByVal lpApplicationName As String, ByVal lpKeyName As String, ByVal lpString As String, ByVal lpFileName As String) As Int32
@@ -18,28 +19,30 @@ Public Class Form_main
     End Function
     '------------------------
     '后台按键测试
-    Private Declare Function PostMessage Lib "user32" Alias "PostMessageA" (ByVal hwnd As Long, ByVal wMsg As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
-    Private Declare Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpClassName As String, ByVal lpWindowName As String) As Long
-    Private Declare Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As Long)
+    'Private Declare Function PostMessage Lib "user32" Alias "PostMessageA" (ByVal hwnd As Long, ByVal wMsg As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
+    'Private Declare Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpClassName As String, ByVal lpWindowName As String) As Long
+    'Private Declare Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As Long)
     '常量声明 　　
-    Private Const WM_LBUTTONDBLCLK = &H203
-    Private Const WM_LBUTTONDOWN = &H201
-    Private Const WM_LBUTTONUP = &H202
-    Private Const WM_MBUTTONDBLCLK = &H209
-    Private Const WM_MBUTTONDOWN = &H207
-    Private Const WM_MBUTTONUP = &H208
-    Private Const WM_RBUTTONDBLCLK = &H206
-    Private Const WM_RBUTTONDOWN = &H204
-    Private Const WM_RBUTTONUP = &H205
+    'Private Const WM_LBUTTONDBLCLK = &H203
+    'Private Const WM_LBUTTONDOWN = &H201
+    'Private Const WM_LBUTTONUP = &H202
+    'Private Const WM_MBUTTONDBLCLK = &H209
+    'Private Const WM_MBUTTONDOWN = &H207
+    'Private Const WM_MBUTTONUP = &H208
+    'Private Const WM_RBUTTONDBLCLK = &H206
+    'Private Const WM_RBUTTONDOWN = &H204
+    'Private Const WM_RBUTTONUP = &H205
     '后台按键测试结束
     '--------------------
 
 
     'Public upsrc = "http://code.taobao.org/svn/yxgcsj/trunk/updatafiles/"
     'Public up_root = "https://raw.githubusercontent.com/yjfyy/yxgcsj/master/%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F/trunk/serverlist/"
-    Public sl_root = "http://code.taobao.org/svn/yxgcip/trunk/"
-    Public up_root = "http://code.taobao.org/svn/yxgcsj/trunk/updatafiles/"
-    Public mods_root = "http://code.taobao.org/svn/yxgcsj/trunk/mods/"
+    'Public sl_root = "http://code.taobao.org/svn/yxgcip/trunk/"
+    Public sl_root = "https://gitee.com/ipup/yxgcip/raw/master/"
+    'Public up_root = "http://code.taobao.org/svn/yxgcsj/trunk/updatafiles/"
+    'Public mods_root = "http://code.taobao.org/svn/yxgcsj/trunk/mods/"
+    Public mods_root = "https://gitee.com/ipup/yxgcmod/raw/master/"
     Public r_version = "0"
     Public l_version = "0"
     Dim server_select = 0
@@ -48,23 +51,23 @@ Public Class Form_main
     Dim err = 0
     Dim steam = False
 
-    'serverlist数组 x0为服务器名称，x1为介绍，x2时间（暂时无用）,x3 ip x4 ping 暂时无用
-    Public serverlist(4, 0)
+    'serverlist数组 x0为服务器名称，x1为介绍，x2时间,x3 ip x4 ping 暂时无用
+    Public serverlist(6, 0)
 
     'modslist(0,y)名称,(1,y)版本,(2,y)试用游戏版本,(3,y)作者,(4,y)官网,(5,y)更新日期,(6,y)简介,(7,y)下载地址,(8,y)文件名
     Public modslist(9, 0)
 
-    Public Const WM_HOTKEY = &H312
+    'Public Const WM_HOTKEY = &H312
     'Public Const MOD_ALT = &H1
-    Public Const MOD_CONTROL = &H2
+    'Public Const MOD_CONTROL = &H2
     'Public Const MOD_SHIFT = &H4
     'Public Const GWL_WNDPROC = (-4)
 
-    Public Declare Auto Function RegisterHotKey Lib "user32.dll" Alias _
-        "RegisterHotKey" (ByVal hwnd As IntPtr, ByVal id As Integer, ByVal fsModifiers As Integer, ByVal vk As Integer) As Boolean
+    'Public Declare Auto Function RegisterHotKey Lib "user32.dll" Alias _
+    '    "RegisterHotKey" (ByVal hwnd As IntPtr, ByVal id As Integer, ByVal fsModifiers As Integer, ByVal vk As Integer) As Boolean
 
-    Public Declare Auto Function UnRegisterHotKey Lib "user32.dll" Alias _
-        "UnregisterHotKey" (ByVal hwnd As IntPtr, ByVal id As Integer) As Boolean
+    'Public Declare Auto Function UnRegisterHotKey Lib "user32.dll" Alias _
+    '   "UnregisterHotKey" (ByVal hwnd As IntPtr, ByVal id As Integer) As Boolean
     'Protected Overrides Sub WndProc(ByRef m As Message)
     '    If m.Msg = WM_HOTKEY Then
     '        If CheckBox_chinese_chat.Checked = True Then
@@ -77,15 +80,15 @@ Public Class Form_main
     'End Sub
 
     Private Sub tips()
-        Dim tips_string(4) As String
+        Dim tips_string(3) As String
         tips_string(0) = "---------------------------------------------------------------"
         tips_string(1) = "双击列表中的服务器可以直接启动游戏并进入选定的服务器哦!"
         'tips_string(2) = "进游戏系后按 Ctrl+~ 可以中文输入。"
-        tips_string(2) = "如果输入中文时，提示版本不对,可以在工具标签里修改你实际的游戏版本。"
-        tips_string(3) = "长时间不能载入服务器列表或者不能检测更新，重启我也许比等待快。"
+        'tips_string(2) = "如果输入中文时，提示版本不对,可以在工具标签里修改你实际的游戏版本。"
+        tips_string(2) = "长时间不能载入服务器列表或者不能检测更新，重启我也许比等待快。"
         Dim myRND As New Random
         'Label_tips.Text = tips_string(0)
-        Label_tips.Text = tips_string(myRND.Next(1, 4))
+        Label_tips.Text = tips_string(myRND.Next(1, 3))
 
     End Sub
 
@@ -113,7 +116,7 @@ Public Class Form_main
 
 
         '注册聊天热键
-        RegisterHotKey(Handle, 0, MOD_CONTROL, 192)
+        'RegisterHotKey(Handle, 0, MOD_CONTROL, 192)
 
         '小提示
         tips()
@@ -134,7 +137,7 @@ Public Class Form_main
         '删除旧版文件
         'delete_files()
 
-        UnRegisterHotKey(Handle, 0)
+        'UnRegisterHotKey(Handle, 0)
         form_updata.Close()
     End Sub
 
@@ -149,7 +152,7 @@ Public Class Form_main
 
         '处理列表
         '判断是否有serverlist
-        ReDim serverlist(4, 0)
+        ReDim serverlist(6, 0)
         If My.Computer.FileSystem.FileExists("sl.txt") Then
             Dim i = -1 '临时统计文件有几行.-1为校正数组从0开始
             FileOpen(1, "sl.txt", OpenMode.Input)
@@ -162,22 +165,51 @@ Public Class Form_main
             FileClose()
             ' MsgBox(i)
 
-            ReDim serverlist(4, i)
-            FileOpen(1, "sl.txt", OpenMode.Input)
-            Dim temp2
-            Do While Not EOF(1)
+            ReDim serverlist(6, i)
+            'FileOpen(1, "sl.txt", OpenMode.Input)
+            Dim fileReader = My.Computer.FileSystem.OpenTextFileReader("sl.txt", encoding:=System.Text.Encoding.UTF8)
+            'Dim stringReader = fileReader.ReadLine()
+            ' MsgBox("The first line of the file is " & stringReader)
+            'My.Computer.FileSystem.OpenTextFileReader("sl.txt", encoding:=System.Text.Encoding.UTF8)
+            Dim temp2 As String
+            Do While fileReader.Peek() >= 0
                 For l = 0 To i
-                    temp2 = LineInput(1)
+                    temp2 = fileReader.ReadLine()
+                    'temp2 = LineInput(1)
                     Dim arr As String() = temp2.Split(vbTab) '放入arr数组
-                    For h As Integer = 0 To 4
+                    For h As Integer = 0 To 6
                         serverlist(h, l) = arr(h)
                         'MsgBox(serverlist(h, l))
                     Next
+                    If serverlist(6, l) = "0" Then
+                        serverlist(6, l) = "否"
+                    Else
+                        serverlist(6, l) = "是"
+                    End If
                 Next
-                i = i + 1
             Loop
-            FileClose()
-            i = i - 1 '校正最后一次循环
+            fileReader.Close()
+            'i = i - 1 '
+
+            'Do While Not EOF(1)
+            '    For l = 0 To i
+            '        temp2 = fileReader.Peek
+            '        'temp2 = LineInput(1)
+            '        Dim arr As String() = temp2.Split(vbTab) '放入arr数组
+            '        For h As Integer = 0 To 6
+            '            serverlist(h, l) = arr(h)
+            '            'MsgBox(serverlist(h, l))
+            '        Next
+            '        If serverlist(6, l) = "0" Then
+            '            serverlist(6, l) = "否"
+            '        Else
+            '            serverlist(6, l) = "是"
+            '        End If
+            '    Next
+            '    i = i + 1
+            'Loop
+            'FileClose()
+            'i = i - 1 '校正最后一次循环
             '处理完毕
             '删除serverlist.txt文件
             If My.Computer.FileSystem.FileExists("sl.txt") Then
@@ -191,9 +223,13 @@ Public Class Form_main
 
             For l = 0 To i
                 ListView1.Items.Add(serverlist(0, l))
-                For h = 1 To 2
-                    ListView1.Items(l).SubItems.Add(serverlist(h, l))
-                Next
+                ListView1.Items(l).SubItems.Add(serverlist(1, l))
+                ListView1.Items(l).SubItems.Add(serverlist(5, l))
+                ListView1.Items(l).SubItems.Add(serverlist(6, l))
+                ListView1.Items(l).SubItems.Add(serverlist(2, l))
+                'For h = 1 To 2
+                '    ListView1.Items(l).SubItems.Add(serverlist(h, l))
+                'Next
             Next
 
             'ListView1.Items（0）.ForeColor = Color.Red
@@ -761,6 +797,11 @@ Public Class Form_main
     Private Sub BackgroundWorker_download_mods_list_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BackgroundWorker_download_mods_list.RunWorkerCompleted
         '下载完成开始load serverlist
         If My.Computer.FileSystem.FileExists("ml.txt") Then
+            '转换换行符
+            Dim lf
+            lf = My.Computer.FileSystem.ReadAllText("ml.txt", encoding:=System.Text.Encoding.UTF8)
+            lf = Replace(lf, vbLf, vbCrLf)
+            My.Computer.FileSystem.WriteAllText("ml.txt", lf, False, encoding:=System.Text.Encoding.Default)
             load_mods_list()
         Else
             Label_mods_status.Text = "下载失败,请重试."
@@ -930,5 +971,9 @@ Public Class Form_main
     Sub save_ini()
         'WriteINI("Language", "Language", "CHV", ".\conquer.ini")
         WriteINI("client", "game_ver"， TextBox_game_ver.Text, ".\工厂世界.ini")
+    End Sub
+
+    Private Sub ListView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListView1.SelectedIndexChanged
+
     End Sub
 End Class

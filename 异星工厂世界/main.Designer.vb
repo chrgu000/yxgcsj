@@ -31,6 +31,7 @@ Partial Class Form_main
         Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage_client = New System.Windows.Forms.TabPage()
         Me.Button_load_game = New System.Windows.Forms.Button()
@@ -55,13 +56,13 @@ Partial Class Form_main
         Me.Button_download_mods = New System.Windows.Forms.Button()
         Me.Button_mods_list = New System.Windows.Forms.Button()
         Me.ListView_mods = New System.Windows.Forms.ListView()
-        Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader7 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader8 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader9 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader10 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader11 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader101 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader102 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader103 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader104 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader105 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader106 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader107 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
@@ -109,7 +110,7 @@ Partial Class Form_main
         '
         'ListView1
         '
-        Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4})
+        Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5})
         Me.ListView1.Dock = System.Windows.Forms.DockStyle.Top
         Me.ListView1.ForeColor = System.Drawing.SystemColors.ControlText
         Me.ListView1.FullRowSelect = True
@@ -127,22 +128,27 @@ Partial Class Form_main
         'ColumnHeader1
         '
         Me.ColumnHeader1.Text = "服务器名称"
-        Me.ColumnHeader1.Width = 157
+        Me.ColumnHeader1.Width = 93
         '
         'ColumnHeader2
         '
         Me.ColumnHeader2.Text = "介绍"
-        Me.ColumnHeader2.Width = 320
+        Me.ColumnHeader2.Width = 181
         '
         'ColumnHeader3
         '
-        Me.ColumnHeader3.Text = "最后报告正常时间"
-        Me.ColumnHeader3.Width = 136
+        Me.ColumnHeader3.Text = "游戏版本"
+        Me.ColumnHeader3.Width = 89
         '
         'ColumnHeader4
         '
-        Me.ColumnHeader4.Text = "ping"
-        Me.ColumnHeader4.Width = 54
+        Me.ColumnHeader4.Text = "使用模组"
+        Me.ColumnHeader4.Width = 97
+        '
+        'ColumnHeader5
+        '
+        Me.ColumnHeader5.Text = "最后报告正常时间"
+        Me.ColumnHeader5.Width = 126
         '
         'TabControl1
         '
@@ -297,7 +303,7 @@ Partial Class Form_main
         Me.TextBox_game_ver.Name = "TextBox_game_ver"
         Me.TextBox_game_ver.Size = New System.Drawing.Size(100, 21)
         Me.TextBox_game_ver.TabIndex = 18
-        Me.TextBox_game_ver.Text = "0.16.25"
+        Me.TextBox_game_ver.Text = "0.16.36"
         '
         'LinkLabel_game_download_url
         '
@@ -347,24 +353,26 @@ Partial Class Form_main
         Me.TabPage_mods.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage_mods.Size = New System.Drawing.Size(623, 356)
         Me.TabPage_mods.TabIndex = 2
-        Me.TabPage_mods.Text = "下载MODS"
+        Me.TabPage_mods.Text = "下载模组"
         Me.TabPage_mods.UseVisualStyleBackColor = True
         '
         'ProgressBar1
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(387, 318)
+        Me.ProgressBar1.Location = New System.Drawing.Point(339, 318)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(149, 23)
+        Me.ProgressBar1.Size = New System.Drawing.Size(137, 23)
         Me.ProgressBar1.TabIndex = 4
+        Me.ProgressBar1.Visible = False
         '
         'Label_mods_status
         '
         Me.Label_mods_status.AutoSize = True
-        Me.Label_mods_status.Location = New System.Drawing.Point(542, 323)
+        Me.Label_mods_status.ForeColor = System.Drawing.Color.Red
+        Me.Label_mods_status.Location = New System.Drawing.Point(494, 323)
         Me.Label_mods_status.Name = "Label_mods_status"
-        Me.Label_mods_status.Size = New System.Drawing.Size(11, 12)
+        Me.Label_mods_status.Size = New System.Drawing.Size(41, 12)
         Me.Label_mods_status.TabIndex = 3
-        Me.Label_mods_status.Text = "."
+        Me.Label_mods_status.Text = "状态："
         '
         'Button_download_mods
         '
@@ -387,7 +395,7 @@ Partial Class Form_main
         '
         'ListView_mods
         '
-        Me.ListView_mods.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader5, Me.ColumnHeader6, Me.ColumnHeader7, Me.ColumnHeader8, Me.ColumnHeader9, Me.ColumnHeader10, Me.ColumnHeader11})
+        Me.ListView_mods.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader101, Me.ColumnHeader102, Me.ColumnHeader103, Me.ColumnHeader104, Me.ColumnHeader105, Me.ColumnHeader106, Me.ColumnHeader107})
         Me.ListView_mods.ContextMenuStrip = Me.ContextMenuStrip1
         Me.ListView_mods.FullRowSelect = True
         Me.ListView_mods.GridLines = True
@@ -401,40 +409,40 @@ Partial Class Form_main
         Me.ListView_mods.UseCompatibleStateImageBehavior = False
         Me.ListView_mods.View = System.Windows.Forms.View.Details
         '
-        'ColumnHeader5
+        'ColumnHeader101
         '
-        Me.ColumnHeader5.Text = "中文译名"
-        Me.ColumnHeader5.Width = 139
+        Me.ColumnHeader101.Text = "中文译名"
+        Me.ColumnHeader101.Width = 145
         '
-        'ColumnHeader6
+        'ColumnHeader102
         '
-        Me.ColumnHeader6.Text = "版本"
-        Me.ColumnHeader6.Width = 54
+        Me.ColumnHeader102.Text = "版本"
+        Me.ColumnHeader102.Width = 54
         '
-        'ColumnHeader7
+        'ColumnHeader103
         '
-        Me.ColumnHeader7.Text = "详细介绍"
-        Me.ColumnHeader7.Width = 265
+        Me.ColumnHeader103.Text = "详细介绍"
+        Me.ColumnHeader103.Width = 265
         '
-        'ColumnHeader8
+        'ColumnHeader104
         '
-        Me.ColumnHeader8.Text = "官网原名"
-        Me.ColumnHeader8.Width = 147
+        Me.ColumnHeader104.Text = "官网原名"
+        Me.ColumnHeader104.Width = 147
         '
-        'ColumnHeader9
+        'ColumnHeader105
         '
-        Me.ColumnHeader9.Text = "作者"
-        Me.ColumnHeader9.Width = 49
+        Me.ColumnHeader105.Text = "作者"
+        Me.ColumnHeader105.Width = 49
         '
-        'ColumnHeader10
+        'ColumnHeader106
         '
-        Me.ColumnHeader10.Text = "官方网站"
-        Me.ColumnHeader10.Width = 87
+        Me.ColumnHeader106.Text = "官方网站"
+        Me.ColumnHeader106.Width = 87
         '
-        'ColumnHeader11
+        'ColumnHeader107
         '
-        Me.ColumnHeader11.Text = "更新日期"
-        Me.ColumnHeader11.Width = 203
+        Me.ColumnHeader107.Text = "更新日期"
+        Me.ColumnHeader107.Width = 203
         '
         'ContextMenuStrip1
         '
@@ -521,7 +529,7 @@ Partial Class Form_main
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(29, 12)
         Me.Label_ver.TabIndex = 13
-        Me.Label_ver.Text = "0.35"
+        Me.Label_ver.Text = "0.37"
         '
         'Label_ver_status
         '
@@ -593,8 +601,8 @@ Partial Class Form_main
     Friend WithEvents ListView1 As ListView
     Friend WithEvents ColumnHeader1 As ColumnHeader
     Friend WithEvents ColumnHeader2 As ColumnHeader
+    Friend WithEvents ColumnHeader5 As ColumnHeader
     Friend WithEvents ColumnHeader3 As ColumnHeader
-    Friend WithEvents ColumnHeader4 As ColumnHeader
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage_client As TabPage
     Friend WithEvents TabPage_server As TabPage
@@ -629,14 +637,14 @@ Partial Class Form_main
     Friend WithEvents Button_download_mods As Button
     Friend WithEvents Button_mods_list As Button
     Friend WithEvents ListView_mods As ListView
-    Friend WithEvents ColumnHeader5 As ColumnHeader
-    Friend WithEvents ColumnHeader6 As ColumnHeader
-    Friend WithEvents ColumnHeader7 As ColumnHeader
-    Friend WithEvents ColumnHeader8 As ColumnHeader
-    Friend WithEvents ColumnHeader9 As ColumnHeader
-    Friend WithEvents ColumnHeader10 As ColumnHeader
+    Friend WithEvents ColumnHeader101 As ColumnHeader
+    Friend WithEvents ColumnHeader102 As ColumnHeader
+    Friend WithEvents ColumnHeader103 As ColumnHeader
+    Friend WithEvents ColumnHeader104 As ColumnHeader
+    Friend WithEvents ColumnHeader105 As ColumnHeader
+    Friend WithEvents ColumnHeader106 As ColumnHeader
     Friend WithEvents BackgroundWorker_download_mods_list As System.ComponentModel.BackgroundWorker
-    Friend WithEvents ColumnHeader11 As ColumnHeader
+    Friend WithEvents ColumnHeader107 As ColumnHeader
     Friend WithEvents Label_mods_status As Label
     Friend WithEvents ProgressBar1 As ProgressBar
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
@@ -644,4 +652,5 @@ Partial Class Form_main
     Friend WithEvents ToolStripMenuItem2 As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem3 As ToolStripMenuItem
     Friend WithEvents Label6 As Label
+    Friend WithEvents ColumnHeader4 As ColumnHeader
 End Class
