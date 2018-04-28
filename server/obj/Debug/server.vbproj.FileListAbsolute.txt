@@ -23,3 +23,14 @@ F:\projects\yxgcsj\server\obj\Debug\工厂世界服务端.exe
 F:\projects\yxgcsj\server\obj\Debug\工厂世界服务端.xml
 F:\projects\yxgcsj\server\obj\Debug\工厂世界服务端.pdb
 F:\projects\yxgcsj\server\obj\Debug\server.vbprojResolveAssemblyReference.cache
+F:\projects\yxgc\gcsj\异星工厂世界\bin\Debug\工厂世界服务端.exe
+F:\projects\yxgc\gcsj\异星工厂世界\bin\Debug\工厂世界服务端.pdb
+F:\projects\yxgc\gcsj\异星工厂世界\bin\Debug\工厂世界服务端.xml
+F:\projects\yxgc\gcsj\server\obj\Debug\server.vbprojResolveAssemblyReference.cache
+F:\projects\yxgc\gcsj\server\obj\Debug\工厂世界服务端.server.resources
+F:\projects\yxgc\gcsj\server\obj\Debug\工厂世界服务端.Resources.resources
+F:\projects\yxgc\gcsj\server\obj\Debug\server.vbproj.GenerateResource.cache
+F:\projects\yxgc\gcsj\server\obj\Debug\server.vbproj.CoreCompileInputs.cache
+F:\projects\yxgc\gcsj\server\obj\Debug\工厂世界服务端.exe
+F:\projects\yxgc\gcsj\server\obj\Debug\工厂世界服务端.xml
+F:\projects\yxgc\gcsj\server\obj\Debug\工厂世界服务端.pdb

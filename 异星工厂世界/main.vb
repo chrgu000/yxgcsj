@@ -51,8 +51,8 @@ Public Class Form_main
     Dim err = 0
     Dim steam = False
 
-    'serverlist数组 x0为服务器名称，x1为介绍，x2时间,x3 ip x4 ping 暂时无用
-    Public serverlist(6, 0)
+    'serverlist数组 x0为服务器名称，x1为介绍，x2时间,x3 ip x4 端口 x5 游戏版本,x6 是否使用mods,x7是否使用密码
+    Public serverlist(7, 0)
 
     'modslist(0,y)名称,(1,y)版本,(2,y)试用游戏版本,(3,y)作者,(4,y)官网,(5,y)更新日期,(6,y)简介,(7,y)下载地址,(8,y)文件名
     Public modslist(9, 0)
@@ -152,7 +152,7 @@ Public Class Form_main
 
         '处理列表
         '判断是否有serverlist
-        ReDim serverlist(6, 0)
+        ReDim serverlist(7, 0)
         If My.Computer.FileSystem.FileExists("sl.txt") Then
             Dim i = -1 '临时统计文件有几行.-1为校正数组从0开始
             FileOpen(1, "sl.txt", OpenMode.Input)
@@ -165,7 +165,7 @@ Public Class Form_main
             FileClose()
             ' MsgBox(i)
 
-            ReDim serverlist(6, i)
+            ReDim serverlist(7, i)
             'FileOpen(1, "sl.txt", OpenMode.Input)
             Dim fileReader = My.Computer.FileSystem.OpenTextFileReader("sl.txt", encoding:=System.Text.Encoding.UTF8)
             'Dim stringReader = fileReader.ReadLine()
@@ -177,7 +177,7 @@ Public Class Form_main
                     temp2 = fileReader.ReadLine()
                     'temp2 = LineInput(1)
                     Dim arr As String() = temp2.Split(vbTab) '放入arr数组
-                    For h As Integer = 0 To 6
+                    For h As Integer = 0 To 7
                         serverlist(h, l) = arr(h)
                         'MsgBox(serverlist(h, l))
                     Next
@@ -185,6 +185,12 @@ Public Class Form_main
                         serverlist(6, l) = "否"
                     Else
                         serverlist(6, l) = "是"
+                    End If
+
+                    If serverlist(7, l) = "0" Then
+                        serverlist(7, l) = "无"
+                    Else
+                        serverlist(7, l) = "有"
                     End If
                 Next
             Loop
@@ -226,6 +232,7 @@ Public Class Form_main
                 ListView1.Items(l).SubItems.Add(serverlist(1, l))
                 ListView1.Items(l).SubItems.Add(serverlist(5, l))
                 ListView1.Items(l).SubItems.Add(serverlist(6, l))
+                ListView1.Items(l).SubItems.Add(serverlist(7, l))
                 ListView1.Items(l).SubItems.Add(serverlist(2, l))
                 'For h = 1 To 2
                 '    ListView1.Items(l).SubItems.Add(serverlist(h, l))

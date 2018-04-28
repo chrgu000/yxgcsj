@@ -21,8 +21,8 @@ Public Class server
 
     '十分钟上传一次,18分钟无消息删除.
     Dim server_id
-    'serverlist数组 x0为服务器名称，x1为介绍，x2时间,x3 ip x4 端口 x5 游戏版本,x6 是否使用mods
-    Public serverlist(6, 0)
+    'serverlist数组 x0为服务器名称，x1为介绍，x2时间,x3 ip x4 端口 x5 游戏版本,x6 是否使用mods,x7是否使用密码
+    Public serverlist(7, 0)
     Public modsconfig(1, 0)
     Public mods_config_up_string = ""
     Private Sub Button_create_server_Click(sender As Object, e As EventArgs) Handles Button_create_server.Click
@@ -307,7 +307,7 @@ Public Class server
 
     Private Sub edit_server_list()
         Dim this_server = UBound(serverlist， 2) + 1
-        ReDim Preserve serverlist(6, this_server)
+        ReDim Preserve serverlist(7, this_server)
         serverlist(0, this_server) = TextBox_server_name.Text
         serverlist(1, this_server) = TextBox_server_intro.Text
         'serverlist(2, this_server) = Format(Now, "MMddHHmm")2017/11/15 19:22:31
@@ -320,6 +320,12 @@ Public Class server
             serverlist(6, this_server) = "1"
         Else
             serverlist(6, this_server) = "0"
+        End If
+
+        If CheckBox_user_game_password.Checked Then
+            serverlist(7, this_server) = "1"
+        Else
+            serverlist(7, this_server) = "0"
         End If
 
         Dim temp_serverlist(4, 0)
@@ -359,10 +365,11 @@ delete:'删除时间为"2017/01/01 00:00:00"的
                         serverlist（4， y） = serverlist（4， y + 1）
                         serverlist（5， y） = serverlist（5， y + 1）
                         serverlist（6， y） = serverlist（6， y + 1）
+                        serverlist（7， y） = serverlist（7， y + 1）
                     Next
                 End If
                 i = i - 1
-                ReDim Preserve serverlist(6, UBound(serverlist, 2) - 1)
+                ReDim Preserve serverlist(7, UBound(serverlist, 2) - 1)
                 GoTo delete '删除时间为"2017/01/01 00:00:00"的
             End If
         Next
@@ -387,12 +394,12 @@ delete:'删除时间为"2017/01/01 00:00:00"的
         '如果超过20个，删除后面的
 
         If UBound(serverlist, 2) > 30 Then
-            ReDim Preserve serverlist(4, 20)
+            ReDim Preserve serverlist(7, 20)
         End If
 
         Dim serverlist_file_string = ""
         For i = 0 To UBound(serverlist, 2)
-            serverlist_file_string = (serverlist_file_string & serverlist(0, i) & vbTab & serverlist(1, i) & vbTab & serverlist(2, i) & vbTab & serverlist(3, i) & vbTab & serverlist(4, i) & vbTab & serverlist(5, i) & vbTab & serverlist(6, i) & vbCrLf)
+            serverlist_file_string = (serverlist_file_string & serverlist(0, i) & vbTab & serverlist(1, i) & vbTab & serverlist(2, i) & vbTab & serverlist(3, i) & vbTab & serverlist(4, i) & vbTab & serverlist(5, i) & vbTab & serverlist(6, i) & vbTab & serverlist(7, i) & vbCrLf)
         Next
         System.IO.File.WriteAllText("./data/facw/sl/sl.txt", serverlist_file_string, encoding:=System.Text.Encoding.UTF8)
         Threading.Thread.Sleep(500)
@@ -459,7 +466,7 @@ delete:'删除时间为"2017/01/01 00:00:00"的
 
         'sl文件转到数组.
         '判断是否有serverlist
-        ReDim serverlist(6, 0)
+        ReDim serverlist(7, 0)
         If My.Computer.FileSystem.FileExists("./data/facw/sl/sl.txt") Then
             Dim i = -1 '临时统计文件有几行.-1为校正数组从0开始
             FileOpen(1, "./data/facw/sl/sl.txt", OpenMode.Input)
@@ -471,7 +478,7 @@ delete:'删除时间为"2017/01/01 00:00:00"的
             FileClose()
             ' MsgBox(i)
 
-            ReDim serverlist(6, i)
+            ReDim serverlist(7, i)
             Dim fileReader = My.Computer.FileSystem.OpenTextFileReader("./data/facw/sl/sl.txt", encoding:=System.Text.Encoding.UTF8)
             'FileOpen(1, "./data/facw/sl/sl.txt", OpenMode.Input)
             Dim temp2 As String
@@ -481,7 +488,7 @@ delete:'删除时间为"2017/01/01 00:00:00"的
                     temp2 = fileReader.ReadLine()
                     'temp2 = LineInput(1)
                     Dim arr As String() = temp2.Split(vbTab) '放入arr数组
-                    For h As Integer = 0 To 6
+                    For h As Integer = 0 To 7
                         serverlist(h, l) = arr(h)
                         'MsgBox(serverlist(h, l))
                     Next
