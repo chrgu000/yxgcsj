@@ -31,6 +31,7 @@ Partial Class Form_main
         Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage_client = New System.Windows.Forms.TabPage()
@@ -81,7 +82,6 @@ Partial Class Form_main
         Me.Label_tips = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.BackgroundWorker_download_mods_list = New System.ComponentModel.BackgroundWorker()
-        Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.TabControl1.SuspendLayout()
         Me.TabPage_client.SuspendLayout()
         Me.TabPage_server.SuspendLayout()
@@ -145,6 +145,10 @@ Partial Class Form_main
         '
         Me.ColumnHeader4.Text = "使用模组"
         Me.ColumnHeader4.Width = 61
+        '
+        'ColumnHeader5
+        '
+        Me.ColumnHeader5.Text = "密码"
         '
         'ColumnHeader6
         '
@@ -530,7 +534,7 @@ Partial Class Form_main
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(29, 12)
         Me.Label_ver.TabIndex = 13
-        Me.Label_ver.Text = "0.38"
+        Me.Label_ver.Text = "0.39"
         '
         'Label_ver_status
         '
@@ -563,10 +567,6 @@ Partial Class Form_main
         '
         'BackgroundWorker_download_mods_list
         '
-        '
-        'ColumnHeader5
-        '
-        Me.ColumnHeader5.Text = "密码"
         '
         'Form_main
         '

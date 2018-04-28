@@ -120,4 +120,3 @@ F:\projects\yxgc\gcsj\异星工厂世界\obj\Release\异星工厂世界.vbproj.C
 F:\projects\yxgc\gcsj\异星工厂世界\obj\Release\工厂世界.exe
 F:\projects\yxgc\gcsj\异星工厂世界\obj\Release\工厂世界.xml
 F:\projects\yxgc\gcsj\异星工厂世界\obj\Release\工厂世界.pdb
-F:\projects\yxgc\gcsj\异星工厂世界\obj\Release\异星工厂世界.vbprojResolveAssemblyReference.cache

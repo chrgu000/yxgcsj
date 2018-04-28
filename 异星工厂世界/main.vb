@@ -177,21 +177,29 @@ Public Class Form_main
                     temp2 = fileReader.ReadLine()
                     'temp2 = LineInput(1)
                     Dim arr As String() = temp2.Split(vbTab) '放入arr数组
-                    For h As Integer = 0 To 7
-                        serverlist(h, l) = arr(h)
-                        'MsgBox(serverlist(h, l))
-                    Next
-                    If serverlist(6, l) = "0" Then
-                        serverlist(6, l) = "否"
+                    If UBound(arr) < 7 Then
+                        For h As Integer = 0 To 4
+                            serverlist(h, l) = arr(h)
+                            'MsgBox(serverlist(h, l))
+                        Next
                     Else
-                        serverlist(6, l) = "是"
+                        For h As Integer = 0 To 7
+                            serverlist(h, l) = arr(h)
+                            'MsgBox(serverlist(h, l))
+                        Next
+                        If serverlist(6, l) = "0" Then
+                            serverlist(6, l) = "否"
+                        Else
+                            serverlist(6, l) = "是"
+                        End If
+
+                        If serverlist(7, l) = "0" Then
+                            serverlist(7, l) = "无"
+                        Else
+                            serverlist(7, l) = "有"
+                        End If
                     End If
 
-                    If serverlist(7, l) = "0" Then
-                        serverlist(7, l) = "无"
-                    Else
-                        serverlist(7, l) = "有"
-                    End If
                 Next
             Loop
             fileReader.Close()
@@ -230,9 +238,17 @@ Public Class Form_main
             For l = 0 To i
                 ListView1.Items.Add(serverlist(0, l))
                 ListView1.Items(l).SubItems.Add(serverlist(1, l))
-                ListView1.Items(l).SubItems.Add(serverlist(5, l))
-                ListView1.Items(l).SubItems.Add(serverlist(6, l))
-                ListView1.Items(l).SubItems.Add(serverlist(7, l))
+                Try
+                    ListView1.Items(l).SubItems.Add(serverlist(5, l))
+                    ListView1.Items(l).SubItems.Add(serverlist(6, l))
+                    ListView1.Items(l).SubItems.Add(serverlist(7, l))
+                Catch ex As Exception
+                    ListView1.Items(l).SubItems.Add("无效“)
+                    ListView1.Items(l).SubItems.Add("无效“)
+                    ListView1.Items(l).SubItems.Add("无效“)
+                End Try
+
+
                 ListView1.Items(l).SubItems.Add(serverlist(2, l))
                 'For h = 1 To 2
                 '    ListView1.Items(l).SubItems.Add(serverlist(h, l))

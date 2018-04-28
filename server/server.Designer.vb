@@ -565,7 +565,7 @@ Partial Class server
         Me.Label_ver.Name = "Label_ver"
         Me.Label_ver.Size = New System.Drawing.Size(29, 12)
         Me.Label_ver.TabIndex = 15
-        Me.Label_ver.Text = "0.38"
+        Me.Label_ver.Text = "0.39"
         '
         'Label17
         '

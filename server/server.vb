@@ -488,7 +488,11 @@ delete:'删除时间为"2017/01/01 00:00:00"的
                     temp2 = fileReader.ReadLine()
                     'temp2 = LineInput(1)
                     Dim arr As String() = temp2.Split(vbTab) '放入arr数组
+                    ReDim Preserve arr(7)
                     For h As Integer = 0 To 7
+                        If arr(h) = "" Then
+                            arr(h) = "0"
+                        End If
                         serverlist(h, l) = arr(h)
                         'MsgBox(serverlist(h, l))
                     Next
